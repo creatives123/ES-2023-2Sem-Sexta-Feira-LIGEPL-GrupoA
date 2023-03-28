@@ -1,7 +1,13 @@
 # Eclipse
-.classpath
-.project
-.settings/
+.classpath  
+.editorconfig  
+.factorypath  
+.gitattributes  
+.project  
+.settings/  
+bin/  
+  
+target/  
 
 # Intellij
 .idea/
