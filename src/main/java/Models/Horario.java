@@ -1,4 +1,8 @@
 package Models;
+
+import java.io.BufferedReader;
+import java.util.List;
+
 public class Horario {
     public String curso;
     public String unidadeCurricular;
@@ -27,4 +31,22 @@ public class Horario {
         this.sala = sala;
         this.lotacao = lotacao;
     }
+
+    @Override
+    public String toString() {
+        return "Horario{" +
+                "curso='" + curso + '\'' +
+                ", unidadeCurricular='" + unidadeCurricular + '\'' +
+                ", turno='" + turno + '\'' +
+                ", turma='" + turma + '\'' +
+                ", inscritosNoTurno=" + inscritos +
+                ", diaDaSemana='" + diaSemana + '\'' +
+                ", horaInicioDaAula='" + horaInicio + '\'' +
+                ", horaFimDaAula='" + horaFim + '\'' +
+                ", dataDaAula='" + dataAula + '\'' +
+                ", sala='" + sala + '\'' +
+                ", lotacaoDaSala=" + lotacao +
+                '}';
+    }
+
 }
