@@ -1,3 +1,4 @@
+package Models;
 public class Horario {
     public String curso;
     public String unidadeCurricular;
