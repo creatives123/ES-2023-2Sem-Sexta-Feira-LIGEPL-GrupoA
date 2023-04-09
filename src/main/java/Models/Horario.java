@@ -32,21 +32,48 @@ public class Horario {
         this.lotacao = lotacao;
     }
 
-    @Override
-    public String toString() {
-        return "Horario{" +
-                "curso='" + curso + '\'' +
-                ", unidadeCurricular='" + unidadeCurricular + '\'' +
-                ", turno='" + turno + '\'' +
-                ", turma='" + turma + '\'' +
-                ", inscritosNoTurno=" + inscritos +
-                ", diaDaSemana='" + diaSemana + '\'' +
-                ", horaInicioDaAula='" + horaInicio + '\'' +
-                ", horaFimDaAula='" + horaFim + '\'' +
-                ", dataDaAula='" + dataAula + '\'' +
-                ", sala='" + sala + '\'' +
-                ", lotacaoDaSala=" + lotacao +
-                '}';
+    public String getCurso() {
+        return curso;
+    }
+
+    public String getUnidadeCurricular() {
+        return unidadeCurricular;
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
+    public String getTurma() {
+        return turma;
+    }
+
+    public int getInscritos() {
+        return inscritos;
+    }
+
+    public String getDiaSemana() {
+        return diaSemana;
+    }
+
+    public String getHoraInicio() {
+        return horaInicio;
+    }
+
+    public String getHoraFim() {
+        return horaFim;
+    }
+
+    public String getDataAula() {
+        return dataAula;
+    }
+
+    public String getSala() {
+        return sala;
+    }
+
+    public int getLotacao() {
+        return lotacao;
     }
 
 }
