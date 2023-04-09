@@ -1,7 +1,4 @@
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
 import java.util.List;
 
 import Models.Horario;
@@ -9,7 +6,7 @@ import Models.Horario;
 public class main{
     public static void main(String[] args) throws IOException {
          // Path to the CSV file
-        String filePath = "src/main/resources/horario-exemplo.csv";
+        String filePath = "src/main/resources/horario_exemplo.csv";
 
         // Read the CSV file and create a list of Horario objects
         List<Horario> horarios = HorarioCsvReader.readCsv(filePath);
@@ -18,5 +15,6 @@ public class main{
         for (Horario horario : horarios) {
             System.out.println(horario);
         }
+
     }
 }
