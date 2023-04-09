@@ -11,10 +11,10 @@ public class main{
         // Read the CSV file and create a list of Horario objects
         List<Horario> horarios = HorarioCsvReader.readCsv(filePath);
 
-        // Print the list of Horario objects
-        for (Horario horario : horarios) {
-            System.out.println(horario);
-        }
+        // Save the file to JSON
+        HorarioJsonWriter.writeToJson(horarios);
+
+    
 
     }
 }
