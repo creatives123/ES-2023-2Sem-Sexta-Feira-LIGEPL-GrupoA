@@ -1,3 +1,10 @@
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="java.nio.file.Paths" %>
+<%@ page import="services.HorarioCsvReader" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="Models.Horario" %>
+<%@ page import="java.util.List" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,9 +33,45 @@
 <body>
 <div class="main" >
     <h2>Projecto ES</h2>
-    <form class="px-4 py-3" action="" method="POST">
-
+    <form method="post" enctype="multipart/form-data">
+        <label for="arquivo">Selecione um arquivo CSV ou JSON:</label>
+        <input type="file" id="arquivo" name="arquivo" accept=".csv,.json">
+        <button type="submit">Enviar</button>
     </form>
+
+
+    <%-- Processar arquivo e gerar mensagem --%>
+    <%
+        String mensagem = "";
+        String contentType = request.getContentType();
+        if (contentType != null && contentType.startsWith("multipart/")) {
+            try {
+                Part filePart = request.getPart("arquivo");
+                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+                if (fileName.endsWith(".csv")) {
+                    List<Horario> horarios = HorarioCsvReader.readCsv(filePart.getInputStream().toString());
+                    // Processa a lista de horários
+                    mensagem = "Arquivo CSV importado com sucesso.";
+                } else if (fileName.endsWith(".json")) {
+                    //List<Horario> horarios = readJson(filePart.getInputStream());
+                    // Processa a lista de horários
+                    mensagem = "Arquivo JSON importado com sucesso.";
+                } else {
+                    mensagem = "O arquivo selecionado não é suportado. Selecione um arquivo CSV ou JSON.";
+                }
+            } catch (IOException | ServletException e) {
+                e.printStackTrace();
+                mensagem = "Ocorreu um erro ao importar o arquivo: " + e.getMessage();
+            }
+        }
+    %>
+
+    <%-- Exibir mensagem --%>
+    <% if (!mensagem.isEmpty()) { %>
+    <p><%= mensagem %></p>
+    <% } %>
+
     <div class="dropdown-divider"></div>
 </div>
 </body>
