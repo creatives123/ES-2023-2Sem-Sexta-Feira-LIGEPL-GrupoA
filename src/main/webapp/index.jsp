@@ -49,7 +49,8 @@
             <h3>Importar dados:</h3>
         </div>
         <div class="mb-3">
-            <form method="post" enctype="multipart/form-data">
+            <!-- Form para receber um ficheiro local -->
+            <form method="post" enctype="multipart/form-data" action="UploadServlet">
                 <div class="mb-3">
                     <label for="ficheiro" class="form-label">Escolher o ficheiro a Importar (CSV ou JSON)</label>
                     <input class="form-control" type="file" id="ficheiro" name="ficheiro" accept=".csv,.json" required>
@@ -58,84 +59,40 @@
                     <button type="submit" class="btn btn-primary mb-3">Upload</button>
                 </div>
             </form>
+            <!-- Form para receber um url do ficheiro -->
+            <form method="post" action="UploadServlet">
+                <div class="mb-3">
+                    <label for="url" class="form-label">Indique um endereço url onde se encontra o ficheiro CSV / JSON</label>
+                    <input class="form-control" type="text" id="url" name="url" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary mb-3">Upload</button>
+                </div>
+            </form>
         </div>
         <div class="mb-3">
-            <%-- Processar arquivo e gerar mensagem --%>
-            <%
-                String mensagem = "";
-                String contentType = request.getContentType();
-                if (contentType != null && contentType.startsWith("multipart/")) {
-
-
-                    boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-                    if (isMultipart) {
-                        // cria um objeto FileItemFactory
-                        FileItemFactory factory = new DiskFileItemFactory();
-
-                        // cria um objeto ServletFileUpload
-                        ServletFileUpload upload = new ServletFileUpload(factory);
-                        try {
-                            // faz o parsing dos itens do request
-                            List<FileItem> items = upload.parseRequest(request);
-                            // processa os itens do request
-                            for (FileItem item : items) {
-                                if (!item.isFormField()) {
-                                    String fileName = item.getName();
-
-                                    if (fileName.endsWith(".csv")) {
-                                        Path tempFile = Files.createTempFile("horarios", ".csv");
-                                        File file = tempFile.toFile();
-                                        try {
-                                            item.write(file);
-                                        } catch (Exception e) {
-                                            throw new RuntimeException(e);
-                                        }
-
-                                        List<Horario> horarios = HorarioCsvReader.readCsv(file.getAbsolutePath());
-                                        // Processa a lista de horários
-                                        mensagem = "Ficheiro CSV importado com sucesso.";
-                                        mensagem += "<br> Total de entradas no ficheiro: " + horarios.size();
-
-                                        // TODO deve ser apagado no fim
-                                        mensagem += "<br><br> Caminho do ficheiro: " + file.getAbsolutePath();
-                                    }else if (fileName.endsWith(".json")) {
-                                        Path tempFile = Files.createTempFile("horarios", ".csv");
-                                        File file = tempFile.toFile();
-                                        try {
-                                            item.write(file);
-                                        } catch (Exception e) {
-                                            throw new RuntimeException(e);
-                                        }
-
-                                        // TODO meter aqui a função para ler o JSON
-                                        //List<Horario> horarios = readJson(new FileInputStream(file));
-                                        // Processa a lista de horários
-                                        mensagem = "Arquivo JSON importado com sucesso.";
-                                        mensagem += "<br> Total de entradas no ficheiro: ";
-
-                                        // TODO deve ser apagado no fim
-                                        mensagem += "<br><br> Caminho do ficheiro: " + file.getAbsolutePath();
-                                    } else {
-                                        mensagem = "O arquivo selecionado não é suportado. Selecione um arquivo CSV ou JSON.";
-                                    }
-                                }
-                            }
-
-                        } catch (FileUploadException | RuntimeException e) {
-                            e.printStackTrace();
-                            mensagem = "Ocorreu um erro ao importar o ficheiro: " + e.getMessage();
-                        }
-
-                    }
-                }
-            %>
             <%-- Exibir mensagem --%>
-            <% if (!mensagem.isEmpty()) { %>
-            <%= mensagem %>
+            <% if (session.getAttribute("messageUpload") != null) { %>
+            <%= (String)session.getAttribute("messageUpload") %>
             <% } %>
         </div>
     </div>
+
+    <% if (session.getAttribute("horarios") != null) { %>
     <hr/>
+    <div class="row row-cols-auto">
+        <div class="col">
+            <a href="DownloadServlet?type=json">
+                <button class="btn btn-primary">Download JSON</button>
+            </a>
+        </div>
+        <div class="col">
+            <a href="DownloadServlet?type=csv">
+                <button class="btn btn-primary">Download CSV</button>
+            </a>
+        </div>
+    </div>
+    <% } %>
 
 
 </div>
