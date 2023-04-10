@@ -1,0 +1,15 @@
+[
+    {
+       "curso":"ME",
+       "unidadeCurricular":"Teoria dos Jogos e dos Contratos",
+       "turno":"01789TP01",
+       "turma":"MEA1",
+       "inscritos":30,
+       "diaSemana":"Qua",
+       "horaInicio":"13:00:00",
+       "horaFim":"14:30:00",
+       "dataAula":"23/11/2022",
+       "sala":"AA2.25",
+       "lotacao":34
+    }
+ ]
