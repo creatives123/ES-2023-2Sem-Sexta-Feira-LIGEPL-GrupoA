@@ -1,9 +1,9 @@
 [
     {
-       "curso":"ME",
+       "curso":["ME"],
        "unidadeCurricular":"Teoria dos Jogos e dos Contratos",
        "turno":"01789TP01",
-       "turma":"MEA1",
+       "turma":["MEA1"],
        "inscritos":30,
        "diaSemana":"Qua",
        "horaInicio":"13:00:00",
