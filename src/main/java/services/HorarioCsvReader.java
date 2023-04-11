@@ -8,6 +8,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Models.Horario;
@@ -27,10 +28,10 @@ public class HorarioCsvReader {
 
             while ((fields = reader.readNext()) != null) {
                 Horario horario = new Horario(
-                    fields[0],
+                    Arrays.asList(fields[0].split(",")),
                     fields[1],
                     fields[2],
-                    fields[3],
+                    Arrays.asList(fields[3].split(",")),
                     fields[4].isEmpty() ? 0 : Integer.parseInt(fields[4]),
                     fields[5],
                     fields[6],

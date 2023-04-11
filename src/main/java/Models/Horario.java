@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.util.List;
 
 public class Horario {
-    public String curso;
+    public List<String> curso;
     public String unidadeCurricular;
     public String turno;
-    public String turma;
+    public List<String> turma;
     public int inscritos;
     public String diaSemana;
     public String horaInicio;
@@ -15,8 +15,9 @@ public class Horario {
     public String dataAula;
     public String sala;
     public int lotacao;
+    public Horario(){};
 
-    public Horario(String curso, String unidadeCurricular, String turno, String turma,
+    public Horario(List<String> curso, String unidadeCurricular, String turno, List<String> turma,
                    int inscritos, String diaSemana, String horaInicio, String horaFim,
                    String dataAula, String sala, int lotacao) {
         this.curso = curso;
@@ -32,7 +33,7 @@ public class Horario {
         this.lotacao = lotacao;
     }
 
-    public String getCurso() {
+    public List<String> getCurso() {
         return curso;
     }
 
@@ -44,7 +45,7 @@ public class Horario {
         return turno;
     }
 
-    public String getTurma() {
+    public List<String> getTurma() {
         return turma;
     }
 
