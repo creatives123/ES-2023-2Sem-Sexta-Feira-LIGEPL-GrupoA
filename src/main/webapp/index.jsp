@@ -1,13 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="services.HorarioCsvReader" %>
 <%@ page import="Models.Horario" %>
 <%@ page import="java.util.List" %>
-<%@ page import="org.apache.commons.fileupload.*" %>
-<%@ page import="org.apache.commons.fileupload.disk.*" %>
-<%@ page import="org.apache.commons.fileupload.servlet.*" %>
-<%@ page import="java.io.File" %>
-<%@ page import="java.nio.file.Path" %>
-<%@ page import="java.nio.file.Files" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!doctype html>
 <html lang="en">
@@ -28,7 +21,7 @@
 
         .main {
             background-color: rgba(255, 255, 255, 0.5);
-            margin: 300px auto;
+            margin: 150px auto;
             padding: 50px;
             border-radius: 5px;
             color: white;
@@ -62,7 +55,8 @@
             <!-- Form para receber um url do ficheiro -->
             <form method="post" action="UploadServlet">
                 <div class="mb-3">
-                    <label for="url" class="form-label">Indique um endereço url onde se encontra o ficheiro CSV / JSON</label>
+                    <label for="url" class="form-label">Indique um endereço url onde se encontra o ficheiro CSV /
+                        JSON</label>
                     <input class="form-control" type="text" id="url" name="url" required>
                 </div>
                 <div class="mb-3">
@@ -77,7 +71,6 @@
             <% } %>
         </div>
     </div>
-
     <% if (session.getAttribute("horarios") != null) { %>
     <hr/>
     <div class="row row-cols-auto">
