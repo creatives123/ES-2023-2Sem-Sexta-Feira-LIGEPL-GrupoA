@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Models.Horario;
+import models.Horario;
 
 /**
  * A classe `HorarioCsvReader` fornece funcionalidade para ler e processar um

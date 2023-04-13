@@ -7,7 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import Models.Horario;
+import models.Horario;
 
 public class HorarioJSONReader {
     public static List<Horario> readJSON(String filePath) {

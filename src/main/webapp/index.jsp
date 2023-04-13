@@ -40,7 +40,7 @@
             <h3>Importar dados:</h3>
         </div>
         <div class="mb-3">
-            <!-- Form para receber um ficheiro local -->
+            <!-- "Form" para receber um ficheiro local -->
             <form method="post" enctype="multipart/form-data" action="UploadServlet">
                 <div class="mb-3">
                     <label for="ficheiro" class="form-label">Escolher o ficheiro a Importar (CSV ou JSON)</label>
@@ -50,7 +50,7 @@
                     <button type="submit" class="btn btn-primary mb-3">Upload</button>
                 </div>
             </form>
-            <!-- Form para receber um url do ficheiro -->
+            <!-- "Form" para receber um url do ficheiro -->
             <form method="post" action="UploadServlet">
                 <div class="mb-3">
                     <label for="url" class="form-label">Indique um endereço url onde se encontra o ficheiro CSV /

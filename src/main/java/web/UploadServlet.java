@@ -1,6 +1,6 @@
 package web;
 
-import Models.Horario;
+import models.Horario;
 import com.opencsv.exceptions.CsvValidationException;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;

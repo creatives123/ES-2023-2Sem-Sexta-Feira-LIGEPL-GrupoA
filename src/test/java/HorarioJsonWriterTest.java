@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import Models.Horario;
+import models.Horario;
 import services.HorarioJsonWriter;
 
 import java.io.File;
