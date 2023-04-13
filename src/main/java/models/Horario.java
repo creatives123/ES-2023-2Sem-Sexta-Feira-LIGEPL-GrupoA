@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 public class Horario implements Serializable {
@@ -16,18 +17,18 @@ public class Horario implements Serializable {
     private String sala;
     private int lotacao;
     
-    private Horario(Builder builder) {
-        this.curso = builder.curso;
-        this.unidadeCurricular = builder.unidadeCurricular;
-        this.turno = builder.turno;
-        this.turma = builder.turma;
-        this.inscritos = builder.inscritos;
-        this.diaSemana = builder.diaSemana;
-        this.horaInicio = builder.horaInicio;
-        this.horaFim = builder.horaFim;
-        this.dataAula = builder.dataAula;
-        this.sala = builder.sala;
-        this.lotacao = builder.lotacao;
+    public Horario(String[] fields) {
+        this.curso = Arrays.asList(fields[0].split(","));
+        this.unidadeCurricular = fields[1];
+        this.turno = fields[2];
+        this.turma = Arrays.asList(fields[3].split(","));
+        this.inscritos = fields[4].isEmpty() ? 0 : Integer.parseInt(fields[4]);
+        this.diaSemana = fields[5];
+        this.horaInicio = fields[6];
+        this.horaFim = fields[7];
+        this.dataAula = fields[8];
+        this.sala = fields[9];
+        this.lotacao = fields[10].isEmpty() ? 0 : Integer.parseInt(fields[10]);
     }
     
     public List<String> getCurso() {
@@ -116,85 +117,5 @@ public class Horario implements Serializable {
 
     public void setLotacao(int lotacao) {
         this.lotacao = lotacao;
-    }
-    public static class Builder {
-        private List<String> curso;
-        private String unidadeCurricular;
-        private String turno;
-        private List<String> turma;
-        private int inscritos;
-        private String diaSemana;
-        private String horaInicio;
-        private String horaFim;
-        private String dataAula;
-        private String sala;
-        private int lotacao;
-        
-        public Builder(List<String> curso2, String uc, String turno2, List<String> turma2, int inscritosTurno,
-                String diaSemana2, String horaInicio2, String horaFim2, String dataAula2, String sala2,
-                int capacidade) {
-        }
-
-        public Builder curso(List<String> curso) {
-            this.curso = curso;
-            return this;
-        }
-        
-        public Builder unidadeCurricular(String unidadeCurricular) {
-            this.unidadeCurricular = unidadeCurricular;
-            return this;
-        }
-        
-        public Builder turno(String turno) {
-            this.turno = turno;
-            return this;
-        }
-        
-        public Builder turma(List<String> turma) {
-            this.turma = turma;
-            return this;
-        }
-        
-        public Builder inscritos(int inscritos) {
-            this.inscritos = inscritos;
-            return this;
-        }
-        
-        public Builder diaSemana(String diaSemana) {
-            this.diaSemana = diaSemana;
-            return this;
-        }
-        
-        public Builder horaInicio(String horaInicio) {
-            this.horaInicio = horaInicio;
-            return this;
-        }
-        
-        public Builder horaFim(String horaFim) {
-            this.horaFim = horaFim;
-            return this;
-        }
-        
-        public Builder dataAula(String dataAula) {
-            this.dataAula = dataAula;
-            return this;
-        }
-        
-        public Builder sala(String sala) {
-            this.sala = sala;
-            return this;
-        }
-        
-        public Builder lotacao(int lotacao) {
-            this.lotacao = lotacao;
-            return this;
-        }
-        
-        public Horario build() {
-            if (curso == null || unidadeCurricular == null || turno == null || turma == null || diaSemana == null || horaInicio == null || horaFim == null) {
-                throw new IllegalStateException("Campos obrigatórios não foram definidos");
-            }
-            return new Horario(this);
-        }
     }
 }

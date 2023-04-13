@@ -102,8 +102,10 @@ public class HorarioCsvReader {
     /**
      * Cria um objeto CSVReader para ler um arquivo CSV com separador ';'
      *
-     * @param reader O objeto Reader que encapsula a stream de entrada do arquivo CSV
-     * @return O objeto CSVReader configurado para ler o arquivo CSV com separador ';'
+     * @param reader O objeto Reader que encapsula a stream de entrada do arquivo
+     *               CSV
+     * @return O objeto CSVReader configurado para ler o arquivo CSV com separador
+     *         ';'
      */
 
     private static CSVReader createCsvReader(Reader reader) {
@@ -119,7 +121,7 @@ public class HorarioCsvReader {
      *
      * @param fields um array de ‘Strings’ contendo os campos do horário
      * @return um objeto {@code Horario} criado com base nos campos passados ou null
-     * caso o array não tenha o tamanho correto, ou seja, o cabeçalho
+     *         caso o array não tenha o tamanho correto, ou seja, o cabeçalho
      */
 
     private static Horario createHorario(String[] fields) {
@@ -131,30 +133,8 @@ public class HorarioCsvReader {
         if (Arrays.equals(fields, HEADER_FIELDS)) {
             return null; // skip header row
         }
-        List<String> curso = Arrays.asList(fields[0].split(","));
-        String uc = fields[1];
-        String turno = fields[2];
-        List<String> turma = Arrays.asList(fields[3].split(","));
-        int inscritosTurno = fields[4].isEmpty() ? 0 : Integer.parseInt(fields[4]);
-        String diaSemana = fields[5];
-        String horaInicio = fields[6];
-        String horaFim = fields[7];
-        String dataAula = fields[8];
-        String sala = fields[9];
-        int capacidade = fields[10].isEmpty() ? 0 : Integer.parseInt(fields[10]);
 
-        return new Horario.Builder(
-                curso,
-                uc,
-                turno,
-                turma,
-                inscritosTurno,
-                diaSemana,
-                horaInicio,
-                horaFim,
-                dataAula,
-                sala,
-                capacidade).build();
+        return new Horario(fields);
     }
 
     /**
@@ -166,8 +146,8 @@ public class HorarioCsvReader {
      * "Sala atribuída à aula" e "Lotação da sala".
      */
 
-    private static final String[] HEADER_FIELDS = {"Curso", "Unidade Curricular", "Turno", "Turma",
+    private static final String[] HEADER_FIELDS = { "Curso", "Unidade Curricular", "Turno", "Turma",
             "Inscritos no turno",
             "Dia da semana", "Hora início da aula", "Hora fim da aula", "Data da aula", "Sala atribuída à aula",
-            "Lotação da sala"};
+            "Lotação da sala" };
 }
