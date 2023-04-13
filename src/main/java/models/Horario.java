@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * A classe {@code Horario} representa um horário de aulas em um curso
+ * A classe {@code Horario} representa um horário de aulas num curso
  * universitário.
  * Os horários são definidos por diversos atributos, como a unidade curricular,
  * o turno, a turma, a sala, entre outros.
