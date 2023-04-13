@@ -1,8 +1,9 @@
 package Models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Horario {
+public class Horario implements Serializable {
     private List<String> curso;
     private String unidadeCurricular;
     private String turno;
