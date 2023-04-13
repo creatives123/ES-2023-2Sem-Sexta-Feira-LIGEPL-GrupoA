@@ -46,9 +46,9 @@ public class HorarioCsvReader {
 
     /**
      * Lê um fluxo de entrada de um ficheiro CSV contendo dados relacionados com
-     * horários de cursos (`Horario` objects)
-     * e cria uma lista de objetos `Horario` correspondentes.
-     *
+     * horários de cursos ('Horario' objects)
+     * e cria uma lista de objetos 'Horario' correspondentes.
+     * <p>
      * O ficheiro CSV deve ter as seguintes colunas, por ordem:
      * - Curso (nome do curso)
      * - Unidade Curricular (unidade curricular)
@@ -61,7 +61,7 @@ public class HorarioCsvReader {
      * - Data da aula (data da aula)
      * - Sala atribuída à aula (sala de aula atribuída)
      * - Lotação da sala (capacidade da sala de aula)
-     *
+     * <p>
      * O delimitador usado no ficheiro CSV é o ponto e vírgula (;).
      *
      * @param inputStream o fluxo de entrada a ser lido
@@ -101,11 +101,9 @@ public class HorarioCsvReader {
 
     /**
      * Cria um objeto CSVReader para ler um arquivo CSV com separador ';'
-     * 
-     * @param reader O objeto Reader que encapsula a stream de entrada do arquivo
-     *               CSV
-     * @return O objeto CSVReader configurado para ler o arquivo CSV com separador
-     *         ';'
+     *
+     * @param reader O objeto Reader que encapsula a stream de entrada do arquivo CSV
+     * @return O objeto CSVReader configurado para ler o arquivo CSV com separador ';'
      */
 
     private static CSVReader createCsvReader(Reader reader) {
@@ -118,10 +116,10 @@ public class HorarioCsvReader {
     /**
      * Cria um objeto {@code Horario} com base nas informações passadas no array de
      * campos.
-     * 
-     * @param fields um array de Strings contendo os campos do horário
+     *
+     * @param fields um array de ‘Strings’ contendo os campos do horário
      * @return um objeto {@code Horario} criado com base nos campos passados ou null
-     *         caso o array não tenha o tamanho correto ou seja o cabeçalho
+     * caso o array não tenha o tamanho correto, ou seja, o cabeçalho
      */
 
     private static Horario createHorario(String[] fields) {
@@ -160,7 +158,7 @@ public class HorarioCsvReader {
     }
 
     /**
-     * Array de strings que define a ordem e nome dos campos do cabeçalho de um
+     * Array de ‘strings’ que define a ordem e nome dos campos do cabeçalho de um
      * ficheiro CSV válido contendo informações sobre
      * horários de aulas. Os campos são, pela ordem: "Curso", "Unidade Curricular",
      * "Turno", "Turma", "Inscritos no turno",
@@ -168,8 +166,8 @@ public class HorarioCsvReader {
      * "Sala atribuída à aula" e "Lotação da sala".
      */
 
-    private static final String[] HEADER_FIELDS = { "Curso", "Unidade Curricular", "Turno", "Turma",
+    private static final String[] HEADER_FIELDS = {"Curso", "Unidade Curricular", "Turno", "Turma",
             "Inscritos no turno",
             "Dia da semana", "Hora início da aula", "Hora fim da aula", "Data da aula", "Sala atribuída à aula",
-            "Lotação da sala" };
+            "Lotação da sala"};
 }
