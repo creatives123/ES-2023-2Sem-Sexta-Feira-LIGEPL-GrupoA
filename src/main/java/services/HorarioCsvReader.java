@@ -16,7 +16,7 @@ import java.util.List;
 import models.Horario;
 
 /**
- * A classe `HorarioCsvReader` fornece funcionalidade para ler e processar um
+ * A classe 'HorarioCsvReader' fornece funcionalidade para ler e processar um
  * ficheiro CSV contendo dados
  * relacionados com horários de cursos (`Horario` objects).
  * <p>
@@ -65,7 +65,7 @@ public class HorarioCsvReader {
      * O delimitador usado no ficheiro CSV é o ponto e vírgula (;).
      *
      * @param inputStream o fluxo de entrada a ser lido
-     * @return uma lista de objetos `Horario` criados a partir do ficheiro CSV
+     * @return uma lista de objetos 'Horario' criados a partir do ficheiro CSV
      * @throws IOException            se ocorrer um erro de I/O ao ler o fluxo de
      *                                entrada
      * @throws CsvValidationException se ocorrer um erro ao validar o ficheiro CSV
@@ -80,9 +80,9 @@ public class HorarioCsvReader {
 
             // Lê cada linha do ficheiro CSV até que não haja mais linhas
             while ((line = reader.readNext()) != null) {
-                // Cria um objeto `Horario` com os dados da linha atual do ficheiro CSV
+                // Cria um objeto 'Horario' com os dados da linha atual do ficheiro CSV
                 Horario horario = createHorario(line);
-                // Adiciona o objeto `Horario` à lista se ele for válido (não nulo)
+                // Adiciona o objeto 'Horario' à lista se ele for válido (não nulo)
                 if (horario != null) {
                     horarios.add(horario);
                 }
