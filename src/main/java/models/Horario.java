@@ -17,6 +17,8 @@ public class Horario implements Serializable {
     private String dataAula;
     private String sala;
     private int lotacao;
+
+    public Horario(){}
     
     public Horario(String[] fields) throws IOException {
         this.curso = Arrays.asList(fields[0].split(","));
