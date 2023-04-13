@@ -5,7 +5,14 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * A classe {@code Horario} representa um horário de aulas em um curso
+ * universitário.
+ * Os horários são definidos por diversos atributos, como a unidade curricular,
+ * o turno, a turma, a sala, entre outros.
+ */
 public class Horario implements Serializable {
+
     private List<String> curso;
     private String unidadeCurricular;
     private String turno;
@@ -18,8 +25,22 @@ public class Horario implements Serializable {
     private String sala;
     private int lotacao;
 
-    public Horario(){}
-    
+    /**
+     * Cria um objeto {@code Horario} vazio.
+     */
+    public Horario() {
+    }
+
+    /**
+     * Cria um objeto {@code Horario} a partir de uma linha em um arquivo CSV.
+     *
+     * @param fields uma matriz de strings com os campos do horário, na ordem:
+     *               curso, unidade curricular, turno, turma, inscritos, dia da
+     *               semana,
+     *               hora de início, hora de fim, data da aula e sala.
+     * @throws IOException se houver um erro na conversão de um campo numérico para
+     *                     inteiro.
+     */
     public Horario(String[] fields) throws IOException {
         this.curso = Arrays.asList(fields[0].split(","));
         this.unidadeCurricular = fields[1];
@@ -33,15 +54,21 @@ public class Horario implements Serializable {
         this.sala = fields[9];
         this.lotacao = checkInt(fields[10]);
     }
-    
-    private int checkInt(String str) throws IOException{
+
+    /**
+     * Converte uma string para um inteiro. Se a conversão falhar, retorna 0.
+     *
+     * @param s a string a ser convertida.
+     * @return o valor inteiro correspondente à string, ou 0 se a conversão falhar.
+     */
+    private int checkInt(String s) {
         try {
-            return Integer.parseInt(str);
+            return Integer.parseInt(s);
         } catch (NumberFormatException e) {
-            throw new IOException("Número Inválido " + str);
+            return 0;
         }
     }
-    
+
     public List<String> getCurso() {
         return curso;
     }

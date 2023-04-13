@@ -13,10 +13,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HorarioCsvReaderTest {
+class HorarioCsvReaderTest {
 
     @Test
-    public void testProcessCsvStream() throws IOException, CsvValidationException {
+    void testProcessCsvStream() throws IOException, CsvValidationException {
         String csv = "Curso;Unidade Curricular;Turno;Turma;Inscritos no turno;Dia da semana;Hora início da aula;Hora fim da aula;Data da aula;Sala atribuída à aula;Lotação da sala\n"
                 +
                 "Curso 1;Unidade Curricular 1;T01;T001;20;Segunda-feira;14:00;16:00;2023-04-10;Sala 1;25\n" +
