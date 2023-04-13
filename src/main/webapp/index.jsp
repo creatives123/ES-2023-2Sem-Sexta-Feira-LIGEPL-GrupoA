@@ -71,6 +71,28 @@
     </div>
     <% if (session.getAttribute("horarios") != null) { %>
     <hr/>
+    <table>
+        <thead>
+            <tr>
+                <th>Dia</th>
+                <th>Hora</th>
+                <th>Disciplina</th>
+                <th>Sala</th>
+                <th>Professor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${sessionScope.horarios}" var="horario">
+                <tr>
+                    <td>${horario.dia}</td>
+                    <td>${horario.hora}</td>
+                    <td>${horario.disciplina}</td>
+                    <td>${horario.sala}</td>
+                    <td>${horario.professor}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
     <div class="row row-cols-auto">
         <div class="col">
             <a href="DownloadServlet?type=json">
