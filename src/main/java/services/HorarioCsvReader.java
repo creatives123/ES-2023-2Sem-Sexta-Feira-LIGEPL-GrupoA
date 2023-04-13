@@ -134,7 +134,11 @@ public class HorarioCsvReader {
             return null; // skip header row
         }
 
-        return new Horario(fields);
+        try {
+            return new Horario(fields);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 package models;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -17,18 +18,26 @@ public class Horario implements Serializable {
     private String sala;
     private int lotacao;
     
-    public Horario(String[] fields) {
+    public Horario(String[] fields) throws IOException {
         this.curso = Arrays.asList(fields[0].split(","));
         this.unidadeCurricular = fields[1];
         this.turno = fields[2];
         this.turma = Arrays.asList(fields[3].split(","));
-        this.inscritos = fields[4].isEmpty() ? 0 : Integer.parseInt(fields[4]);
+        this.inscritos = checkInt(fields[4]);
         this.diaSemana = fields[5];
         this.horaInicio = fields[6];
         this.horaFim = fields[7];
         this.dataAula = fields[8];
         this.sala = fields[9];
-        this.lotacao = fields[10].isEmpty() ? 0 : Integer.parseInt(fields[10]);
+        this.lotacao = checkInt(fields[10]);
+    }
+    
+    private int checkInt(String str) throws IOException{
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            throw new IOException("Número Inválido " + str);
+        }
     }
     
     public List<String> getCurso() {
