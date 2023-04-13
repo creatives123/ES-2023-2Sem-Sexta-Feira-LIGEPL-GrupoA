@@ -32,9 +32,9 @@ public class Horario implements Serializable {
     }
 
     /**
-     * Cria um objeto {@code Horario} a partir de uma linha em um arquivo CSV.
+     * Cria um objeto {@code Horario} a partir de uma linha num arquivo CSV.
      *
-     * @param fields uma matriz de strings com os campos do horário, na ordem:
+     * @param fields uma matriz de ‘strings’ com os campos do horário, na ordem:
      *               curso, unidade curricular, turno, turma, inscritos, dia da
      *               semana,
      *               hora de início, hora de fim, data da aula e sala.
@@ -56,10 +56,10 @@ public class Horario implements Serializable {
     }
 
     /**
-     * Converte uma string para um inteiro. Se a conversão falhar, retorna 0.
+     * Converte uma ‘string’ para um inteiro. Se a conversão falhar, retorna 0.
      *
      * @param s a string a ser convertida.
-     * @return o valor inteiro correspondente à string, ou 0 se a conversão falhar.
+     * @return o valor inteiro correspondente à ‘string’, ou 0 se a conversão falhar.
      */
     private int checkInt(String s) {
         try {
