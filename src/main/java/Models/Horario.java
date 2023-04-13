@@ -129,6 +129,11 @@ public class Horario {
         private String sala;
         private int lotacao;
         
+        public Builder(List<String> curso2, String uc, String turno2, List<String> turma2, int inscritosTurno,
+                String diaSemana2, String horaInicio2, String horaFim2, String dataAula2, String sala2,
+                int capacidade) {
+        }
+
         public Builder curso(List<String> curso) {
             this.curso = curso;
             return this;
@@ -185,6 +190,9 @@ public class Horario {
         }
         
         public Horario build() {
+            if (curso == null || unidadeCurricular == null || turno == null || turma == null || diaSemana == null || horaInicio == null || horaFim == null) {
+                throw new IllegalStateException("Campos obrigatórios não foram definidos");
+            }
             return new Horario(this);
         }
     }

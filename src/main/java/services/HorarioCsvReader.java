@@ -17,24 +17,6 @@ import java.util.List;
 import Models.Horario;
 
 public class HorarioCsvReader {
-    public static List<Horario> readCsv(String filePath) {
-        List<Horario> horarios = new ArrayList<>();
-
-        try (CSVReader reader = createCsvReader(new InputStreamReader(Files.newInputStream(Paths.get(filePath)), StandardCharsets.UTF_8))) {
-            String[] fields;
-
-            while ((fields = reader.readNext()) != null) {
-                Horario horario = createHorario(fields);
-                if (horario != null) {
-                    horarios.add(horario);
-                }
-            }
-        } catch (IOException | CsvValidationException e) {
-            e.printStackTrace();
-        }
-
-        return horarios;
-    }
 
     public static List<Horario> processCsvStream(InputStream inputStream) throws IOException, CsvValidationException {
         List<Horario> horarios = new ArrayList<>();
@@ -83,7 +65,18 @@ public class HorarioCsvReader {
         String sala = fields[9];
         int capacidade = fields[10].isEmpty() ? 0 : Integer.parseInt(fields[10]);
 
-        return new Horario(curso, uc, turno, turma, inscritosTurno, diaSemana, horaInicio, horaFim, dataAula, sala, capacidade);
+        return new Horario.Builder(
+            curso,
+            uc,
+            turno,
+            turma,
+            inscritosTurno,
+            diaSemana,
+            horaInicio,
+            horaFim,
+            dataAula,
+            sala,
+            capacidade).build();
     }
 
     private static final String[] HEADER_FIELDS = {"Curso", "Unidade Curricular", "Turno", "Turma", "Inscritos no turno",
