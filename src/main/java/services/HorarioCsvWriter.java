@@ -1,49 +1,59 @@
 package services;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import com.opencsv.CSVWriter;
+import com.opencsv.ICSVWriter;
 
 import models.Horario;
 
 public class HorarioCsvWriter {
-    
+
+    // Construtor privado para impedir instanciação da classe
+    private HorarioCsvWriter() {
+    }
+
+    /**
+     * 
+     * Converte uma lista de objetos Horario para um "array" de bytes em CSV.
+     * <p>
+     * @param horarios Lista de objetos Horario
+     * @return "array" e bytes que contêm os dados de CSV
+     * @throws IOException Se ocorrer um erro de I/O
+     */
+
     public static byte[] writeToCsv(List<Horario> horarios) {
-        // Create a StringWriter to write the CSV data to memory
+
+        // Criar StringWriter para escrever os dados CSV na memória
         StringWriter writer = new StringWriter();
-    
-        // Create a CSVWriter with default settings
-        CSVWriter csvWriter = new CSVWriter(writer, ';', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.NO_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
-        try {
-            // Write the header row
+
+        // Criar CSVWriter
+        try (CSVWriter csvWriter = new CSVWriter(writer, ';', ICSVWriter.NO_QUOTE_CHARACTER,
+                ICSVWriter.NO_ESCAPE_CHARACTER, ICSVWriter.DEFAULT_LINE_END)) {
+            // Escrever a linha de cabeçalho
             csvWriter.writeNext(HorarioCsvReader.HEADER_FIELDS);
-    
-            // Write each object as a row
-            for (Horario h : horarios) {
-                csvWriter.writeNext(new String[]{h.getCurso().toString().replaceAll("[\\[\\]]", ""), h.getUnidadeCurricular(), h.getTurno(), h.getTurma().toString().replaceAll("[\\[\\]]", ""), Integer.toString(h.getInscritos()), h.getDiaSemana(), h.getHoraInicio(), h.getHoraFim(), h.getDataAula(), h.getSala(), Integer.toString(h.getLotacao())});
-            }
-    
-            // Flush the CSVWriter to ensure all data is written to the StringWriter
+
+            // Escrever cada objeto como uma linha
+            horarios.forEach(h -> csvWriter.writeNext(new String[] { h.getCurso().toString().replaceAll("[\\[\\]]", ""),
+                    h.getUnidadeCurricular(), h.getTurno(), h.getTurma().toString().replaceAll("[\\[\\]]", ""),
+                    Integer.toString(h.getInscritos()), h.getDiaSemana(), h.getHoraInicio(), h.getHoraFim(),
+                    h.getDataAula(), h.getSala(), Integer.toString(h.getLotacao()) }));
+
+            // Limpar o CSVWriter para garantir que todos os dados sao escritos no
+            // StringBuilder
             csvWriter.flush();
-    
-            // Return the CSV data as a byte array
+
+            // Devolver os dados CSV data como um "array" de bytes
             return writer.toString().getBytes(StandardCharsets.UTF_8);
+
         } catch (IOException e) {
-            // In case of exception, print the stack trace and return an empty byte array
+            // No caso de ocorrer uma exceção, é imprimido o erro na consola
             e.printStackTrace();
             return new byte[0];
-        } finally {
-            // Close the CSVWriter and StringWriter to release resources
-            try {
-                csvWriter.close();
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
+
 }
