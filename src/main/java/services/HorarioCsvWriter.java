@@ -17,7 +17,7 @@ public class HorarioCsvWriter {
         StringWriter writer = new StringWriter();
     
         // Create a CSVWriter with default settings
-        CSVWriter csvWriter = new CSVWriter(writer);
+        CSVWriter csvWriter = new CSVWriter(writer, ';', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.NO_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
         try {
             // Write the header row
             csvWriter.writeNext(HorarioCsvReader.HEADER_FIELDS);
