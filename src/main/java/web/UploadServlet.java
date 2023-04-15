@@ -21,11 +21,11 @@ import static services.HorarioCsvReader.processCsvStream;
 import static services.HorarioJSONReader.processJsonStream;
 
 /**
- * Servlet responsável por receber e processar ficheiros CSV ou JSON contendo dados de horários de transporte público.
+ * Servlet responsável por receber e processar ficheiros CSV ou JSON contendo dados de horários universitários.
  * Os ficheiros podem ser enviados através de um formulário HTML com um campo de ‘upload’ de ficheiros ou por uma URL.
- * Caso o ficheiro seja enviado através de uma URL, é necessário especificar um URL válido no campo de ‘upload’.
+ * Caso o ficheiro seja enviado através de um URL, é necessário especificar um URL válido no campo de ‘upload’.
  * Quando um ficheiro é recebido e processado, os horários contidos no ficheiro são armazenados numa sessão HTTP,
- * que pode ser acessada por outras partes da aplicação.
+ * que pode ser acedida por outras partes da aplicação.
  */
 public class UploadServlet extends HttpServlet {
     public static final String HORARIOS_SESSION = "horarios";
@@ -33,7 +33,7 @@ public class UploadServlet extends HttpServlet {
     /**
      * Recebe um pedido HTTP POST enviado pelo utilizador para fazer ‘upload’ de um ficheiro CSV ou JSON.
      * <p>
-     * Verifica se o ‘upload’ é de um ficheiro local ou de uma URL.
+     * Verifica se o ‘upload’ é de um ficheiro local ou de um URL.
      * Se for um ficheiro local, o ficheiro é processado pela função processFile.
      * Se for um URL, o ficheiro é processado pela função processURL.
      * Define a mensagem de sucesso/erro na sessão do utilizador e redireciona-o para a página de ‘upload’.
@@ -46,9 +46,11 @@ public class UploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Limpa a variavel de sessão que contem a lista de horarios
         request.getSession().removeAttribute(HORARIOS_SESSION);
+        
         // Obtém a URL inserida pelo utilizador (se houver)
         String url = request.getParameter("url");
         String message;
+        
         // Se não houver URL, o ficheiro é local sendo processado pela função processFile
         if (url == null) { // ficheiro local
             message = processFile(request);
@@ -141,16 +143,16 @@ public class UploadServlet extends HttpServlet {
 
                         } else {
                             // Caso o ficheiro não seja CSV nem JSON
-                            return "Os ficheiros selecionados não são suportados, Porfavor escolha CSV ou JSON";
+                            return "Os ficheiros selecionados não são suportados. Por favor escolha CSV ou JSON";
                         }
                     }
                 } catch (IOException | CsvValidationException | FileUploadException e) {
                     // Caso ocorra algum erro, retorna uma mensagem de erro
-                    return "Aconteceu um erro a importar o ficheiro: " + e.getMessage();
+                    return "Erro ao importar o ficheiro: " + e.getMessage();
                 }
             }
         }
-        return "Sem ficheiro valido";
+        return "Sem ficheiro válido";
     }
 
     /**
@@ -179,7 +181,7 @@ public class UploadServlet extends HttpServlet {
             return processJsonFile(inputStream, request);
         } else {
             // Se a extensão do ficheiro não for suportada, retorna uma mensagem de erro
-            return "Os ficheiros selecionados não são suportados, Porfavor escolha CSV ou JSON";
+            return "Os ficheiros selecionados não são suportados. Por favor escolha CSV ou JSON";
         }
     }
 
@@ -218,7 +220,7 @@ public class UploadServlet extends HttpServlet {
         // Armazena a lista schedule na sessão HTTP com o nome "horarios".
         request.getSession().setAttribute(HORARIOS_SESSION, schedule);
         // Retorna uma mensagem indicando que o ficheiro CSV foi importado com sucesso.
-        return "Ficheiro CSV Importado com sucesso.";
+        return "Ficheiro CSV importado com sucesso.";
     }
 
     /**
@@ -235,6 +237,6 @@ public class UploadServlet extends HttpServlet {
         // Armazena a lista schedule na sessão HTTP com o nome "horarios".
         request.getSession().setAttribute(HORARIOS_SESSION, schedule);
         // Retorna uma mensagem indicando que o ficheiro JSON foi importado com sucesso.
-        return "Ficheiro JSON Importado com sucesso.";
+        return "Ficheiro JSON importado com sucesso.";
     }
 }

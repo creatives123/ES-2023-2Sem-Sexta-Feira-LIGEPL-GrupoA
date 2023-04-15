@@ -12,6 +12,11 @@ import java.util.List;
 import static services.HorarioJsonWriter.writeToJson;
 import static services.HorarioCsvWriter.writeToCsv;
 
+/**
+ *  Servlet responsável por baixar uma lista de {@link Horario}
+ *  para um ficheiro CSV ou JSON, obtendo essa lista a partir da sessão HTTP 
+ *  
+ */
 public class DownloadServlet extends HttpServlet {
 
     private static final String FILENAME = "Horario";
