@@ -31,6 +31,7 @@ class HorarioJsonWriterTest {
 
         // Assert
         byte[] actualBytes = HorarioJsonWriter.writeToJson(horarios);
+        assert actualBytes != null;
         String actualJson = new String(actualBytes);
         assertEquals(expectedJson, actualJson);
 

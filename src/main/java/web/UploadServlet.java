@@ -44,7 +44,6 @@ public class UploadServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // TODO verificar se queremos limpar isto ou não
         // Limpa a variavel de sessão que contem a lista de horarios
         request.getSession().removeAttribute(HORARIOS_SESSION);
         // Obtém a URL inserida pelo utilizador (se houver)

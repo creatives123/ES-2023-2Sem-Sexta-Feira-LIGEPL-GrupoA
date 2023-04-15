@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="models.Horario" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!doctype html>
@@ -65,7 +67,7 @@
         <div class="mb-3">
             <%-- Exibir mensagem --%>
             <% if (session.getAttribute("messageUpload") != null) { %>
-            <%= (String)session.getAttribute("messageUpload") %>
+            <%= (String) session.getAttribute("messageUpload") %>
             <% } %>
         </div>
     </div>
@@ -73,24 +75,24 @@
     <hr/>
     <table>
         <thead>
-            <tr>
-                <th>Dia</th>
-                <th>Hora</th>
-                <th>Disciplina</th>
-                <th>Sala</th>
-                <th>Professor</th>
-            </tr>
+        <tr>
+            <th>Curso</th>
+            <th>Data Aula</th>
+            <th>UC</th>
+        </tr>
         </thead>
         <tbody>
-            <c:forEach items="${sessionScope.horarios}" var="horario">
-                <tr>
-                    <td>${horario.dia}</td>
-                    <td>${horario.hora}</td>
-                    <td>${horario.disciplina}</td>
-                    <td>${horario.sala}</td>
-                    <td>${horario.professor}</td>
-                </tr>
-            </c:forEach>
+        <% List<Horario> horarios = (List<Horario>) session.getAttribute("horarios");
+            for (Horario horario : horarios) { %>
+        <tr>
+            <td><%= horario.getCurso() %>
+            </td>
+            <td><%= horario.getDataAula() %>
+            </td>
+            <td><%= horario.getUnidadeCurricular() %>
+            </td>
+        </tr>
+        <% } %>
         </tbody>
     </table>
     <div class="row row-cols-auto">

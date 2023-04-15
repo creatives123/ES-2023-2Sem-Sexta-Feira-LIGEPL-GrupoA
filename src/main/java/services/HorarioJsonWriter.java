@@ -1,10 +1,8 @@
 package services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.util.List;
-
 import models.Horario;
 
 /**
@@ -37,7 +35,7 @@ public class HorarioJsonWriter {
         } catch (IOException e) {
             // Em caso de exceção, imprime o stack trace e retorna um array vazio de bytes
             e.printStackTrace();
+            return new byte[0];
         }
-        return new byte[0];
     }
 }
