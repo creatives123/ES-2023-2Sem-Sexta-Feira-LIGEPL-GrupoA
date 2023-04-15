@@ -3,6 +3,7 @@ package services;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import com.opencsv.CSVWriter;
@@ -17,21 +18,20 @@ public class HorarioCsvWriter {
     
         // Create a CSVWriter with default settings
         CSVWriter csvWriter = new CSVWriter(writer);
-    
         try {
             // Write the header row
             csvWriter.writeNext(HorarioCsvReader.HEADER_FIELDS);
     
             // Write each object as a row
             for (Horario h : horarios) {
-                csvWriter.writeNext(new String[]{h.getCurso().toString(), h.getUnidadeCurricular(), h.getTurno(), h.getTurma().toString(), Integer.toString(h.getInscritos()), h.getDiaSemana(), h.getHoraInicio(), h.getHoraFim(), h.getDataAula(), h.getSala(), Integer.toString(h.getLotacao())});
+                csvWriter.writeNext(new String[]{h.getCurso().toString().replaceAll("\\s\\[|\\]", ""), h.getUnidadeCurricular(), h.getTurno(), h.getTurma().toString().replaceAll("\\s\\[|\\]", ""), Integer.toString(h.getInscritos()), h.getDiaSemana(), h.getHoraInicio(), h.getHoraFim(), h.getDataAula(), h.getSala(), Integer.toString(h.getLotacao())});
             }
     
             // Flush the CSVWriter to ensure all data is written to the StringWriter
             csvWriter.flush();
     
             // Return the CSV data as a byte array
-            return writer.toString().getBytes();
+            return writer.toString().getBytes(StandardCharsets.UTF_8);
         } catch (IOException e) {
             // In case of exception, print the stack trace and return an empty byte array
             e.printStackTrace();
