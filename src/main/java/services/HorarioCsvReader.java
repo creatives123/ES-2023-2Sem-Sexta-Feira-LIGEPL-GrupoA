@@ -21,16 +21,27 @@ import models.Horario;
  * relacionados com horários de cursos (`Horario` objects).
  * <p>
  * O ficheiro CSV deve ter as seguintes colunas, por ordem:
+ * <p>
  * - Curso (nome do curso)
+ * <p>
  * - Unidade Curricular (unidade curricular)
+ * <p>
  * - Turno (turno)
+ * <p>
  * - Turma (grupo de aula)
+ * <p>
  * - Inscritos no turno (número de alunos inscritos no turno)
+ * <p>
  * - Dia da semana (dia da semana)
+ * <p>
  * - Hora início da aula (hora de início da aula)
+ * <p>
  * - Hora fim da aula (hora de fim da aula)
+ * <p>
  * - Data da aula (data da aula)
+ * <p>
  * - Sala atribuída à aula (sala de aula atribuída)
+ * <p>
  * - Lotação da sala (capacidade da sala de aula)
  * <p>
  * O delimitador usado no ficheiro CSV é o ponto e vírgula (;).
