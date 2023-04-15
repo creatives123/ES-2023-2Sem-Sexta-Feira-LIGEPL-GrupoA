@@ -61,6 +61,7 @@ public class HorarioCsvReader {
      * e cria uma lista de objetos {@link Horario} correspondentes.
      * <p>
      * O ficheiro CSV deve ter as seguintes colunas, por ordem:
+     * <p>
      * - Curso (nome do curso) 
      * <p>
      * - Unidade Curricular (unidade curricular)
@@ -92,31 +93,23 @@ public class HorarioCsvReader {
      * @throws CsvValidationException se ocorrer um erro ao validar o ficheiro CSV
      */
     public static List<Horario> processCsvStream(InputStream inputStream) throws IOException, CsvValidationException {
-        // Cria uma lista vazia para armazenar os horários lidos do ficheiro CSV
         List<Horario> horarios = new ArrayList<>();
 
         // Cria um leitor CSV usando o fluxo de entrada e o conjunto de caracteres UTF-8
         try (CSVReader reader = createCsvReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             String[] line;
 
-            // Lê cada linha do ficheiro CSV até que não haja mais linhas
             while ((line = reader.readNext()) != null) {
-                // Cria um objeto 'Horario' com os dados da linha atual do ficheiro CSV
                 Horario horario = createHorario(line);
-                // Adiciona o objeto 'Horario' à lista se ele for válido (não nulo)
                 if (horario != null) {
                     horarios.add(horario);
                 }
             }
         }
 
-        // Verifica se a lista de horários está vazia
         if (horarios.isEmpty()) {
-            // Se a lista estiver vazia, lança uma exceção
             throw new IOException("Ficheiro CSV sem nenhuma linha valida");
         }
-
-        // Retorna a lista de horários
         return horarios;
     }
 
@@ -128,7 +121,6 @@ public class HorarioCsvReader {
      * @return O objeto CSVReader configurado para ler o arquivo CSV com separador
      *         ';'
      */
-
     private static CSVReader createCsvReader(Reader reader) {
         CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
         CSVReaderBuilder builder = new CSVReaderBuilder(reader)
@@ -146,13 +138,14 @@ public class HorarioCsvReader {
      */
 
     private static Horario createHorario(String[] fields) {
+        // Ignorar linhas vazias ou com campos em falta
         if (fields.length != HEADER_FIELDS.length) {
-            return null; // skip empty lines
+            return null; 
         }
 
-        // check if header row
+        // Ignorar a primeira linha que contem os nomes dos campos
         if (Arrays.equals(fields, HEADER_FIELDS)) {
-            return null; // skip header row
+            return null; 
         }
 
         try {
