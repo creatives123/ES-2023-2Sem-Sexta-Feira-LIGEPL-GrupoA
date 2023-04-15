@@ -1,5 +1,3 @@
-<%@ page import="java.util.List" %>
-<%@ page import="models.Horario" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!doctype html>
@@ -73,28 +71,6 @@
     </div>
     <% if (session.getAttribute("horarios") != null) { %>
     <hr/>
-    <table>
-        <thead>
-        <tr>
-            <th>Curso</th>
-            <th>Data Aula</th>
-            <th>UC</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% List<Horario> horarios = (List<Horario>) session.getAttribute("horarios");
-            for (Horario horario : horarios) { %>
-        <tr>
-            <td><%= horario.getCurso() %>
-            </td>
-            <td><%= horario.getDataAula() %>
-            </td>
-            <td><%= horario.getUnidadeCurricular() %>
-            </td>
-        </tr>
-        <% } %>
-        </tbody>
-    </table>
     <div class="row row-cols-auto">
         <div class="col">
             <a href="DownloadServlet?type=json">
