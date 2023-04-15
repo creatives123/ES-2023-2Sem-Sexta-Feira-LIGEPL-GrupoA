@@ -24,7 +24,7 @@ public class HorarioCsvWriter {
     
             // Write each object as a row
             for (Horario h : horarios) {
-                csvWriter.writeNext(new String[]{h.getCurso().toString().replaceAll("\\s\\[|\\]", ""), h.getUnidadeCurricular(), h.getTurno(), h.getTurma().toString().replaceAll("\\s\\[|\\]", ""), Integer.toString(h.getInscritos()), h.getDiaSemana(), h.getHoraInicio(), h.getHoraFim(), h.getDataAula(), h.getSala(), Integer.toString(h.getLotacao())});
+                csvWriter.writeNext(new String[]{h.getCurso().toString().replaceAll("[\\[\\]]", ""), h.getUnidadeCurricular(), h.getTurno(), h.getTurma().toString().replaceAll("[\\[\\]]", ""), Integer.toString(h.getInscritos()), h.getDiaSemana(), h.getHoraInicio(), h.getHoraFim(), h.getDataAula(), h.getSala(), Integer.toString(h.getLotacao())});
             }
     
             // Flush the CSVWriter to ensure all data is written to the StringWriter
