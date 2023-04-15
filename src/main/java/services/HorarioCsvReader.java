@@ -150,7 +150,7 @@ public class HorarioCsvReader {
      * "Sala atribuída à aula" e "Lotação da sala".
      */
 
-    private static final String[] HEADER_FIELDS = { "Curso", "Unidade Curricular", "Turno", "Turma",
+    public static final String[] HEADER_FIELDS = { "Curso", "Unidade Curricular", "Turno", "Turma",
             "Inscritos no turno",
             "Dia da semana", "Hora início da aula", "Hora fim da aula", "Data da aula", "Sala atribuída à aula",
             "Lotação da sala" };
