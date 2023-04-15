@@ -21,7 +21,7 @@ public class HorarioCsvWriter {
      * Converte uma lista de objetos Horario para um "array" de bytes em CSV.
      * <p>
      * @param horarios Lista de objetos Horario
-     * @return "array" e bytes que contêm os dados de CSV
+     * @return "array" de bytes que contem os dados de CSV
      * @throws IOException Se ocorrer um erro de I/O
      */
 
@@ -50,7 +50,7 @@ public class HorarioCsvWriter {
             return writer.toString().getBytes(StandardCharsets.UTF_8);
 
         } catch (IOException e) {
-            // No caso de ocorrer uma exceção, é imprimido o erro na consola
+            // No caso de ocorrer uma exceção, é impresso o erro na consola
             e.printStackTrace();
             return new byte[0];
         }

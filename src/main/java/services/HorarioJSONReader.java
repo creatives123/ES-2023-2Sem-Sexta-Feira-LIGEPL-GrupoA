@@ -11,16 +11,16 @@ import java.util.List;
 import models.Horario;
 
 public class HorarioJSONReader {
-
+    // Construtor privado para impedir instanciação da classe
     private HorarioJSONReader() {
     }
 
     /**
-     * Lê um stream de dados JSON, decodifica-o usando UTF-8 e converte-o numa lista
-     * de objetos Horario usando a biblioteca Jackson.
+     * Lê um stream de dados JSON, descodifica-o usando UTF-8 e converte-o numa lista
+     * de objetos {@link Horario} usando a biblioteca Jackson.
      * <p>
      * @param inputStream O stream de dados JSON a ser lido.
-     * @return A lista de objetos Horario lidos a partir do stream de dados JSON.
+     * @return A lista de objetos {@link Horario} lidos a partir do stream de dados JSON.
      * @throws IOException Se ocorrer um erro de I/O durante a leitura do stream de
      *         dados.
      */
@@ -33,5 +33,4 @@ public class HorarioJSONReader {
         return new ObjectMapper().readValue(reader, new TypeReference<List<Horario>>() {
         });
     }
-
 }
