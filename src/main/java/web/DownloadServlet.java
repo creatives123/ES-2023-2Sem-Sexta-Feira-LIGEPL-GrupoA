@@ -1,14 +1,12 @@
 package web;
 
 import models.Horario;
+import services.CommonManager;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
-
 import static services.HorarioJsonWriter.writeToJson;
 import static services.HorarioCsvWriter.writeToCsv;
 
@@ -20,20 +18,6 @@ import static services.HorarioCsvWriter.writeToCsv;
 public class DownloadServlet extends HttpServlet {
 
     private static final String FILENAME = "Horario";
-
-    /**
-     * Obtém uma lista de Horários da HttpSession.
-     *
-     * @param session a HttpSession da qual se pretende obter a lista de Horários
-     * @return uma lista de Horários obtida da HttpSession
-     * @throws IllegalStateException se a HttpSession não contiver uma lista de Horários
-     */
-    @SuppressWarnings("unchecked")
-    public static List<Horario> getHorariosFromSession(HttpSession session) {
-        Object horariosObject = session.getAttribute("horarios");
-        if (horariosObject != null) return (List<Horario>) horariosObject;
-        throw new IllegalStateException("Horarios not found in session");
-    }
 
     /**
      * Manipula uma solicitação GET para fazer download um ficheiro de horários no formato JSON ou CSV.
@@ -51,11 +35,11 @@ public class DownloadServlet extends HttpServlet {
             String filename = FILENAME;
 
             if ("json".equals(type)) {
-                bytes = writeToJson(getHorariosFromSession(request.getSession()));
+                bytes = writeToJson(CommonManager.getHorariosFromSession(request.getSession()));
                 contentType = "application/json";
                 filename += ".json";
             } else if ("csv".equals(type)) {
-                bytes = writeToCsv(getHorariosFromSession(request.getSession()));
+                bytes = writeToCsv(CommonManager.getHorariosFromSession(request.getSession()));
                 contentType = "text/csv";
                 filename += ".csv";
             } else {

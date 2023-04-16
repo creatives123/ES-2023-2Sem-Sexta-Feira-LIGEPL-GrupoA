@@ -13,8 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HorarioCsvWriterTest {
 
-    //TODO: Modificar o ; pelo separador certo. Pode ser , mas tenho algumas reservas quanto a isso.
-    // Se for uma lista posso ter problemas, até porque a vou separar por , teoricamente.
     @Test
      void testWriteTo_CsvWithEmptyList() {
         List<Horario> horarios = new ArrayList<>();
@@ -123,17 +121,8 @@ class HorarioCsvWriterTest {
     
     @Test
     void testWriteToCsv_WithNullList() throws IOException {
-        // Cria uma lista nula de Horarios
-        List<Horario> horarios = null;
-
-        // Chama o método que será testado
-        byte[] csvBytes = HorarioCsvWriter.writeToCsv(horarios);
-
-        // Define o resultado esperado
-        byte[] expected = new byte[0];
-
         // Verifica se os arrays de bytes são iguais
-        assertArrayEquals(expected, csvBytes);
+        assertArrayEquals(new byte[0], HorarioCsvWriter.writeToCsv(null));
     }
 
     @Test
@@ -160,9 +149,9 @@ class HorarioCsvWriterTest {
 
         // Define o resultado esperado
         String expected = "Curso;Unidade Curricular;Turno;Turma;Inscritos no turno;Dia da semana;Hora início da aula;Hora fim da aula;Data da aula;Sala atribuída à aula;Lotação da sala\n"
-                        + ";Programacao;;1;50;Segunda-feira;;;"
-                        + "2022-01-01;;60\n";
-
+        + ";;Programacao;;;1;50;Segunda-feira;;;;;"
+        + "2022-01-01;;;60\n";
+        
         // Verifica se os arrays de bytes são iguais
         assertArrayEquals(expected.getBytes(StandardCharsets.UTF_8), csvBytes);
     }

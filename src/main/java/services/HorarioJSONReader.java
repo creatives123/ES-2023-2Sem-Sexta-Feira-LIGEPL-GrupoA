@@ -10,6 +10,7 @@ import java.util.List;
 import models.Horario;
 
 public class HorarioJSONReader {
+    
     // Construtor privado para impedir instanciação da classe
     private HorarioJSONReader() {}
 

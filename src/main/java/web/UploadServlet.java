@@ -3,7 +3,6 @@ package web;
 import models.Horario;
 import com.opencsv.exceptions.CsvValidationException;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -113,46 +112,27 @@ public class UploadServlet extends HttpServlet {
      * @param request O pedido HTTP que contém o ficheiro.
      * @return Uma mensagem indicando se o ficheiro foi importado com sucesso ou se algum erro ocorreu.
      */
-    public String processFile(HttpServletRequest request) {
+    private String processFile(HttpServletRequest request) {
         final String MULTIPART_TYPE = "multipart/";
         String contentType = request.getContentType();
 
-        // Verifica se o pedido HTTP contém um ficheiro multipart
         if (contentType != null && contentType.startsWith(MULTIPART_TYPE)) {
-            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-            // Verifica se o pedido HTTP é multipart
-            if (isMultipart) {
-                // Cria um objeto FileItemFactory para processar os itens do pedido HTTP
-                FileItemFactory factory = new DiskFileItemFactory();
-                ServletFileUpload upload = new ServletFileUpload(factory);
-                try {
-                    // Faz o parsing dos itens do pedido HTTP
-                    List<FileItem> items = upload.parseRequest(request);
-                    // Processa cada ‘item’ do pedido HTTP
-                    for (FileItem item : items) {
-                        // Verifica se o ‘item’ não é um campo de formulário (i.e., é um ficheiro)
-                        if (!item.isFormField()) {
-                            // Extrai o nome do ficheiro
-                            String fileName = item.getName();
-                            // Extrai a extensão do ficheiro a partir da URL
-                            String fileExtension = getFileExtension(fileName);
-
-                                // Processa o ficheiro (que pode ser CSV ou JSON) utilizando a função processCsvOrJsonFile,
-                                // passando como parâmetros o InputStream, a extensão do ficheiro e a requisição HTTP
-                                return processCsvOrJsonFile(item.getInputStream(), fileExtension, request);
-
-                        } else {
-                            // Caso o ficheiro não seja CSV nem JSON
-                            return "Os ficheiros selecionados não são suportados. Por favor escolha CSV ou JSON";
-                        }
+            ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
+            try {
+                List<FileItem> items = upload.parseRequest(request);
+                for (FileItem item : items) {
+                    if (!item.isFormField()) {
+                        String fileExtension = getFileExtension(item.getName());
+                        return processCsvOrJsonFile(item.getInputStream(), fileExtension, request);
                     }
-                } catch (IOException | CsvValidationException | FileUploadException e) {
-                    // Caso ocorra algum erro, retorna uma mensagem de erro
-                    return "Erro ao importar o ficheiro: " + e.getMessage();
                 }
+                return "Os ficheiros selecionados não são suportados. Por favor escolha CSV ou JSON";
+            } catch (IOException | CsvValidationException | FileUploadException e) {
+                return "Erro ao importar o ficheiro: " + e.getMessage();
             }
         }
         return "Sem ficheiro válido";
+
     }
 
     /**
@@ -192,16 +172,8 @@ public class UploadServlet extends HttpServlet {
      * @return a extensão do ficheiro, se existir, caso contrário retorna uma ‘string’ vazia.
      */
     private String getFileExtension(String fileName) {
-        // Obtém o índice do último ponto no nome do ficheiro
         int lastDotIndex = fileName.lastIndexOf(".");
-        // Verifica se o nome do ficheiro contém um ponto (i.e., tem uma extensão)
-        if (lastDotIndex != -1) {
-            // Retorna a extensão do ficheiro, sendo a ‘string’ que vem depois do último ponto
-            return fileName.substring(lastDotIndex);
-        } else {
-            // Caso o nome do ficheiro não contenha um ponto (i.e., não tem uma extensão), retorna uma ‘string’ vazia
-            return "";
-        }
+        return lastDotIndex != -1 ? fileName.substring(lastDotIndex) : "";        
     }
 
     /**
