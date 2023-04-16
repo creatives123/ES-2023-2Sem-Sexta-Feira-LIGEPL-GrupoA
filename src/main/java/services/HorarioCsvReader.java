@@ -6,6 +6,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
+import Config.CSVConfig;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
@@ -46,14 +48,13 @@ import models.Horario;
  * <p>
  * O delimitador usado no ficheiro CSV é o ponto e vírgula (;).
  * <p>
- * Esta classe não deve ser instanciada, já que todos os seus métodos são
+ * Esta classe não é possível ser instanciada, já que todos os seus métodos são
  * estáticos.
  */
 
 public class HorarioCsvReader {
 
-    private HorarioCsvReader() {
-    }
+    private HorarioCsvReader() {}
 
     /**
      * Lê um fluxo de entrada de um ficheiro CSV contendo dados relacionados com
@@ -97,20 +98,23 @@ public class HorarioCsvReader {
 
         // Cria um leitor CSV usando o fluxo de entrada e o conjunto de caracteres UTF-8
         try (CSVReader reader = createCsvReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            String[] line;
-
-            while ((line = reader.readNext()) != null) {
-                Horario horario = createHorario(line);
-                if (horario != null) {
-                    horarios.add(horario);
-                }
-            }
+            processSchedules(horarios, reader);
         }
 
         if (horarios.isEmpty()) {
             throw new IOException("Ficheiro CSV sem nenhuma linha valida");
         }
         return horarios;
+    }
+
+    private static void processSchedules(List<Horario> horarios, CSVReader reader) throws IOException, CsvValidationException {
+        String[] line;
+        while ((line = reader.readNext()) != null) {
+            Horario horario = createHorario(line);
+            if (horario != null) {
+                horarios.add(horario);
+            }
+        }
     }
 
     /**
@@ -122,10 +126,8 @@ public class HorarioCsvReader {
      *         ';'
      */
     private static CSVReader createCsvReader(Reader reader) {
-        CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
-        CSVReaderBuilder builder = new CSVReaderBuilder(reader)
-                .withCSVParser(parser);
-        return builder.build();
+        CSVParser parser = new CSVParserBuilder().withSeparator(CSVConfig.SEPARATOR).build();
+        return new CSVReaderBuilder(reader).withCSVParser(parser).build();
     }
 
     /**
@@ -139,12 +141,8 @@ public class HorarioCsvReader {
 
     private static Horario createHorario(String[] fields) {
         // Ignorar linhas vazias ou com campos em falta
-        if (fields.length != HEADER_FIELDS.length) {
-            return null; 
-        }
-
         // Ignorar a primeira linha que contem os nomes dos campos
-        if (Arrays.equals(fields, HEADER_FIELDS)) {
+        if (fields.length != CSVConfig.HEADER_FIELDS.length || Arrays.equals(fields, CSVConfig.HEADER_FIELDS)) {
             return null; 
         }
 
@@ -154,18 +152,4 @@ public class HorarioCsvReader {
             return null;
         }
     }
-
-    /**
-     * Array de ‘strings’ que define a ordem e nome dos campos do cabeçalho de um
-     * ficheiro CSV válido contendo informações sobre
-     * horários de aulas. Os campos são, pela ordem: "Curso", "Unidade Curricular",
-     * "Turno", "Turma", "Inscritos no turno",
-     * "Dia da semana", "Hora início da aula", "Hora fim da aula", "Data da aula",
-     * "Sala atribuída à aula" e "Lotação da sala".
-     */
-
-    public static final String[] HEADER_FIELDS = { "Curso", "Unidade Curricular", "Turno", "Turma",
-            "Inscritos no turno",
-            "Dia da semana", "Hora início da aula", "Hora fim da aula", "Data da aula", "Sala atribuída à aula",
-            "Lotação da sala" };
 }

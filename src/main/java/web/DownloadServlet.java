@@ -13,7 +13,7 @@ import static services.HorarioJsonWriter.writeToJson;
 import static services.HorarioCsvWriter.writeToCsv;
 
 /**
- *  Servlet responsável por baixar uma lista de {@link Horario}
+ *  Servlet responsável por fazer download uma lista de {@link Horario}
  *  para um ficheiro CSV ou JSON, obtendo essa lista a partir da sessão HTTP 
  *  
  */
@@ -31,17 +31,12 @@ public class DownloadServlet extends HttpServlet {
     @SuppressWarnings("unchecked")
     public static List<Horario> getHorariosFromSession(HttpSession session) {
         Object horariosObject = session.getAttribute("horarios");
-        if (horariosObject instanceof List<?>) {
-            List<?> horariosList = (List<?>) horariosObject;
-            if (!horariosList.isEmpty() && horariosList.get(0) instanceof Horario) {
-                return (List<Horario>) horariosObject;
-            }
-        }
+        if (horariosObject != null) return (List<Horario>) horariosObject;
         throw new IllegalStateException("Horarios not found in session");
     }
 
     /**
-     * Manipula uma solicitação GET para baixar um ficheiro de horários no formato JSON ou CSV.
+     * Manipula uma solicitação GET para fazer download um ficheiro de horários no formato JSON ou CSV.
      *
      * @param request  A solicitação HTTP recebida.
      * @param response A resposta HTTP a ser enviada.
@@ -77,6 +72,4 @@ public class DownloadServlet extends HttpServlet {
             response.getWriter().write("Ocorreu um erro ao processar a solicitação: " + e.getMessage());
         }
     }
-
-
 }

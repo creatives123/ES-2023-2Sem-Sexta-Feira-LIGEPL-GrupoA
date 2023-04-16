@@ -14,8 +14,7 @@ import models.Horario;
 public class HorarioJsonWriter {
 
     // Construtor privado para impedir instanciação da classe
-    private HorarioJsonWriter() {
-    }
+    private HorarioJsonWriter() {}
 
     /**
      * Converte uma lista de objetos do tipo {@link Horario} em bytes
@@ -26,14 +25,12 @@ public class HorarioJsonWriter {
      * @return Bytes correspondentes ao JSON gerado a partir dos objetos fornecidos.
      */
     public static byte[] writeToJson(List<Horario> horarios) {
-        // Cria um objeto ObjectMapper para converter os objetos em JSON
-        ObjectMapper mapper = new ObjectMapper();
+        // No caso de não vir cada, então não escreve nada.
+        if (horarios == null) return new byte[0];
 
         try {
-            // Converte a lista de objetos em bytes correspondentes ao JSON gerado
-            return mapper.writeValueAsBytes(horarios);
+            return new ObjectMapper().writeValueAsBytes(horarios);
         } catch (IOException e) {
-            // Em caso de exceção, imprime o stack trace e retorna um array vazio de bytes
             e.printStackTrace();
             return new byte[0];
         }
