@@ -12,9 +12,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import models.Horario;
 import services.HorarioJsonWriter;
-
+/**
+ * Classe responsável por testar os métodos da Classe {@link HorarioJsonReader}
+ * <p>
+ * Métodos:
+ * <p>
+ * {@link #testWriteToJson_WithNullList}
+ * {@link #testWriteToJsonWith_NonEmptyList_But_EmptyObject}
+ * {@link #testWriteToJsonWith_NonEmptyList}
+ */
 public class HorarioJsonWriterTest {
-    
+    /**
+     * Testar o lançamento de exceção na passagem de uma lista de Horario vazia
+     */
     @Test
     public void testWriteToJson_WithNullList() {
         try {
@@ -24,6 +34,10 @@ public class HorarioJsonWriterTest {
         }
     }
 
+    /**
+     * Testar o lançamento de exceção na passagem de uma lista com 
+     * objetos Horario vazios
+     */
     @Test
     public void testWriteToJsonWith_NonEmptyList_But_EmptyObject() {
         List<Horario> horarios = new ArrayList<>();
@@ -38,11 +52,15 @@ public class HorarioJsonWriterTest {
         }
     }
 
+    /**
+     * Testar a correta conversão de uma lista de Horários 
+     * em ficheiro JSON. Verifica o tamanho do JSON resultante 
+     * em bytes. 
+     */
     @Test
     public void testWriteToJsonWith_NonEmptyList() {
         List<Horario> horarios = new ArrayList<>();
 
-        // Cria alguns objetos Horario e adiciona-os à lista
         Horario horario1 = new Horario();
         horario1.setCurso(Arrays.asList("LEI"));
         horario1.setUnidadeCurricular("Programacao");
