@@ -27,7 +27,6 @@ public class HorarioCsvWriter {
      * <p>
      * @param horarios Lista de objetos {@link Horario}
      * @return "array" de bytes que contem os dados de CSV
-     * @throws IOException Se ocorrer um erro de I/O
      */
     public static byte[] writeToCsv(List<Horario> horarios) {
 

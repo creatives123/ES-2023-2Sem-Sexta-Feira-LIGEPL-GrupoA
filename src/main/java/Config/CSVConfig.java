@@ -16,7 +16,13 @@ public class CSVConfig {
      "Dia da semana", "Hora início da aula", "Hora fim da aula", "Data da aula", "Sala atribuída à aula",
      "Lotação da sala" };
 
+     /**
+      * Delimitador para os campos dos ficheiros CSV.
+      */
      public static final char SEPARATOR = ';';
 
+     /**
+      * Construtor vazio
+      */
      private CSVConfig() {}
 }

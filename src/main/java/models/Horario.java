@@ -56,7 +56,7 @@ public class Horario implements Serializable {
     /**
      * Devolve o Curso deste {@link Horario}
      * 
-     * @return
+     * @return curso
      */
     public List<String> getCurso() {
         return curso;
@@ -74,7 +74,7 @@ public class Horario implements Serializable {
     /**
      * Devolve a Unidade Curricular deste {@link Horario}
      * 
-     * @return 
+     * @return unidadeCurricular
      */
     public String getUnidadeCurricular() {
         return unidadeCurricular;
@@ -83,7 +83,7 @@ public class Horario implements Serializable {
     /**
      * Atribui a Unidade Curricular a este {@link Horario}
      * 
-     * @param curso
+     * @param unidadeCurricular
      */
     public void setUnidadeCurricular(String unidadeCurricular) {
         this.unidadeCurricular = unidadeCurricular;
@@ -92,7 +92,7 @@ public class Horario implements Serializable {
     /**
      * Devolve o Turno deste {@link Horario}
      * 
-     * @return
+     * @return turno
      */
     public String getTurno() {
         return turno;
@@ -101,7 +101,7 @@ public class Horario implements Serializable {
     /**
      * Atribui o Turno a este {@link Horario}
      * 
-     * @param curso
+     * @param turno
      */
     public void setTurno(String turno) {
         this.turno = turno;
@@ -110,7 +110,7 @@ public class Horario implements Serializable {
     /**
      * Devolve as Turmas deste {@link Horario}
      * 
-     * @return
+     * @return turma
      */
     public List<String> getTurma() {
         return turma;
@@ -119,7 +119,7 @@ public class Horario implements Serializable {
     /**
      * Atribui a Turma a este {@link Horario}
      * 
-     * @param curso
+     * @param turma
      */
     public void setTurma(List<String> turma) {
         this.turma = turma;
@@ -128,7 +128,7 @@ public class Horario implements Serializable {
     /**
      * Devolve o número de inscritos deste {@link Horario}
      * 
-     * @return
+     * @return inscritos
      */
     public int getInscritos() {
         return inscritos;
@@ -137,7 +137,7 @@ public class Horario implements Serializable {
     /**
      * Atribui o número de Inscritos a este {@link Horario}
      * 
-     * @param curso
+     * @param inscritos
      */
     public void setInscritos(int inscritos) {
         this.inscritos = inscritos;
@@ -146,7 +146,7 @@ public class Horario implements Serializable {
     /**
      * Devolve o Dia da Semana deste {@link Horario}
      * 
-     * @return
+     * @return diaSemana
      */
     public String getDiaSemana() {
         return diaSemana;
@@ -155,7 +155,7 @@ public class Horario implements Serializable {
     /**
      * Atribui o Dia da Semana a este {@link Horario}
      * 
-     * @param curso
+     * @param diaSemana
      */
     public void setDiaSemana(String diaSemana) {
         this.diaSemana = diaSemana;
@@ -164,7 +164,7 @@ public class Horario implements Serializable {
     /**
      * Devolve a Hora de Início deste {@link Horario}
      * 
-     * @return
+     * @return horaInicio
      */
     public String getHoraInicio() {
         return horaInicio;
@@ -173,7 +173,7 @@ public class Horario implements Serializable {
     /**
      * Atribui a Hora de Início a este {@link Horario}
      * 
-     * @param curso
+     * @param horaInicio
      */
     public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
@@ -182,7 +182,7 @@ public class Horario implements Serializable {
     /**
      * Devolve a Hora de Fim deste {@link Horario}
      * 
-     * @return
+     * @return horaFim
      */
     public String getHoraFim() {
         return horaFim;
@@ -191,7 +191,7 @@ public class Horario implements Serializable {
     /**
      * Atribui a Hora de Fim a este {@link Horario}
      * 
-     * @param curso
+     * @param horaFim
      */
     public void setHoraFim(String horaFim) {
         this.horaFim = horaFim;
@@ -200,7 +200,7 @@ public class Horario implements Serializable {
     /**
      * Devolve a Data deste {@link Horario}
      * 
-     * @return
+     * @return dataAula
      */
     public String getDataAula() {
         return dataAula;
@@ -209,7 +209,7 @@ public class Horario implements Serializable {
     /**
      * Atribui a Data a este {@link Horario}
      * 
-     * @param curso
+     * @param dataAula
      */
     public void setDataAula(String dataAula) {
         this.dataAula = dataAula;
@@ -218,7 +218,7 @@ public class Horario implements Serializable {
     /**
      * Devolve a Sala deste {@link Horario}
      * 
-     * @return
+     * @return sala
      */
     public String getSala() {
         return sala;
@@ -227,7 +227,7 @@ public class Horario implements Serializable {
     /**
      * Atribui a Sala a este {@link Horario}
      * 
-     * @param curso
+     * @param sala
      */
     public void setSala(String sala) {
         this.sala = sala;
@@ -236,7 +236,7 @@ public class Horario implements Serializable {
     /**
      * Devolve Lotação da Sala deste {@link Horario}
      * 
-     * @return
+     * @return lotacao
      */
     public int getLotacao() {
         return lotacao;
@@ -245,7 +245,7 @@ public class Horario implements Serializable {
     /**
      * Atribui a Lotação da Sala a este {@link Horario}
      * 
-     * @param curso
+     * @param lotacao
      */
     public void setLotacao(int lotacao) {
         this.lotacao = lotacao;
