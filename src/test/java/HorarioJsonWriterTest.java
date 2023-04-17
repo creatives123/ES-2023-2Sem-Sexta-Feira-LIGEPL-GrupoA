@@ -12,7 +12,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import models.Horario;
 import services.HorarioJsonWriter;
 /**
- * Classe responsável por testar os métodos da Classe HorarioJsonReader
+ * Classe responsável por testar os métodos da Classe {@link HorarioJsonWriter}
  * <p>
  * Métodos:
  * <p>
@@ -21,8 +21,9 @@ import services.HorarioJsonWriter;
  * {@link #testWriteToJsonWith_NonEmptyList}
  */
 public class HorarioJsonWriterTest {
+    
     /**
-     * Testar o lançamento de exceção na passagem de uma lista de Horario vazia
+     * Testar o lançamento de exceção na passagem de uma lista de {@link Horario} vazia
      */
     @Test
     public void testWriteToJson_WithNullList() {
@@ -35,7 +36,7 @@ public class HorarioJsonWriterTest {
 
     /**
      * Testar o lançamento de exceção na passagem de uma lista com 
-     * objetos Horario vazios
+     * objetos {@link Horario} vazios
      */
     @Test
     public void testWriteToJsonWith_NonEmptyList_But_EmptyObject() {
@@ -52,7 +53,7 @@ public class HorarioJsonWriterTest {
     }
 
     /**
-     * Testar a correta conversão de uma lista de Horários 
+     * Testar a correta conversão de uma lista de {@link Horario}s 
      * em ficheiro JSON. Verifica o tamanho do JSON resultante 
      * em bytes. 
      */

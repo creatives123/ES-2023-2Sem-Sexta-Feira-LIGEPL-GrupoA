@@ -8,7 +8,7 @@ import models.Horario;
 
 /**
  * Responsável por abrir uma sessão HTTP para a obtenção 
- * de Horarios
+ * de {@link Horario}s
  * <p>
  * Métodos:
  * <p>
@@ -19,11 +19,11 @@ public class CommonManager {
     private CommonManager() {}
 
     /**
-     * Obtém uma lista de Horários da HttpSession.
+     * Obtém uma lista de {@link Horario}s da {@link HttpSession}.
      *
-     * @param session a HttpSession da qual se pretende obter a lista de Horários
-     * @return uma lista de Horários obtida da HttpSession
-     * @throws IllegalStateException se a HttpSession não contiver uma lista de Horários
+     * @param session a {@link HttpSession} da qual se pretende obter a lista de {@link Horario}s
+     * @return uma lista de {@link Horario}s obtida da {@link HttpSession}
+     * @throws IllegalStateException se a {@link HttpSession} não contiver uma lista de {@link Horario}s
      */
     @SuppressWarnings("unchecked")
     public static List<Horario> getHorariosFromSession(HttpSession session) {
