@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import models.Horario;
 import services.HorarioJsonWriter;
@@ -14,7 +17,25 @@ public class HorarioJsonWriterTest {
     
     @Test
     public void testWriteToJson_WithNullList() {
-        assertEquals(0, HorarioJsonWriter.writeToJson(null).length);
+        try {
+            assertEquals(0, HorarioJsonWriter.writeToJson(null).length);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testWriteToJsonWith_NonEmptyList_But_EmptyObject() {
+        List<Horario> horarios = new ArrayList<>();
+        horarios.add(new Horario());
+
+        try {
+            HorarioJsonWriter.writeToJson(horarios);
+            assertTrue(true);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            assertTrue(false);
+        }
     }
 
     @Test
@@ -51,7 +72,13 @@ public class HorarioJsonWriterTest {
         horarios.add(horario1);
         horarios.add(horario2);
    
-        byte[] jsonBytes = HorarioJsonWriter.writeToJson(horarios);
-        assertTrue(jsonBytes.length > 0);
+        byte[] jsonBytes;
+        try {
+            jsonBytes = HorarioJsonWriter.writeToJson(horarios);
+            assertTrue(jsonBytes.length > 0);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+       
     }
 }

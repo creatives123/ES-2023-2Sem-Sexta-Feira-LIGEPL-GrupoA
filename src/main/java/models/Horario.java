@@ -28,8 +28,7 @@ public class Horario implements Serializable {
     /**
      * Cria um objeto {@code Horario} vazio.
      */
-    public Horario() {
-    }
+    public Horario() {}
 
     /**
      * Cria um objeto {@code Horario} a partir de uma linha num arquivo CSV.
@@ -38,35 +37,21 @@ public class Horario implements Serializable {
      *               curso, unidade curricular, turno, turma, inscritos, dia da
      *               semana,
      *               hora de início, hora de fim, data da aula e sala.
-     * @throws IOException se houver um erro na conversão de um campo numérico para
+     * @throws NumberFormatException se houver um erro na conversão de um campo numérico para
      *                     inteiro.
      */
-    public Horario(String[] fields) throws IOException {
+    public Horario(String[] fields) throws NumberFormatException {
         this.curso = Arrays.asList(fields[0].split(","));
         this.unidadeCurricular = fields[1];
         this.turno = fields[2];
         this.turma = Arrays.asList(fields[3].split(","));
-        this.inscritos = checkInt(fields[4]);
+        this.inscritos = Integer.parseInt(fields[4]);
         this.diaSemana = fields[5];
         this.horaInicio = fields[6];
         this.horaFim = fields[7];
         this.dataAula = fields[8];
         this.sala = fields[9];
-        this.lotacao = checkInt(fields[10]);
-    }
-
-    /**
-     * Converte uma ‘string’ para um inteiro. Se a conversão falhar, retorna 0.
-     *
-     * @param s a string a ser convertida.
-     * @return o valor inteiro correspondente à ‘string’, ou 0 se a conversão falhar.
-     */
-    private int checkInt(String s) {
-        try {
-            return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
+        this.lotacao =  Integer.parseInt(fields[10]);
     }
 
     public List<String> getCurso() {

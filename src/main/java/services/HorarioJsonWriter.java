@@ -1,7 +1,7 @@
 package services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
 import java.util.List;
 import models.Horario;
 
@@ -23,16 +23,11 @@ public class HorarioJsonWriter {
      * @param horarios Lista de objetos do tipo {@link Horario} a serem convertidos
      *                 em JSON.
      * @return Bytes correspondentes ao JSON gerado a partir dos objetos fornecidos.
+     * @throws JsonProcessingException
      */
-    public static byte[] writeToJson(List<Horario> horarios) {
+    public static byte[] writeToJson(List<Horario> horarios) throws JsonProcessingException {
         // No caso de não vir cada, então não escreve nada.
         if (horarios == null) return new byte[0];
-
-        try {
-            return new ObjectMapper().writeValueAsBytes(horarios);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new byte[0];
-        }
+        return new ObjectMapper().writeValueAsBytes(horarios);
     }
 }

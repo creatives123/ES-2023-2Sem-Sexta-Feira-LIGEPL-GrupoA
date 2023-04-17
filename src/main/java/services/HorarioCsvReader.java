@@ -148,7 +148,7 @@ public class HorarioCsvReader {
 
         try {
             return new Horario(fields);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return null;
         }
     }
