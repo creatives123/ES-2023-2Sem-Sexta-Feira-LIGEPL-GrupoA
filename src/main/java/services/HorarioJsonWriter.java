@@ -26,7 +26,6 @@ public class HorarioJsonWriter {
      * @throws JsonProcessingException
      */
     public static byte[] writeToJson(List<Horario> horarios) throws JsonProcessingException {
-        // No caso de não vir cada, então não escreve nada.
         if (horarios == null) return new byte[0];
         return new ObjectMapper().writeValueAsBytes(horarios);
     }

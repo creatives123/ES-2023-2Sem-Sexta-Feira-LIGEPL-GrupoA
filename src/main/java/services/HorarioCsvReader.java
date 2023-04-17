@@ -61,31 +61,6 @@ public class HorarioCsvReader {
      * horários de cursos ({@link Horario} objects)
      * e cria uma lista de objetos {@link Horario} correspondentes.
      * <p>
-     * O ficheiro CSV deve ter as seguintes colunas, por ordem:
-     * <p>
-     * - Curso (nome do curso) 
-     * <p>
-     * - Unidade Curricular (unidade curricular)
-     * <p>
-     * - Turno (turno)
-     * <p>
-     * - Turma (grupo de aula)
-     * <p>
-     * - Inscritos no turno (número de alunos inscritos no turno)
-     * <p>
-     * - Dia da semana (dia da semana)
-     * <p>
-     * - Hora início da aula (hora de início da aula)
-     * <p>
-     * - Hora fim da aula (hora de fim da aula)
-     * <p>
-     * - Data da aula (data da aula)
-     * <p>
-     * - Sala atribuída à aula (sala de aula atribuída)
-     * <p>
-     * - Lotação da sala (capacidade da sala de aula)
-     * <p>
-     * O delimitador usado no ficheiro CSV é o ponto e vírgula (;).
      *
      * @param inputStream o fluxo de entrada a ser lido
      * @return uma lista de objetos 'Horario' criados a partir do ficheiro CSV
@@ -107,6 +82,15 @@ public class HorarioCsvReader {
         return horarios;
     }
 
+    /**
+     * Cria novos objetos {@link Horario} através da leitura das linhas 
+     * obtidas por um CSVReader
+     * 
+     * @param horarios
+     * @param reader
+     * @throws IOException
+     * @throws CsvValidationException
+     */
     private static void processSchedules(List<Horario> horarios, CSVReader reader) throws IOException, CsvValidationException {
         String[] line;
         while ((line = reader.readNext()) != null) {

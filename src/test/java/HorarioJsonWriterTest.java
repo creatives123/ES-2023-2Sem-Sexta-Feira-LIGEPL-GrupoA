@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,7 +12,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import models.Horario;
 import services.HorarioJsonWriter;
 /**
- * Classe responsável por testar os métodos da Classe {@link HorarioJsonReader}
+ * Classe responsável por testar os métodos da Classe HorarioJsonReader
  * <p>
  * Métodos:
  * <p>
