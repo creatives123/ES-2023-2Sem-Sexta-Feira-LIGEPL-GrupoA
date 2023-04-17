@@ -6,6 +6,14 @@ import javax.servlet.http.HttpSession;
 
 import models.Horario;
 
+/**
+ * Responsável por abrir uma sessão HTTP para a obtenção 
+ * de Horarios
+ * <p>
+ * Métodos:
+ * <p>
+ * {@link #getHorariosFromSession(HttpSession)}
+ */
 public class CommonManager {
 
     private CommonManager() {}

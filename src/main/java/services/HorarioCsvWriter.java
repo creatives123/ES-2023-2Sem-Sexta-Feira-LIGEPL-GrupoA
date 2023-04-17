@@ -12,6 +12,10 @@ import com.opencsv.ICSVWriter;
 import Config.CSVConfig;
 import models.Horario;
 
+/**
+ * Responsável por converter {@link Horario}s existentes 
+ * num ficheiro CSV para exportação. 
+ */
 public class HorarioCsvWriter {
 
     // Construtor privado para impedir instanciação da classe
@@ -19,45 +23,32 @@ public class HorarioCsvWriter {
 
     /**
      * 
-     * Converte uma lista de objetos Horario para um "array" de bytes em CSV.
+     * Converte uma lista de objetos {@link Horario} para um "array" de bytes em CSV.
      * <p>
-     * @param horarios Lista de objetos Horario
+     * @param horarios Lista de objetos {@link Horario}
      * @return "array" de bytes que contem os dados de CSV
      * @throws IOException Se ocorrer um erro de I/O
      */
-
     public static byte[] writeToCsv(List<Horario> horarios) {
 
         if (horarios == null) return new byte[0];
-
-        // Criar StringWriter para escrever os dados CSV na memória
         StringWriter writer = new StringWriter();
 
-        // Criar CSVWriter
         try (CSVWriter csvWriter = new CSVWriter(writer, ';', ICSVWriter.NO_QUOTE_CHARACTER,
                 ICSVWriter.NO_ESCAPE_CHARACTER, ICSVWriter.DEFAULT_LINE_END)) {
-
-            // Escrever a linha de cabeçalho
             csvWriter.writeNext(CSVConfig.HEADER_FIELDS);
-
-            // Escrever os horarios
             processSchedules(horarios, csvWriter);
-
-            // Limpar o CSVWriter para garantir que todos os dados sao escritos no
-            // StringBuilder
             csvWriter.flush();
-
-            // Devolver os dados CSV data como um "array" de bytes
             return writer.toString().getBytes(StandardCharsets.UTF_8);
-
         } catch (IOException | IllegalArgumentException e) {
-            // No caso de ocorrer uma exceção, é impresso o erro na consola
             e.printStackTrace();
             return new byte[0];
         }
     }
 
     /**
+     * Adiciona uma lista de {@link Horario}s a um {@link CSVWriter} linha a linha
+     * 
      * @param horarios Lista de objetos Horario
      * @param csvWriter
      */
@@ -68,8 +59,10 @@ public class HorarioCsvWriter {
     }
 
     /**
+     * Adiciona um objeto {@link Horario} a um {@link CSVWriter} dado
+     * 
      * @param h Objecto Horario
-     * @param csvWriter
+     * @param csvWriter Objeto CSVWriter
      */
     private static void addLine(Horario h, CSVWriter csvWriter) {
         List<String> line = new ArrayList<>();
