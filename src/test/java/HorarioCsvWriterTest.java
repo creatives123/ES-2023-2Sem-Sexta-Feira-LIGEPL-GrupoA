@@ -141,10 +141,8 @@ class HorarioCsvWriterTest {
         horarios.add(horario1);
         horarios.add(horario2);
 
-        // Chama o método que será testado
         byte[] csvBytes = HorarioCsvWriter.writeToCsv(horarios);
 
-        // Define o resultado esperado
         String expected = "Curso;Unidade Curricular;Turno;Turma;Inscritos no turno;Dia da semana;Hora início da aula;Hora fim da aula;Data da aula;Sala atribuída à aula;Lotação da sala\n"
                         + "LEI;Programacao;T1;1;50;Segunda-feira;09:00;11:00;2022-01-01;B102;60\n"
                         + "MEI;Estatistica;T2;2;40;Terca-feira;14:00;16:00;2022-01-02;B103;50\n";
@@ -230,13 +228,10 @@ class HorarioCsvWriterTest {
         horario.setSala(null);
         horario.setLotacao(60);
 
-        // Cria uma lista com o objeto Horario
         List<Horario> horarios = Arrays.asList(horario);
 
-        // Chama o método que será testado
         byte[] csvBytes = HorarioCsvWriter.writeToCsv(horarios);
 
-        // Define o resultado esperado
         String expected = "Curso;Unidade Curricular;Turno;Turma;Inscritos no turno;Dia da semana;Hora início da aula;Hora fim da aula;Data da aula;Sala atribuída à aula;Lotação da sala\n"
         + ";;Programacao;;;1;50;Segunda-feira;;;;;"
         + "2022-01-01;;;60\n";
