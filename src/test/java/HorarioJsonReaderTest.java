@@ -20,7 +20,7 @@ class HorarioJsonReaderTest {
      * Cria uma String para representar um ficheiro em formato JSON.
      * Cria uma lista de {@link Horario}s com essa informação, usando {@link HorarioJSONReader} 
      * e verifica se foram criados os 3 horários de acordo com o conteúdo da String.
-     * Verifica de seguida se o {@link Horario} existe e os campos fornecidos(HoraInicio, getHoraFim)
+     * Verifica de seguida se o {@link Horario} existe e os campos fornecidos(getHoraInicio, getHoraFim)
      * foram atribuídos ou estão Null. 
      * 
      * @throws IOException
