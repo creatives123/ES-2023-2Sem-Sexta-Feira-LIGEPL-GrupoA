@@ -11,8 +11,37 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Classe responsável por testar os métodos da Classe {@link HorarioCsvReader}
+ * <p>
+ * Métodos:
+ * <p>
+ * {@link #testWriteTo_CsvWithEmptyList()}
+ * <p>
+ * {@link #testWriteToCsv_WithSingleHorario()}
+ * <p>
+ * {@link #testWriteToCsv_WithMultipleHorarios()}
+ * <p>
+ * {@link #testWriteToCsvWith_OneHorario_AllFieldsFilled()}
+ * <p>
+ * {@link #testWriteToCsv_WithNullList()}
+ * <p>
+ * {@link #testWriteToCsvWithHorario_WithNullFields()}
+ * 
+ */
+
 class HorarioCsvWriterTest {
 
+    /**
+     * Cria uma lista de {@link Horario}s vazia.
+     * Escreve os valores do objeto dentro da lista
+     *  usando {@link HorarioCSVWriter}. 
+     * Cria uma string para representar uma linha
+     * do ficheiro CSV.
+     * Finalmente, verifica se escreveu no ficheiro
+     * a string expectável.
+     */
     @Test
      void testWriteTo_CsvWithEmptyList() {
         List<Horario> horarios = new ArrayList<>();
@@ -20,6 +49,19 @@ class HorarioCsvWriterTest {
         String expected = "Curso;Unidade Curricular;Turno;Turma;Inscritos no turno;Dia da semana;Hora início da aula;Hora fim da aula;Data da aula;Sala atribuída à aula;Lotação da sala\n";
         assertEquals(expected, new String(csvBytes, StandardCharsets.UTF_8));
     }
+
+    /**
+     * Cria um objeto {@link Horario} com todos os 
+     * seus campos válidos.
+     * Cria uma lista de {@link Horario}s com os
+     * valores do objeto {@link Horario} criados.
+     * Escreve os valores do objeto dentro
+     * da lista usando {@link HorarioCSVWriter}.
+     * Verifica se escreveu no ficheiro a string expectavel.
+     * Verifica se os arrays de bytes sao iguais.
+     * 
+     * @throws IOException Se ocorrer um erro de I/O.
+     */
 
     @Test
     void testWriteToCsv_WithSingleHorario() throws IOException {
@@ -50,6 +92,19 @@ class HorarioCsvWriterTest {
     
         assertArrayEquals(expected.getBytes(StandardCharsets.UTF_8), csvBytes);
     }
+
+    /**
+     * Cria dois objetos {@link Horario} com todos os 
+     * seus campos válidos.
+     * Cria uma lista de {@link Horario}s com os
+     * valores dos objetos {@link Horario} criados.
+     * Escreve os valores dos objetos dentro
+     * da lista usando {@link HorarioCSVWriter}.
+     * Verifica se escreveu no ficheiro a string expectavel.
+     * Verifica se os arrays de bytes sao iguais.
+     * 
+     * @throws IOException Se ocorrer um erro de I/O.
+     */
 
     @Test
     void testWriteToCsv_WithMultipleHorarios() throws IOException {
@@ -98,6 +153,19 @@ class HorarioCsvWriterTest {
         assertArrayEquals(expected.getBytes(StandardCharsets.UTF_8), csvBytes);
     }
 
+    /**
+     * Cria um objeto {@link Horario} com todos os 
+     * seus campos válidos.
+     * Cria uma lista de {@link Horario}s com os
+     * valores do objeto {@link Horario} criados.
+     * Escreve os valores dos objetos dentro
+     * da lista usando {@link HorarioCSVWriter}.
+     * Verifica se escreveu no ficheiro a string expectavel.
+     * Verifica se os arrays de bytes sao iguais.
+     * 
+     * @throws IOException Se ocorrer um erro de I/O.
+     */
+
     @Test
     void testWriteToCsvWith_OneHorario_AllFieldsFilled() throws IOException {
         Horario horario = new Horario();
@@ -119,12 +187,33 @@ class HorarioCsvWriterTest {
         assertArrayEquals(expected.getBytes(StandardCharsets.UTF_8), csvBytes);
     }
     
+    /**
+     * Verifica se os arrays de bytes são
+     * iguais aos que estao a ser escritos pelo 
+     * {@link HorarioCSVWriter}. Se forem diferentes
+     * ocorre um erro.
+     *  
+     * @throws IOException Se ocorrer um erro de I/O.
+     */
+
     @Test
     void testWriteToCsv_WithNullList() throws IOException {
         // Verifica se os arrays de bytes são iguais
         assertArrayEquals(new byte[0], HorarioCsvWriter.writeToCsv(null));
     }
 
+   /**
+     * Cria um objeto {@link Horario} com alguns
+     * campos a null e outros validos.
+     * Cria uma lista de {@link Horario}s com os
+     * valores do objeto {@link Horario} criados.
+     * Escreve os valores do objeto dentro
+     * da lista usando {@link HorarioCSVWriter}.
+     * Verifica se escreveu no ficheiro a string expectavel.
+     * Verifica se os arrays de bytes sao iguais.
+     * 
+     * @throws IOException Se ocorrer um erro de I/O.
+     */
     @Test
     void testWriteToCsvWithHorario_WithNullFields() throws IOException {
         // Cria um objeto Horario com alguns campos a null
