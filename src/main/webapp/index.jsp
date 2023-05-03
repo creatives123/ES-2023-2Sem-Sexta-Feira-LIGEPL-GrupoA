@@ -11,6 +11,67 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"></script>
+            
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js'></script>
+    
+    <script>
+        $(document).ready(function () {
+
+            var eventsDatasource = [];
+
+            function getCalendarData() {
+                $.ajax({
+                    url: 'GetCalendarServlet',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        eventsDatasource = response;
+                        calendar.refetchEvents();
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr.statusText);
+                    }
+                });
+            }
+
+            var calendarEl = $('#calendar').get(0);
+            window.calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'pt',
+                themeSystem: 'bootstrap5',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                buttonText: {
+                    today: 'Hoje',
+                    day: 'Diário',
+                    week:'Semanal',
+                    month:'Mensal'
+                },
+                navLinks: true,
+                editable: false,
+                dayMaxEvents: true,
+                events: function(info, successCallback, failureCallback) {
+                    successCallback(eventsDatasource);
+                }
+            });
+
+            getCalendarData();
+            calendar.render();
+        });
+
+      </script>
 
     <style>
         body {
@@ -26,11 +87,23 @@
             font-weight: bold;
             width: 1000px;
         }
+
+        .fc-daygrid-day-number, .c-popover-title {
+            color: rgb(0, 0, 0);
+        }
+
+        .fc-col-header-cell-cushion {
+            color:rgb(255, 255, 255);
+        }
+
     </style>
 </head>
 
 <body>
 <div class="main">
+
+<div id="calendar"></div>
+
     <div class="mb-3 row">
         <h2>Projecto ES 2022/2023</h2>
     </div>

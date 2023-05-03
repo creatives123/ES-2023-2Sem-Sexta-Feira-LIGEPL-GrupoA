@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -29,6 +30,6 @@ public class CommonManager {
     public static List<Horario> getHorariosFromSession(HttpSession session) {
         Object horariosObject = session.getAttribute("horarios");
         if (horariosObject != null) return (List<Horario>) horariosObject;
-        throw new IllegalStateException("Horarios not found in session");
+        else return new ArrayList<>();
     }
 }

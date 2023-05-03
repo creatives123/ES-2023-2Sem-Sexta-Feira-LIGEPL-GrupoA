@@ -23,4 +23,22 @@
     <url-pattern>/UploadServlet</url-pattern>
   </servlet-mapping>
 
+    <servlet>
+    <servlet-name>GetCalendarServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.GetCalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetCalendarServlet</servlet-name>
+    <url-pattern>/GetCalendarServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>DeleteEventServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.DeleteEventServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteEventServlet</servlet-name>
+    <url-pattern>/DeleteEventServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>
