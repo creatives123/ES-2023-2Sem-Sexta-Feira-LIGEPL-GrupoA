@@ -31,7 +31,7 @@
 
             function getCalendarData() {
                 $.ajax({
-                    url: 'GetCalendarServlet',
+                    url: 'GetStudentCalendarServlet',
                     type: 'GET',
                     dataType: 'json',
                     success: function (response) {
