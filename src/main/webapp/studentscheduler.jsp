@@ -100,70 +100,35 @@
 </head>
 
 <body>
-<div class="main">
+    <div class="main">
 
-<div id="calendar"></div>
-
-    <div class="mb-3 row">
-        <h2>Projecto ES 2022/2023</h2>
+    <!-- Curso -->
+    <div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Curso</span>
+    </button>
     </div>
-    <hr/>
-    <div>
-        <div class="mb-3">
-            <h3>Importar dados:</h3>
-        </div>
-        <div class="mb-3">
-            <!-- "Form" para receber um ficheiro local -->
-            <form method="post" enctype="multipart/form-data" action="UploadServlet">
-                <div class="mb-3">
-                    <label for="ficheiro" class="form-label">Escolher o ficheiro a Importar (CSV ou JSON)</label>
-                    <input class="form-control" type="file" id="ficheiro" name="ficheiro" accept=".csv,.json" required>
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary mb-3">Upload</button>
-                </div>
-            </form>
-            <!-- "Form" para receber um url do ficheiro -->
-            <form method="post" action="UploadServlet">
-                <div class="mb-3">
-                    <label for="url" class="form-label">Indique um endereço url onde se encontra o ficheiro CSV /
-                        JSON</label>
-                    <input class="form-control" type="text" id="url" name="url" required>
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary mb-3">Upload</button>
-                </div>
-            </form>
-        </div>
-        <div class="mb-3">
-            <%-- Exibir mensagem --%>
-            <% if (session.getAttribute("messageUpload") != null) { %>
-            <%= (String) session.getAttribute("messageUpload") %>
-            <% } %>
-        </div>
-    </div>
-    <% if (session.getAttribute("horarios") != null) { %>
-    <hr/>
-    <div class="row row-cols-auto">
-        <div class="col">
-            <a href="DownloadServlet?type=json">
-                <button class="btn btn-primary">Download JSON</button>
-            </a>
-        </div>
-        <div class="col">
-            <a href="DownloadServlet?type=csv">
-                <button class="btn btn-primary">Download CSV</button>
-            </a>
-        </div>
-        <div class="col">
-            <a href="studentscheduler.jsp">
-                <button class="btn btn-primary">Criar Novo Horário Estudante</button>
-            </a>
-        </div>
-    </div>
-    <% } %>
 
+    <!-- Turno -->
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Turno</span>
+        </button>
+    </div>
 
-</div>
+    <!-- Unidade Curricular -->
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Unidade Curricular</span>
+        </button>
+    </div>
+    
+    <br>  
+    
+        <div id="calendar"></div>
+
+    </div>
 </body>
 </html>
+
+
