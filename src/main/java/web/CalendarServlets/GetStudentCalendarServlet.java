@@ -13,20 +13,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import Translators.HorarioToCalendarTranslator;
 import models.CalendarModel;
 import models.Horario;
+import services.CommonManager;
 
 public class GetStudentCalendarServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = new ObjectMapper().writeValueAsString(getCalendars());
+        String json = new ObjectMapper().writeValueAsString(getCalendars(request));
     
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
     }
 
-    private List<CalendarModel> getCalendars() {
-        List<Horario> events = new ArrayList<>(); // create a new empty list of Horario objects
+    private List<CalendarModel> getCalendars(HttpServletRequest request) {
+        List<Horario> events = CommonManager.getStudentHorarioFromSession(request.getSession());
         return HorarioToCalendarTranslator.translateHorariosToCalendars(events);
     }
 }
