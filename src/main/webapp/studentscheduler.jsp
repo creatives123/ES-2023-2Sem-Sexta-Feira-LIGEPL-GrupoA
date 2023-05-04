@@ -87,6 +87,15 @@
             });
         }
 
+        function deleteEvents(uc) {
+            $.ajax({
+                url: 'DeleteEventServlet?uc='+uc,
+                type: 'DELETE'
+            }).then(function () {
+                getCalendarData();
+            });
+        }
+
         var calendarEl = $('#calendar').get(0);
         window.calendar = new FullCalendar.Calendar(calendarEl, {
             locale: 'pt',
@@ -107,6 +116,16 @@
             dayMaxEvents: true,
             events: function(info, successCallback, failureCallback) {
                 successCallback(eventsDatasource);
+            },
+            eventClick: function(info) {
+
+                console.log(info);
+                console.log(info.event);
+                console.log(info.event.extendedProps);
+
+                if (confirm("Quer mesmo apagar esta UC do seu calendário?")) {
+                    deleteEvents(info.event.title);
+                }
             }
         });
 

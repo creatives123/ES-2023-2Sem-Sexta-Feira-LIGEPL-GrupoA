@@ -50,6 +50,15 @@
     <url-pattern>/AddEventServlet</url-pattern>
   </servlet-mapping>
 
+ <servlet>
+    <servlet-name>DeleteEventServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.DeleteEventServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteEventServlet</servlet-name>
+    <url-pattern>/DeleteEventServlet</url-pattern>
+  </servlet-mapping>
+
      <servlet>
     <servlet-name>GetCoursesServlet</servlet-name>
     <servlet-class>web.DatasourceServlets.GetCoursesServlet</servlet-class>
