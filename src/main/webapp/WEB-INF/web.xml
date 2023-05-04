@@ -31,4 +31,15 @@
     <servlet-name>GetCalendarServlet</servlet-name>
     <url-pattern>/GetCalendarServlet</url-pattern>
   </servlet-mapping>
+
+     <servlet>
+    <servlet-name>GetStudentCalendarServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.GetStudentCalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetStudentCalendarServlet</servlet-name>
+    <url-pattern>/GetStudentCalendarServlet</url-pattern>
+  </servlet-mapping>
+
+  
 </web-app>

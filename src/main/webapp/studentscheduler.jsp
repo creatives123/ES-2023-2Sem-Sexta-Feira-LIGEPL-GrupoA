@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.*" %>
+<%@ page import="models.Horario" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!doctype html>
 <html lang="en">
@@ -23,6 +27,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js'></script>
+    
     
     <script>
         $(document).ready(function () {
@@ -101,29 +106,83 @@
 
 <body>
     <div class="main">
+        
+        <label for="languages">List of Languages:</label>
+        <select name="languages" id="languages">
+          <c:forEach items="${session.getAttribute(horarios)}" var="horario">
+            <option value="${horario.getId()}">${horario.getUnidadeCurricular()}</option>
+          </c:forEach>
+        </select>
+        
+        
+        <select name="userRole">
+            <c:forEach var="horario" items="${horarios}">
+              <option value="${horario}">${horario}</option>
+            </c:forEach>
+        </select>
 
-    <!-- Curso -->
-    <div class="btn-group">
-    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+<!-- Curso -->
+<!-- <div class="btn-group"> -->
+    <!-- <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span class="sr-only">Curso</span>
+    </button> -->
+    <!-- <div class="dropdown-menu"> -->
+        <!-- <select style="width: 100px" name="dsfssf" id="1">
+            <option>teste</option> -->
+        <!-- <c:forEach items="${horarios}" var="horario">
+            <c:forEach items="${horario.getCurso()}" var="curso">
+                <c:if test="${not cursoList.contains(curso)}">
+                    <c:set var="cursoList" value="${cursoList + curso}"/>
+                    <option>${curso}</option>
+                </c:if>
+            </c:forEach>
+        </c:forEach> -->
+        <!-- </select> -->
+    <!-- </div>     -->
+  <!-- </div> -->
+  
+  <c:if test="${not empty sessionScope.horarios}">
+
+
+  <!-- Turno -->
+  <div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Turno</span>
     </button>
+    <div class="dropdown-menu">
+      <c:forEach items="${horarios}" var="horario">
+        <c:if test="${not turnoList.contains(horario.getTurno())}">
+          <c:set var="turnoList" value="${turnoList + horario.getTurno()}"/>
+          <a class="dropdown-item" href="#">${horario.getTurno()}</a>
+        </c:if>
+      </c:forEach>
     </div>
+  </div>
 
-    <!-- Turno -->
-    <div class="btn-group">
-        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="sr-only">Turno</span>
-        </button>
+      <!-- $horarios is in session -->
+    <!-- Put your code here that uses $horarios -->
+</c:if>
+  
+  <!-- Unidade Curricular -->
+  <div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Unidade Curricular</span>
+    </button>
+    <div class="dropdown-menu">
+      <c:forEach items="${horarios}" var="horario">
+        <c:if test="${not ucList.contains(horario.getUnidadeCurricular())}">
+          <c:set var="ucList" value="${ucList + horario.getUnidadeCurricular()}"/>
+          <a class="dropdown-item" href="#">${horario.getUnidadeCurricular()}</a>
+        </c:if>
+      </c:forEach>
     </div>
+  </div>
+  
+  
 
-    <!-- Unidade Curricular -->
-    <div class="btn-group">
-        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="sr-only">Unidade Curricular</span>
-        </button>
-    </div>
-    
-    <br>  
+  
+    <br/>
     
         <div id="calendar"></div>
 
