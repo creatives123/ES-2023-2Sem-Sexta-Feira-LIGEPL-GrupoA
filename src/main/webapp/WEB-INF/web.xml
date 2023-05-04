@@ -41,5 +41,40 @@
     <url-pattern>/GetStudentCalendarServlet</url-pattern>
   </servlet-mapping>
 
-  
+  <servlet>
+    <servlet-name>AddEventServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.AddEventServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddEventServlet</servlet-name>
+    <url-pattern>/AddEventServlet</url-pattern>
+  </servlet-mapping>
+
+     <servlet>
+    <servlet-name>GetCoursesServlet</servlet-name>
+    <servlet-class>web.DatasourceServlets.GetCoursesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetCoursesServlet</servlet-name>
+    <url-pattern>/GetCoursesServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>GetUCsServlet</servlet-name>
+    <servlet-class>web.DatasourceServlets.GetUCsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetUCsServlet</servlet-name>
+    <url-pattern>/GetUCsServlet</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+    <servlet-name>GetTurnosServlet</servlet-name>
+    <servlet-class>web.DatasourceServlets.GetTurnosServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTurnosServlet</servlet-name>
+    <url-pattern>/GetTurnosServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>
