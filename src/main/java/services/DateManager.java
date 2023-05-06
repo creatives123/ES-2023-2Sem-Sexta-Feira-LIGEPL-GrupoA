@@ -43,7 +43,6 @@ public class DateManager {
         return date;
     }
 
-
     public static String getScheduleCorrectTimeFormat(String input) {
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(input, inputFormat);
@@ -51,7 +50,4 @@ public class DateManager {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dateTime.format(outputFormat);
     }
-    
-
-
 }
