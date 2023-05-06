@@ -13,24 +13,28 @@ import Config.CSVConfig;
 import models.Horario;
 
 /**
- * Responsável por converter {@link Horario}s existentes 
- * num ficheiro CSV para exportação. 
+ * Responsável por converter {@link Horario}s existentes
+ * num ficheiro CSV para exportação.
  */
 public class HorarioCsvWriter {
 
     // Construtor privado para impedir instanciação da classe
-    private HorarioCsvWriter() {}
+    private HorarioCsvWriter() {
+    }
 
     /**
      * 
-     * Converte uma lista de objetos {@link Horario} para um "array" de bytes em CSV.
+     * Converte uma lista de objetos {@link Horario} para um "array" de bytes em
+     * CSV.
      * <p>
+     * 
      * @param horarios Lista de objetos {@link Horario}
      * @return "array" de bytes que contem os dados de CSV
      */
     public static byte[] writeToCsv(List<Horario> horarios) {
 
-        if (horarios == null) return new byte[0];
+        if (horarios == null)
+            return new byte[0];
         StringWriter writer = new StringWriter();
 
         try (CSVWriter csvWriter = new CSVWriter(writer, ';', ICSVWriter.NO_QUOTE_CHARACTER,
@@ -48,8 +52,8 @@ public class HorarioCsvWriter {
     /**
      * Adiciona uma lista de {@link Horario}s a um {@link CSVWriter} linha a linha
      * 
-     * @param horarios Lista de objetos Horario
-     * @param csvWriter
+     * @param horarios  Lista de objetos Horario
+     * @param csvWriter Objeto CSVWriter
      */
     private static void processSchedules(List<Horario> horarios, CSVWriter csvWriter) {
         for (Horario h : horarios) {
@@ -60,7 +64,7 @@ public class HorarioCsvWriter {
     /**
      * Adiciona um objeto {@link Horario} a um {@link CSVWriter} dado
      * 
-     * @param h Objecto Horario
+     * @param h         Objecto Horario
      * @param csvWriter Objeto CSVWriter
      */
     private static void addLine(Horario h, CSVWriter csvWriter) {
@@ -80,8 +84,8 @@ public class HorarioCsvWriter {
     }
 
     /**
-     * @param list
-     * @param value
+     * @param list  Lista de valores a serem adicionados
+     * @param value Valor a ser adicionado na lista
      */
     private static void addToListIfNotNull(List<String> list, Object value) {
         if (value == null) {
