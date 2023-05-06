@@ -247,7 +247,7 @@
             var curso = $('#cursos').val();
             var uc = $('#ucs').val();
             var turno = $('#turnos').val();
-            $.get("StudentCalendarServlet", {curso: curso, uc: uc, turno: turno}, function () {
+            $.post("StudentCalendarServlet", {curso: curso, uc: uc, turno: turno}, function () {
                 getCalendarData();
             });
         });
