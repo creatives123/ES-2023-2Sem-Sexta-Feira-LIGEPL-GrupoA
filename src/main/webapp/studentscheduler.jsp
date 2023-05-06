@@ -75,7 +75,7 @@
 
         function getCalendarData() {
             $.ajax({
-                url: 'GetStudentCalendarServlet',
+                url: 'StudentCalendarServlet',
                 type: 'GET',
                 dataType: 'json',
                 success: function (response) {
@@ -90,7 +90,7 @@
 
         function deleteEvents(uc, turno) {
             $.ajax({
-                url: 'DeleteEventsServlet?uc=' + uc +"&turno=" + turno,
+                url: 'StudentCalendarServlet?uc=' + uc +"&turno=" + turno,
                 type: 'DELETE'
             }).then (function () {
                 getCalendarData();
@@ -182,7 +182,7 @@
             var curso = $('#cursos').val();
             var uc = $('#ucs').val();
             var turno = $('#turnos').val();
-            $.get("AddEventServlet", { curso: curso, uc: uc, turno: turno }, function () {
+            $.post("StudentCalendarServlet", { curso: curso, uc: uc, turno: turno }, function () {
                 getCalendarData();
             });
         });

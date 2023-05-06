@@ -33,30 +33,12 @@
   </servlet-mapping>
 
      <servlet>
-    <servlet-name>GetStudentCalendarServlet</servlet-name>
-    <servlet-class>web.CalendarServlets.GetStudentCalendarServlet</servlet-class>
+    <servlet-name>StudentCalendarServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.StudentCalendarServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>GetStudentCalendarServlet</servlet-name>
-    <url-pattern>/GetStudentCalendarServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>AddEventServlet</servlet-name>
-    <servlet-class>web.CalendarServlets.AddEventServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddEventServlet</servlet-name>
-    <url-pattern>/AddEventServlet</url-pattern>
-  </servlet-mapping>
-
- <servlet>
-    <servlet-name>DeleteEventsServlet</servlet-name>
-    <servlet-class>web.DatasourceServlets.DeleteEventsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DeleteEventsServlet</servlet-name>
-    <url-pattern>/DeleteEventsServlet</url-pattern>
+    <servlet-name>StudentCalendarServlet</servlet-name>
+    <url-pattern>/StudentCalendarServlet</url-pattern>
   </servlet-mapping>
 
      <servlet>

@@ -16,12 +16,12 @@ import models.Horario;
 import services.CommonManager;
 
 /**
- * A classe GetStudentCalendarServlet é um servlet que trata os pedidos GET para obter os eventos do calendário de um estudante.
+ * A classe StudentCalendarServlet é um servlet que trata os pedidos GET para obter os eventos do calendário de um estudante.
  * 
  * Este servlet obtém os eventos do calendário de um estudante da sessão, converte-os em objetos CalendarModel usando o HorarioToCalendarTranslator e depois
  * retorna uma resposta JSON contendo os CalendarModels e informações adicionais sobre os eventos.
  */
-public class GetStudentCalendarServlet extends HttpServlet {
+public class StudentCalendarServlet extends HttpServlet {
 
     /**
      * Trata os pedidos GET para obter os eventos do calendário de um estudante.
@@ -36,6 +36,49 @@ public class GetStudentCalendarServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
+    }
+
+    /**
+     * Trata os pedidos GET para adicionar um evento ao calendário de um estudante.
+     * 
+     * @param request o objeto HttpServletRequest contendo informações sobre o pedido
+     * @param response o objeto HttpServletResponse utilizado para enviar a resposta
+     * @throws IOException se ocorrer um erro ao ler ou escrever no fluxo de entrada ou saída
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      
+        String curso = request.getParameter("curso");
+        String uc = request.getParameter("uc");
+        String turno = request.getParameter("turno");
+
+        List<Horario> eventos = CommonManager.getHorariosFromSession(request.getSession());
+        List<Horario> horarioDoEstudante = CommonManager.getStudentHorarioFromSession(request.getSession());
+
+        for(Horario h : eventos) {
+            if (h.getCurso().contains(curso) && h.getUnidadeCurricular().equals(uc) && h.getTurno().equals(turno)
+                    && !horarioDoEstudante.contains(h)) {
+                CommonManager.addToStudentHorarioFromSession(request.getSession(), h);
+            }
+        }
+    }
+
+     /**
+     * Trata os pedidos DELETE para remover um evento ao calendário de um estudante.
+     * 
+     * @param request o objeto HttpServletRequest contendo informações sobre o pedido
+     * @param response o objeto HttpServletResponse utilizado para enviar a resposta
+     * @throws IOException se ocorrer um erro ao ler ou escrever no fluxo de entrada ou saída
+     */
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String uc = request.getParameter("uc");
+        String turno = request.getParameter("turno");
+
+        List<Horario> horarios = CommonManager.getStudentHorarioFromSession(request.getSession());
+        horarios.removeIf(h -> (h.getUnidadeCurricular().equals(uc) && h.getTurno().equals(turno)));
+        request.getSession().setAttribute("student_horario", horarios);
     }
 
     /**
@@ -84,6 +127,5 @@ public class GetStudentCalendarServlet extends HttpServlet {
         calendarWrapper.setOverlappedEventsCounter(contadorEventosSobrepostos);
 
         return calendarWrapper;
-    }
-    
+    } 
 }

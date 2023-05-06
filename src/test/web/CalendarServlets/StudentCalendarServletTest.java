@@ -29,7 +29,7 @@ import services.CommonManager;
  * HttpSession, CommonManager, etc.) e testar a lógica de negócios do servlet.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class AddEventServletTest {
+public class StudentCalendarServletTest {
 
     @Mock
     private HttpServletRequest request;
@@ -41,7 +41,7 @@ public class AddEventServletTest {
     private HttpSession session;
 
     @InjectMocks
-    private AddEventServlet servlet;
+    private StudentCalendarServlet servlet;
 
     @Before
     public void setUp() throws Exception {
