@@ -20,6 +20,9 @@ import services.CommonManager;
  * 
  * Este servlet obtém os eventos do calendário de um estudante da sessão, converte-os em objetos CalendarModel usando o HorarioToCalendarTranslator e depois
  * retorna uma resposta JSON contendo os CalendarModels e informações adicionais sobre os eventos.
+ * Para além da funcionalidade de obter os eventos, ainda adiciona eventos ao calendário do estudante assim como remove eventos.
+ * Ao remover eventos, estes são removidos por turnos, ou seja, quando apagamos uma UC de um certo turno, nos outros turnos essa mesma UC mantém-se.
+ *
  */
 public class StudentCalendarServlet extends HttpServlet {
 
