@@ -2,13 +2,10 @@ import org.junit.jupiter.api.Test;
 
 import services.DateManager;
 
-import java.time.ZoneId;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class DateManagerTest {
-
-    private static final ZoneId ZONE_ID = ZoneId.of("Europe/Lisbon");
 
     @Test
     public void testGetScheduleCorrectTimeFormat() {

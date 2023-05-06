@@ -87,8 +87,22 @@ public class HorarioJsonWriterTest {
         horario2.setSala("B103");
         horario2.setLotacao(50);
 
+        Horario horario3 = new Horario();
+        horario3.setCurso(Arrays.asList("LEI"));
+        horario3.setUnidadeCurricular("Arquitetura de Redes");
+        horario3.setTurno("T1");
+        horario3.setTurma(Arrays.asList("1"));
+        horario3.setInscritos(50);
+        horario3.setDiaSemana("Segunda-feira");
+        horario3.setHoraInicio("09:00");
+        horario3.setHoraFim("11:00");
+        horario3.setDataAula("2022-01-01");
+        horario3.setSala("B102");
+        horario3.setLotacao(10);
+
         horarios.add(horario1);
         horarios.add(horario2);
+        horarios.add(horario3);
    
         byte[] jsonBytes;
         try {
