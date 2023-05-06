@@ -1,12 +1,8 @@
 package models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
-
-import services.DateManager;
 
 /**
  * A classe {@code Horario} representa um {@link Horario} de aulas num curso
@@ -257,34 +253,5 @@ public class Horario implements Serializable {
 
     public boolean isOverCrowded() {
         return this.inscritos > this.lotacao;
-    }
-
-    public String getDataHoraInicio() throws IllegalArgumentException {
-        if (this.dataAula == null || this.horaInicio == null) {
-            throw new IllegalArgumentException("dataAula or horaInicio is null");
-        }
-        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio));
-    }
-    
-    public String getDataHoraFim() throws IllegalArgumentException {
-        if (this.dataAula == null || this.horaFim == null) {
-            throw new IllegalArgumentException("dataAula or horaFim is null");
-        }
-        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim));
-    }
-
-    public boolean sameInterval(Horario h) {
-        if (h != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime inicio1 = LocalDateTime.parse(this.getDataHoraInicio(), formatter);
-            LocalDateTime fim1 = LocalDateTime.parse(this.getDataHoraFim(), formatter);
-            LocalDateTime inicio2 = LocalDateTime.parse(h.getDataHoraInicio(), formatter);
-            LocalDateTime fim2 = LocalDateTime.parse(h.getDataHoraFim(), formatter);
-        
-            return (inicio1.isBefore(fim2) && fim1.isAfter(inicio2))
-                   || (inicio2.isBefore(fim1) && fim2.isAfter(inicio1))
-                   || (inicio1.equals(inicio2) && fim1.equals(fim2));
-        }
-        return false;
     }
 }

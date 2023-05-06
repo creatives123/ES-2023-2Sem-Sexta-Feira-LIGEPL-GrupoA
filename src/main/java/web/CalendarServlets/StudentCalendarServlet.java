@@ -14,6 +14,7 @@ import models.CalendarModel;
 import models.CalendarWrapper;
 import models.Horario;
 import services.CommonManager;
+import services.DateManager;
 
 /**
  * A classe StudentCalendarServlet é um servlet que trata os pedidos GET para obter os eventos do calendário de um estudante.
@@ -117,7 +118,7 @@ public class StudentCalendarServlet extends HttpServlet {
                     }
                 }
                 else {
-                    if (m.getHorario().sameInterval(h)) {
+                    if (DateManager.sameInterval(m.getHorario(),h)) {
                         m.setColor("orange");
                         contadorEventosSobrepostos++;
                     }

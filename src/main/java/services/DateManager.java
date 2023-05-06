@@ -1,11 +1,8 @@
 package services;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import models.Horario;
 
 /**
  * Classe utilitária que fornece métodos para gerir datas.
@@ -17,51 +14,6 @@ public class DateManager {
      */
     private DateManager() {}
 
-    // /**
-    //  * Converte uma string no formato "dd/MM/yyyy" para um objeto {@link Date}.
-    //  *
-    //  * @param input a string a ser convertida.
-    //  * @return o objeto {@link Date} correspondente.
-    //  */
-    // public static Date castStringToDate(String input) {
-    //     DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-    //     Date date = null;
-    
-    //     try {
-    //         date = inputFormat.parse(input);
-    //         DateFormat outputFormat = new SimpleDateFormat("yyyy-mm-dd");
-    //         String outputString = outputFormat.format(date);
-    //         date = outputFormat.parse(outputString);
-    //     } catch (ParseException e) {
-    //         e.printStackTrace();
-    //     }
-    
-    //     return date;
-    // }
-    
-
-    // /**
-    //  * Converte uma string no formato "E MMM dd yyyy HH:mm:ss" para um objeto {@link Date}.
-    //  *
-    //  * @param input a string a ser convertida.
-    //  * @return o objeto {@link Date} correspondente.
-    //  */
-    // public static Date castStringExtendToDate(String input) {
-    //     DateFormat inputFormat = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss" );
-    //     Date date = null;
-    
-    //     try {
-    //         date = inputFormat.parse(input);
-    //         DateFormat outputFormat = new SimpleDateFormat("yyyy/mm/dd");
-    //         String output = outputFormat.format(date);
-    //         date = outputFormat.parse(output);
-    //     } catch (ParseException e) {
-    //         e.printStackTrace();
-    //     }
-    
-    //     return date;
-    // }
-
     /**
      * Converte uma string no formato "dd/MM/yyyy HH:mm:ss" para uma string no formato "yyyy-MM-dd HH:mm:ss".
      *
@@ -72,7 +24,36 @@ public class DateManager {
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(input, inputFormat);
     
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dateTime.format(outputFormat);
+    }
+
+    public static String getDataHoraInicio(Horario h) throws IllegalArgumentException {
+        if (h == null) {
+            throw new IllegalArgumentException("h is null");
+        }
+        return DateManager.getScheduleCorrectTimeFormat(h.getDataAula().concat(" ").concat(h.getHoraInicio()));
+    }
+
+    public static String getDataHoraFim(Horario h) throws IllegalArgumentException {
+        if (h == null) {
+            throw new IllegalArgumentException("h is null");
+        }
+        return DateManager.getScheduleCorrectTimeFormat(h.getDataAula().concat(" ").concat(h.getHoraFim()));
+    }
+    
+    public static boolean sameInterval(Horario h1, Horario h2) {
+
+        if (h1 == null || h2 == null)  throw new IllegalArgumentException("h1 or h2 is null");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime inicio1 = LocalDateTime.parse(getDataHoraInicio(h1), formatter);
+        LocalDateTime fim1 = LocalDateTime.parse(getDataHoraFim(h1), formatter);
+        LocalDateTime inicio2 = LocalDateTime.parse(getDataHoraInicio(h2), formatter);
+        LocalDateTime fim2 = LocalDateTime.parse(getDataHoraFim(h2), formatter);
+    
+        return (inicio1.isBefore(fim2) && fim1.isAfter(inicio2))
+                || (inicio2.isBefore(fim1) && fim2.isAfter(inicio1))
+                || (inicio1.equals(inicio2) && fim1.equals(fim2));
     }
 }

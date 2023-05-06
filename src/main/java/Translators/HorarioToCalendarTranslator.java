@@ -5,6 +5,7 @@ import java.util.List;
 
 import models.CalendarModel;
 import models.Horario;
+import services.DateManager;
 
 public class HorarioToCalendarTranslator {
     
@@ -20,8 +21,8 @@ public class HorarioToCalendarTranslator {
         CalendarModel c = new CalendarModel();
         c.setHorario(h);
         c.setId(h.hashCode());
-        c.setStart(h.getDataHoraInicio());
-        c.setEnd(h.getDataHoraFim());
+        c.setStart(DateManager.getDataHoraInicio(h));
+        c.setEnd(DateManager.getDataHoraFim(h));
         c.setTitle(h.getUnidadeCurricular());
         return c;
     }
