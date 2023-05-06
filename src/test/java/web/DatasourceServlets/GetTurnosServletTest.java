@@ -1,7 +1,6 @@
 package web.DatasourceServlets;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import models.Horario;
 
