@@ -30,7 +30,7 @@ import models.Horario;
 import services.CommonManager;
 import web.DatasourceServlets.GetCoursesServlet;
 
-class StudentCalendarServletTest {
+public class StudentCalendarServletTest {
 
     @Mock
     HttpServletRequest request;
