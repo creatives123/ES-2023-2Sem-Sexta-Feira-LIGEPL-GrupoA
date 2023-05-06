@@ -42,12 +42,12 @@ public class WebCalImporter {
     while (matcher.find()) {
 
       // Extract the event properties from the match groups
-      String eventContent = matcher.group();
-      String summary = findValue(eventContent, "SUMMARY:");
-      String description = findValue(eventContent, "DESCRIPTION:");
-      String location = findValue(eventContent, "LOCATION:");
-      String startStr = findValue(eventContent, "DTSTART:");
-      String endStr = findValue(eventContent, "DTEND:");
+      String eventContent = matcher.group(0);
+      String summary = findValue(eventContent, "SUMMARY");
+      String description = findValue(eventContent, "DESCRIPTION");
+      String location = findValue(eventContent, "LOCATION");
+      String startStr = findValue(eventContent, "DTSTART");
+      String endStr = findValue(eventContent, "DTEND");
 
       // Create a new Horario object
       System.out.println("  ");
@@ -65,7 +65,7 @@ public class WebCalImporter {
       System.out.println(endStr);
       System.out.println("  ");
 
-      //TODO: Criar um objeto Horario
+      //TODO: Criar um objeto Horario e adicionar à lista a devolver 
       Horario horario = new Horario();
       
       events.add(horario);
