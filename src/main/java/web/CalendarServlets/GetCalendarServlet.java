@@ -13,8 +13,22 @@ import Translators.HorarioToCalendarTranslator;
 import models.CalendarModel;
 import models.Horario;
 import services.CommonManager;
-
+/**
+ * A classe GetCalendarServlet é um servlet que trata os pedidos GET para obter o calendário de um estudante.
+ * 
+ * Este servlet escreve numa String um objectMapper com base no pedido que é feito à lista getCalendars.
+ * Na response é escrita a string passada, ou seja, retorna um json.
+ * 
+ */
 public class GetCalendarServlet extends HttpServlet {
+
+    /**
+     * Trata os pedidos GET para obter o calendário de um estudante.
+     * 
+     * @param request o objeto HttpServletRequest contendo informações sobre o pedido
+     * @param response o objeto HttpServletResponse utilizado para enviar a resposta
+     * @throws IOException se ocorrer um erro ao ler ou escrever no fluxo de entrada ou saída
+     */
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
