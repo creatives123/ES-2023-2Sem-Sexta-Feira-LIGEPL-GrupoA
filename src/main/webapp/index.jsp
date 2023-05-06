@@ -57,7 +57,13 @@
 
         .calendar th {
             background-color: #0D28C2;
-            color: white;
+        }
+        .calendar span {
+            color: black;
+        }
+
+        .calendar td {
+            color: black;
         }
 
     </style>
@@ -217,6 +223,7 @@
             </a>
         </div>
     </div>
+    <br>
     <div>
         <h3>Horário Importado:</h3>
         <hr>
