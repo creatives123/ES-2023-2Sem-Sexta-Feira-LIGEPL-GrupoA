@@ -12,8 +12,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import models.Horario;
 import services.DateManager;
 
+/**
+ * The DateManagerTest class contains JUnit tests for the {@link DateManager} class.
+ */
 class DateManagerTest {
 
+    /**
+     * Tests the {@link DateManager#getScheduleCorrectTimeFormat(String)} method.
+     */
     @Test
     void testGetScheduleCorrectTimeFormat() {
         // Arrange
@@ -27,6 +33,9 @@ class DateManagerTest {
         assertEquals(expectedOutput, actualOutput);
     }
 
+    /**
+     * Tests the {@link DateManager#getDataHoraInicio(Horario)} method.
+     */
     @Test
     void testGetDataHoraInicio() {
         // Arrange
@@ -42,6 +51,9 @@ class DateManagerTest {
         assertEquals(expectedOutput, actualOutput);
     }
 
+    /**
+     * Tests the {@link DateManager#getDataHoraInicio(Horario)} method when the input is null.
+     */
     @Test
     void testGetDataHoraInicioNull() {
         // Arrange
@@ -53,6 +65,9 @@ class DateManagerTest {
         assertEquals("h is null", exception.getMessage());
     }
 
+    /**
+     * Tests the {@link DateManager#getDataHoraFim(Horario)} method.
+     */
     @Test
     void testGetDataHoraFim() {
         // Arrange
@@ -68,6 +83,9 @@ class DateManagerTest {
         assertEquals(expectedOutput, actualOutput);
     }
 
+    /**
+     * Tests the {@link DateManager#getDataHoraFim(Horario)} method.
+     */
     @Test
     void testGetDataHoraFimNull() {
         // Arrange
@@ -79,6 +97,9 @@ class DateManagerTest {
         assertEquals("h is null", exception.getMessage());
     }
 
+    /**
+     * Tests the {@link DateManager#sameInterval(Horario, Horario)} method.
+     */
     @DisplayName("Test sameInterval method")
     @ParameterizedTest(name = "test {index}: h1={0}, h2={1}, expected={2}")
     @MethodSource("sameIntervalArguments")
