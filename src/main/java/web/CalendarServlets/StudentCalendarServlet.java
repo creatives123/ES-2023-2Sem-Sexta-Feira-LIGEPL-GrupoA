@@ -123,13 +123,13 @@ public class StudentCalendarServlet extends HttpServlet {
                 String t = h.getUnidadeCurricular().concat(" ").concat(h.getTurno());
                 if (h.equals(m.getHorario())) {
                     if (m.getHorario().isOverCrowded()) {
-                        m.setColor("#FF0000");
+                        m.setColor("#B40A7A");
                         addVal(eventosLotados, t);
                     }
                 }
                 else {
                     if (DateManager.sameInterval(m.getHorario(),h)) {
-                        m.setColor("orange");
+                        m.setColor("#FFD37F");
                         addVal(eventosSobrepostos, t);
                     }
                 }
