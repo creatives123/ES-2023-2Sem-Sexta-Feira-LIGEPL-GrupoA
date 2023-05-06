@@ -1,6 +1,7 @@
-package services;
+package web.CalendarServlets;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -12,9 +13,30 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import models.Horario;
 
-public class WebCalImporter {
+public class WebCallImporterServlet extends HttpServlet {
+  public static final String WEBCAL_HORARIO ="Webcal Horario";
+
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    request.getSession().removeAttribute(WEBCAL_HORARIO);
+    String uri = request.getParameter("uri");
+
+        try {
+            List<Horario> events = importFromUrl(uri);
+            request.getSession().setAttribute(WEBCAL_HORARIO, events);
+            response.sendRedirect(request.getContextPath() + "/index.jsp"); //redirect to horario page display
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        }
+  }
 
   public static List<Horario> importFromUrl(String uri) throws Exception {
 
@@ -85,13 +107,13 @@ public class WebCalImporter {
     return null;
   }
 
-  public static void main(String[] args) {
-    try {
-      // Import the WebCal calendar from the URL
-      importFromUrl(
-          "webcal://fenix.iscte-iul.pt/publico/publicPersonICalendar.do?method=iCalendar&username=egcoo@iscte.pt&password=VPV5WcgZrMDC13ZjUHA5bvDgVdyTrrNRAf1o7pY3XwQX6xeIQq2MNgmpexBfJndMXiPl6m2J3zste39kySbkE46tFMBi4Pu3zUk1h2XWcxzbPGuOef9ybLzzaAvE7SAE");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+  // public static void main(String[] args) {
+  //   try {
+  //     // Import the WebCal calendar from the URL
+  //     importFromUrl(
+  //         "webcal://fenix.iscte-iul.pt/publico/publicPersonICalendar.do?method=iCalendar&username=egcoo@iscte.pt&password=VPV5WcgZrMDC13ZjUHA5bvDgVdyTrrNRAf1o7pY3XwQX6xeIQq2MNgmpexBfJndMXiPl6m2J3zste39kySbkE46tFMBi4Pu3zUk1h2XWcxzbPGuOef9ybLzzaAvE7SAE");
+  //   } catch (Exception e) {
+  //     e.printStackTrace();
+  //   }
+  // }
 }
