@@ -6,9 +6,18 @@ public class CalendarModel {
     private String start;
     private String end;
     private String color;
+    private Horario horario;
     
     public String getColor() {
         return color;
+    }
+
+    public void setHorario(Horario h) {
+        this.horario = h;
+    }
+
+    public Horario getHorario() {
+        return this.horario;
     }
     
     public void setColor(String color) {

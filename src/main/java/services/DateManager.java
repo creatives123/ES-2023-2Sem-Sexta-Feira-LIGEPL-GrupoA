@@ -3,6 +3,8 @@ package services;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DateManager {
@@ -39,6 +41,15 @@ public class DateManager {
         }
     
         return date;
+    }
+
+
+    public static String getScheduleCorrectTimeFormat(String input) {
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(input, inputFormat);
+    
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return dateTime.format(outputFormat);
     }
     
 

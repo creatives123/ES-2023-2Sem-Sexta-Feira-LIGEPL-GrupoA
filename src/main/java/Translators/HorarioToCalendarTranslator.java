@@ -14,14 +14,11 @@ public class HorarioToCalendarTranslator {
 
     public static CalendarModel translateHorarioToCalendar(Horario h) {
         CalendarModel c = new CalendarModel();
-
+        c.setHorario(h);
         c.setId(h.hashCode());
-        c.setStart(getCorrectTimeFormat(h.getDataAula().concat(" ").concat(h.getHoraInicio())));
-        c.setEnd(getCorrectTimeFormat(h.getDataAula().concat(" ").concat(h.getHoraFim())));
-
+        c.setStart(h.getDataHoraInicio());
+        c.setEnd(h.getDataHoraFim());
         c.setTitle(h.getUnidadeCurricular());
-        c.setColor(null);
-
         return c;
     }
 
@@ -34,13 +31,5 @@ public class HorarioToCalendarTranslator {
         }
 
         return calendars;
-    }
-
-    private static String getCorrectTimeFormat(String input) {
-        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        LocalDateTime dateTime = LocalDateTime.parse(input, inputFormat);
-    
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return dateTime.format(outputFormat);
     }
 }
