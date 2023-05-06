@@ -28,19 +28,27 @@ import services.DateManager;
  * Servlet que importa um calendário no formato Webcal e o converte em uma lista de horários.
  */
 public class WebCallImporterServlet extends HttpServlet {
-  public static final String WEBCAL_HORARIO = "webcalHorario";
-
+  public static final String WEBCAL_HORARIO ="WebcalHorario";
+/**
+    Este método é usado para tratar 'GET requests' do cliente.
+    Remove o atributo "WEBCAL_HORARIO" da sessão e importa eventos de calendários de um URL introduzido pelo utilizador,
+    usando o método "importFromUrl(String, HttpServletRequest)".
+    A mensagem proveniente desse método resulta message is set as a session attribute "messageUpload" and the user is redirected to the index.jsp page.
+    @param request {@link HttpServletRequest} é o objeto que contém o 'request' do cliente
+    @param response {@link HttpServletResponse} é o objeto que o contém a 'response' do 'servlet's response
+    @throws IOException if an input or output exception occurs while the servlet is handling the GET request
+    */
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws IOException {
+    // Caso o atributo "WEBCAL_HORARIO" esteja preenchido, é descartado
     request.getSession().removeAttribute(WEBCAL_HORARIO);
-    String message = "";
+    String message ="";
     String uri = request.getParameter("uri");
-
-    message = importFromUrl(uri, request);
-
-    request.getSession().setAttribute("messageUpload", message);
-    response.sendRedirect(request.getContextPath() + "/index.jsp");
-
+    // Import calendar events from the user-provided URL
+     message = importFromUrl(uri, request);
+     // Set the resulting message as a session attribute "messageUpload" and redirect the user to the index.jsp page
+     request.getSession().setAttribute("messageUpload", message);
+     response.sendRedirect(request.getContextPath() + "/index.jsp");   
   }
 
   /**
@@ -92,6 +100,7 @@ public class WebCallImporterServlet extends HttpServlet {
     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
     StringBuilder content = new StringBuilder();
     String line;
+
 
     try {
       while ((line = reader.readLine()) != null) {

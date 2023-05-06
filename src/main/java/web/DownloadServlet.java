@@ -63,8 +63,10 @@ public class DownloadServlet extends HttpServlet {
     private List<Horario> getHorariosFromSession(HttpServletRequest request, String varSession) {
         if(varSession.equals("horarios")){
             return CommonManager.getHorariosFromSession(request.getSession());
-        }else{
+        } else if(varSession.equals("webcalHorario")){
             return CommonManager.getIcalHorariosFromSession(request.getSession());
+        } else {
+            return CommonManager.getStudentHorarioFromSession(request.getSession());
         }
     }
 }
