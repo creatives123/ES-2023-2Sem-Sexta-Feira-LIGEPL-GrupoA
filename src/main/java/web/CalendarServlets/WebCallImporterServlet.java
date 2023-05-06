@@ -26,36 +26,34 @@ import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.DateTime;
-import net.fortuna.ical4j.model.component.VEvent; 
-
-
+import net.fortuna.ical4j.model.component.VEvent;
+import services.DateManager;
 
 public class WebCallImporterServlet extends HttpServlet {
-  public static final String WEBCAL_HORARIO ="WebcalHorario";
+  public static final String WEBCAL_HORARIO = "WebcalHorario";
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws IOException {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     request.getSession().removeAttribute(WEBCAL_HORARIO);
-    String message ="";
-          String uri = request.getParameter("uri");
-            
-            message = importFromUrl(uri, request);
- 
-            request.getSession().setAttribute("messageUpload", message);
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
-            
-        
+    String message = "";
+    String uri = request.getParameter("uri");
+
+    message = importFromUrl(uri, request);
+
+    request.getSession().setAttribute("messageUpload", message);
+    response.sendRedirect(request.getContextPath() + "/index.jsp");
+
   }
 
   public static String importFromUrl(String uri, HttpServletRequest request) {
     List<Horario> events = new ArrayList<>();
-    
-    //Convert the webcal URL to an HTTP URL
+
+    // Convert the webcal URL to an HTTP URL
     if (uri.startsWith("webcal://")) {
-        uri = "https://" + uri.substring(9);
+      uri = "https://" + uri.substring(9);
     }
 
-    //create url
+    // create url
     URL url;
     try {
       url = new URL(uri);
@@ -90,12 +88,11 @@ public class WebCallImporterServlet extends HttpServlet {
     StringBuilder content = new StringBuilder();
     String line;
 
-    
     try {
       while ((line = reader.readLine()) != null) {
-          content.append(line).append(System.lineSeparator()); // Append the line separator after each line
-          reader.close();
+        content.append(line).append(System.lineSeparator()); // Append the line separator after each line
       }
+      reader.close();
     } catch (IOException e) {
       return "Erro a obter conteúdo WebCal";
     }
@@ -113,52 +110,28 @@ public class WebCallImporterServlet extends HttpServlet {
 
     // Process the events in the calendar object
     for (Object obj : calendar.getComponents("VEVENT")) {
-        VEvent vEvent = (VEvent) obj;
-        String[] fields = new String[10];      
+      VEvent vEvent = (VEvent) obj;
+      String[] fields = new String[11];
 
-        
-        fields[0] = "";
-        fields[1] = vEvent.getSummary().toString();
-        fields[2] = "";
-        fields[3] = "";
-        fields[4] = "";
-        fields[5] = "";
-        fields[6] = "";
-        fields[7] = "";
-        fields[8] = "";
-        fields[9] = "";
+      fields[0] = "";
+      fields[1] = vEvent.getSummary().toString().substring(vEvent.getSummary().toString().indexOf(':') + 1);  
+      fields[2] = "";
+      fields[3] = "";
+      fields[4] = "";
+      fields[5] = "";
+      fields[6] = DateManager.getCorrectFormatTimeFromWebCal(vEvent.getStartDate().toString().substring(vEvent.getStartDate().toString().indexOf(":") +1));
+      fields[7] = DateManager.getCorrectFormatTimeFromWebCal(vEvent.getEndDate().toString().substring(vEvent.getEndDate().toString().indexOf(":") +1));
+      fields[8] = DateManager.getCorrectFormatDateFromWebCal(vEvent.getStartDate().toString().substring(vEvent.getStartDate().toString().indexOf(":") +1));
+      fields[9] = vEvent.getLocation().toString().substring(vEvent.getLocation().toString().indexOf(':') + 1).replace("\\", ""); 
+      fields[10] = "";
+      System.out.println();
 
-        
-        //System.out.println("getName: " + vEvent.getName().toString());
+      Horario horario = new Horario(fields);
+      events.add(horario);
 
-        System.out.println();
-        
-        System.out.println(vEvent.getProperties().toString());
-        // System.out.println("getDescription:  " + vEvent.getDescription().toString());
-        // //System.out.println("getClassification: " + vEvent.getClassification());
-        // //System.out.println("getCreated: " + vEvent.getCreated());
-        // System.out.println("getLocation: " + vEvent.getLocation());
-        // System.out.println("getStartDate: " + vEvent.getStartDate());
-        // System.out.println("getEndDate: " + vEvent.getEndDate());
-        // //System.out.println("getStatus: " + vEvent.getStatus());
-        
-        System.out.println();
-        System.out.println("******------------_------------******");
-        // for(String i : fields)
-        //   if (!i.isEmpty())
-        //     System.out.println(i.toString());
-        
-        
-
-        
-        //events.add(horario);
-
-        //TODO fazer o set da lista de horarios lá para a sessão como está no uploadServlet
-        request.getSession().setAttribute(WEBCAL_HORARIO, events);
+     request.getSession().setAttribute(WEBCAL_HORARIO, events);
     }
-    
+
     return "O Horário foi importado com sucesso";
-}
-
-
+  }
 }

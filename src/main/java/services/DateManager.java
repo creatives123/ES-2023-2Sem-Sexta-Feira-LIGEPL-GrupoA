@@ -28,6 +28,22 @@ public class DateManager {
         return dateTime.format(outputFormat);
     }
 
+    public static String getCorrectFormatDateFromWebCal(String input) {
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'");
+        LocalDateTime dateTime = LocalDateTime.parse(input.trim(), inputFormat);
+        
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return dateTime.format(outputFormat);
+    }
+
+    public static String getCorrectFormatTimeFromWebCal(String input) {
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'");
+        LocalDateTime dateTime = LocalDateTime.parse(input.trim(), inputFormat);
+        
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return dateTime.format(outputFormat);
+    }
+
     public static String getDataHoraInicio(Horario h) throws IllegalArgumentException {
         if (h == null) {
             throw new IllegalArgumentException("h is null");
