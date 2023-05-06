@@ -122,13 +122,13 @@ public class WebCallImporterServlet extends HttpServlet {
       fields[1] = vEvent.getSummary().toString().substring(vEvent.getSummary().toString().indexOf(':') + 1);  
       fields[2] = "";
       fields[3] = "";
-      fields[4] = "";
+      fields[4] = "0";
       fields[5] = "";
       fields[6] = DateManager.getCorrectFormatTimeFromWebCal(vEvent.getStartDate().toString().substring(vEvent.getStartDate().toString().indexOf(":") +1));
       fields[7] = DateManager.getCorrectFormatTimeFromWebCal(vEvent.getEndDate().toString().substring(vEvent.getEndDate().toString().indexOf(":") +1));
       fields[8] = DateManager.getCorrectFormatDateFromWebCal(vEvent.getStartDate().toString().substring(vEvent.getStartDate().toString().indexOf(":") +1));
       fields[9] = vEvent.getLocation().toString().substring(vEvent.getLocation().toString().indexOf(':') + 1).replace("\\", ""); 
-      fields[10] = "";
+      fields[10] = "0";
       System.out.println();
 
       Horario horario = new Horario(fields);
