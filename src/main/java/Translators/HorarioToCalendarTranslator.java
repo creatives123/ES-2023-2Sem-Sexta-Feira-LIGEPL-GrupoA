@@ -14,7 +14,7 @@ public class HorarioToCalendarTranslator {
      * Converte um objeto do tipo Horario em um objeto do tipo CalendarModel.
      * 
      * @param h o objeto do tipo Horario a ser convertido
-     * @return o objeto do tipo CalendarModel correspondente ao objeto Horario
+     * @return o objeto do tipo CalendarModel correspondente ao ob  jeto Horario
      */
     public static CalendarModel translateHorarioToCalendar(Horario h) {
         CalendarModel c = new CalendarModel();

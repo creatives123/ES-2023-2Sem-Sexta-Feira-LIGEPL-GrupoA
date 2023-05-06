@@ -2,7 +2,6 @@ package models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
@@ -261,11 +260,11 @@ public class Horario implements Serializable {
     }
 
     public String getDataHoraInicio() {
-        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio));
+        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio).concat(":00"));
     }
 
     public String getDataHoraFim() {
-        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim)); 
+        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim).concat(":00")); 
     }
 
     public boolean sameInterval(Horario h) {
