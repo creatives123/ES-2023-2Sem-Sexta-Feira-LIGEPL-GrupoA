@@ -31,7 +31,7 @@ public class GetCoursesServlet extends HttpServlet {
      * @throws IOException se ocorrer um erro ao ler ou escrever no fluxo de entrada ou saída
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String json = new ObjectMapper().writeValueAsString(getCourses(request));
     
         response.setContentType("application/json");

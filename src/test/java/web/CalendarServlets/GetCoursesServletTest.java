@@ -1,53 +1,70 @@
-// package web.CalendarServlets;
+package web.CalendarServlets;
 
 
-// import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-// import java.util.ArrayList;
-// import java.util.List;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-// import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-// import org.junit.Before;
-// import org.junit.Test;
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-// import models.Horario;
-// import services.CommonManager;
-// import web.DatasourceServlets.GetCoursesServlet;
 
-// public class GetCoursesServletTest {
+import models.Horario;
+import services.CommonManager;
+import web.DatasourceServlets.GetCoursesServlet;
 
-//     @Mock
-//     HttpServletRequest request;
+public class GetCoursesServletTest {
 
-//     @Before
-//     public void setUp() throws Exception {
-//         MockitoAnnotations.initMocks(this);
-//     }
+    @Mock
+    HttpServletRequest request;
 
-//     @Test
-//     public void testGetCourses() {
-//         List<String> cursos = new ArrayList<>();
-//         cursos.add("Informatica");
-//         cursos.add("Gestao");
-//         cursos.add("Arquitura");
-//         List<Horario> eventos = new ArrayList<>();
-//         Horario horario1 = new Horario();
-//         horario1.setCurso(cursos);
-//         horario1.setCurso(cursos);
-//         Horario horario2 = new Horario();
-//         horario2.setCurso(cursos);
-//         eventos.add(horario1);
-//         eventos.add(horario2);
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+    }
 
-//         // Mock the call to CommonManager.getHorariosFromSession
-//         javax.servlet.http.HttpSession session = request.getSession();
-//         org.mockito.Mockito.when(CommonManager.getHorariosFromSession(session)).thenReturn(eventos);
+    @Test
+    public void testGetCourses() throws IOException {
 
-//         List<String> expectedCourses = List.of("Matemática", "Física", "Português", "História");
-//         List<String> actualCourses = getCourses(request);
-//         assertEquals(expectedCourses, actualCourses);
-//     }
-// }
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
+        
+        // Cria uma lista de horarios
+        List<Horario> horarios = new ArrayList<>();
+
+        // Cria alguns objetos Horario e adiciona-os à lista
+        Horario horario1 = new Horario();
+        horario1.setCurso(Arrays.asList("LEI"));
+        
+        horarios.add(horario1);
+        
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
+
+        session.setAttribute("horarios", horarios);
+        when(session.getAttribute("horarios")).thenReturn(horarios);
+        
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter writer = new PrintWriter(stringWriter);
+        when(response.getWriter()).thenReturn(writer);
+    
+        new GetCoursesServlet().doGet(request, response);
+        writer.flush();
+    
+        String expectedJson = "[\"LEI\"]";
+        assertEquals(expectedJson, stringWriter.toString().trim());
+    }
+}

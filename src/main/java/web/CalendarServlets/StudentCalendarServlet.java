@@ -36,10 +36,15 @@ public class StudentCalendarServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = new ObjectMapper().writeValueAsString(getCalendars(request));
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+
+        try {
+            String json = new ObjectMapper().writeValueAsString(getCalendars(request));
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
