@@ -1,68 +1,110 @@
-// package web.CalendarServlets;
+package web.CalendarServlets;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.mockito.Mockito.mock;
-// import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-// import java.io.IOException;
-// import java.io.PrintWriter;
-// import java.io.StringWriter;
-// import java.util.ArrayList;
-// import java.util.Arrays;
-// import java.util.List;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-// import javax.servlet.http.HttpServletRequest;
-// import javax.servlet.http.HttpServletResponse;
-// import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-// import org.junit.Before;
-// import org.junit.jupiter.api.Test;
-// import org.mockito.MockitoAnnotations;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-// import models.Horario;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
-// public class StudentCalendarServletTest {
+import models.CalendarModel;
+import models.CalendarWrapper;
+import models.Horario;
+import services.CommonManager;
+import web.DatasourceServlets.GetCoursesServlet;
 
-//     @Before
-//     public void setUp() throws Exception {
-//         MockitoAnnotations.initMocks(this);
-//     }
+public class StudentCalendarServletTest {
 
-//     @Test
-//     public void test_GetStudentCalendar() throws IOException {
-//         HttpServletRequest request = mock(HttpServletRequest.class);
-//         HttpServletResponse response = mock(HttpServletResponse.class);
-//         HttpSession session = mock(HttpSession.class);
+    @Mock
+    HttpServletRequest request;
 
-//         List<String> curso1 = new ArrayList<>();
-//         curso1.add("IGE");
-//         List<String> curso2 = new ArrayList<>();
-//         curso2.add("SS");
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+    }
 
-//         Horario horario1 = new Horario();
-//         horario1.setTurno("turno1");
-//         horario1.setUnidadeCurricular("PISID");
-//         horario1.setCurso(curso1);
+    @Test
+    public void testDoGetWithEqualEvent_Empty() throws IOException {
 
-//         Horario horario2 = new Horario();
-//         horario2.setTurno("turno2");
-//         horario2.setUnidadeCurricular("ES");
-//         horario2.setCurso(curso2);
-
-//         List<Horario> eventos = Arrays.asList(horario1, horario2);
-
-//         when(request.getSession()).thenReturn(session);
-//         session.setAttribute("horarios", eventos);
-//         when(session.getAttribute("horarios")).thenReturn(eventos);
-
-//         StringWriter stringWriter = new StringWriter();
-//         PrintWriter writer = new PrintWriter(stringWriter);
-//         when(response.getWriter()).thenReturn(writer);
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
     
-//         new StudentCalendarServlet().doGet(request, response);
-//         writer.flush();
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter writer = new PrintWriter(stringWriter);
+        when(response.getWriter()).thenReturn(writer);
     
-//         String expectedJson = "[\"turno1\"]";
-//         assertEquals(expectedJson, stringWriter.toString().trim());
-//     }
-// }
+        new StudentCalendarServlet().doGet(request, response);
+        writer.flush();
+    
+        String expectedJson = "";
+        assertEquals(expectedJson, stringWriter.toString().trim());
+    }
+
+    @Test
+    public void testDoGetWithEqualEvent() throws IOException {
+
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
+        
+        // Cria uma lista de horarios
+        List<Horario> horarios = new ArrayList<>();        
+        Horario horario = new Horario();
+        horario.setCurso(Arrays.asList("LEI"));
+        horario.setUnidadeCurricular("Programacao");
+        horario.setTurno("T1");
+        horario.setTurma(Arrays.asList("1"));
+        horario.setInscritos(50);
+        horario.setDiaSemana("Segunda-feira");
+        horario.setHoraInicio("09:00:00");
+        horario.setHoraFim("11:00:00");
+        horario.setDataAula("01/01/2022");
+        horario.setSala("B102");
+        horario.setLotacao(60);
+
+        horarios.add(horario);
+
+        List<CalendarModel> calendario = new ArrayList<>();
+        CalendarModel cal = new CalendarModel();
+        cal.setHorario(horario);
+        cal.setColor("blue");
+        cal.setTitle("Horario");
+        cal.setStart("2022-01-01 09:00:00");
+        cal.setEnd("2022-01-01 11:00:00");
+        calendario.add(cal);
+
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
+
+        session.setAttribute("horarios", horarios);
+        when(session.getAttribute("horarios")).thenReturn(horarios);
+        
+        session.setAttribute("student_horario", horarios);
+        when(session.getAttribute("student_horario")).thenReturn(horarios);
+
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter writer = new PrintWriter(stringWriter);
+        when(response.getWriter()).thenReturn(writer);
+    
+        new StudentCalendarServlet().doGet(request, response);
+        writer.flush();
+    
+        CalendarWrapper wrapper = new ObjectMapper().readValue(stringWriter.toString().trim(), CalendarWrapper.class);
+        assertEquals(wrapper.getEvents().size(), horarios.size());
+    }
+}
