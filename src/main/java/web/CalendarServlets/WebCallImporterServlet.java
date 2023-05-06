@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -23,32 +24,33 @@ public class WebCallImporterServlet extends HttpServlet {
   public static final String WEBCAL_HORARIO ="Webcal Horario";
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws IOException {
     request.getSession().removeAttribute(WEBCAL_HORARIO);
-    String uri = request.getParameter("uri");
-
-        try {
-            List<Horario> events = importFromUrl(uri);
-            request.getSession().setAttribute(WEBCAL_HORARIO, events);
-            response.sendRedirect(request.getContextPath() + "/index.jsp"); //redirect to horario page display
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-        }
+    String message ="";
+          String uri = request.getParameter("uri");
+            
+            message = importFromUrl(uri, request);
+ 
+            request.getSession().setAttribute("messageUpload", message);
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            
+        
   }
 
-  public static List<Horario> importFromUrl(String uri) throws Exception {
+  public static String importFromUrl(String uri, HttpServletRequest request){
 
     // Convert the webcal URL to an HTTP URL
     if (uri.startsWith("webcal://")) {
       uri = "https://" + uri.substring(9);
     }
 
-    URL url = new URL(uri);
-    // Read the WebCal calendar from the URL
+    URL url;
+    try {
+      url = new URL(uri);
+       // Read the WebCal calendar from the URL
     List<Horario> events = new ArrayList<>();
-    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    HttpURLConnection conn;
+    conn = (HttpURLConnection) url.openConnection();
     conn.setRequestMethod("GET");
     conn.setRequestProperty("Content-Type", "text/calendar");
     BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -72,29 +74,23 @@ public class WebCallImporterServlet extends HttpServlet {
       String endStr = findValue(eventContent, "DTEND");
 
       // Create a new Horario object
-      System.out.println("  ");
-      System.out.println("Event content:");
-      System.out.println(eventContent);
-      System.out.println("Summary: ");
-      System.out.println(summary);
-      System.out.println("Description: ");
-      System.out.println(description);
-      System.out.println("Location: ");
-      System.out.println(location);
-      System.out.println("Start: ");
-      System.out.println(startStr);
-      System.out.println("End: ");
-      System.out.println(endStr);
-      System.out.println("  ");
-
-      //TODO: Criar um objeto Horario e adicionar à lista a devolver 
       Horario horario = new Horario();
       
       events.add(horario);
-
+      
     }
+    request.getSession().setAttribute(WEBCAL_HORARIO, events);
+    return "rdfghj";
 
-    return events;
+    } catch (MalformedURLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
   }
 
   private static String findValue(String content, String name) {
