@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * A classe {@code Horario} representa um {@link Horario} de aulas num curso
  * universitário.
@@ -251,6 +253,7 @@ public class Horario implements Serializable {
         this.lotacao = lotacao;
     }
 
+    @JsonIgnore
     public boolean isOverCrowded() {
         return this.inscritos > this.lotacao;
     }
