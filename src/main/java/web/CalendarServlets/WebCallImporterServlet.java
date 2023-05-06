@@ -89,7 +89,8 @@ public class WebCallImporterServlet extends HttpServlet {
     }
 
     conn.setRequestProperty("Content-Type", "text/calendar");
-
+    conn.setRequestProperty("Accept-Charset", "UTF-8");
+    
     InputStream inputStream;
     try {
       inputStream = conn.getInputStream();
