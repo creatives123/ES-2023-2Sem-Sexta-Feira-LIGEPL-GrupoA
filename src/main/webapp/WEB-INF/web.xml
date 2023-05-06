@@ -68,4 +68,13 @@
     <url-pattern>/GetTurnosServlet</url-pattern>
   </servlet-mapping>
 
+       <servlet>
+    <servlet-name>WebCallImporterServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.WebCallImporterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebCallImporterServlet</servlet-name>
+    <url-pattern>/WebCallImporterServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>
