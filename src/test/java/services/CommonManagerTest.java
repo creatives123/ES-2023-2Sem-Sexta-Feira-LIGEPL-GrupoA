@@ -2,7 +2,6 @@ package services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -91,7 +90,7 @@ public class CommonManagerTest {
 
         CommonManager.addToStudentHorarioFromSession(session, horario);
 
-        verify(session, times(1)).setAttribute(eq("student_horario"), eq(expectedHorarios));
+        verify(session, times(1)).setAttribute("student_horario", expectedHorarios);
         assertTrue(expectedHorarios.contains(horario));
     }    
 }
