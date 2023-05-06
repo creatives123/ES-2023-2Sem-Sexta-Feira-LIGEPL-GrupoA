@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetCalendarServletTest {
+class GetCalendarServletTest {
 
     @Mock
     private HttpServletRequest request;
@@ -28,7 +28,7 @@ public class GetCalendarServletTest {
     private HttpSession session;
 
     @Test
-    public void testDoGet() throws IOException {
+    void testDoGet() throws IOException {
         GetCalendarServlet servlet = new GetCalendarServlet();
 
         when(request.getParameter("horario")).thenReturn("horarios");
