@@ -141,6 +141,13 @@ public class StudentCalendarServlet extends HttpServlet {
         return calendarWrapper;
     }
 
+    /**
+     * Adiciona um valor a um mapeamento de chave-valor, onde a chave é uma string e o valor é um inteiro.
+     * Se a chave já existir no mapeamento, o valor atual é incrementado por 1. Caso contrário, a chave é adicionada 
+     * ao mapeamento com um valor inicial de 1.
+     * @param mapper o mapeamento de chave-valor a ser atualizado
+     * @param key a chave para a qual o valor será adicionado ou atualizado
+    */
     private void addVal(Map<String, Integer> mapper, String key) {
         if (mapper.containsKey(key)) {
             mapper.put(key, mapper.get(key) + 1);
