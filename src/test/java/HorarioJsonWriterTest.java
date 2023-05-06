@@ -48,7 +48,7 @@ public class HorarioJsonWriterTest {
             assertTrue(true);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            // assertTrue(false);
+            assertTrue(false);
         }
     }
 
