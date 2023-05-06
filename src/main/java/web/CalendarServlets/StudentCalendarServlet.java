@@ -2,7 +2,10 @@ package web.CalendarServlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -112,21 +115,22 @@ public class StudentCalendarServlet extends HttpServlet {
      */
     private CalendarWrapper tratarEventos(List<Horario> eventos, List<CalendarModel> calendarios) {
         CalendarWrapper calendarWrapper = new CalendarWrapper();
-        List<String> eventosLotados = new ArrayList<>();
-        List<String> eventosSobrepostos = new ArrayList<>();
+        Map<String, Integer> eventosLotados = new HashMap<>();
+        Map<String, Integer> eventosSobrepostos = new HashMap<>();
 
         for (Horario h : eventos) {
             for(CalendarModel m : calendarios) {
+                String t = h.getUnidadeCurricular().concat(" ").concat(h.getTurno());
                 if (h.equals(m.getHorario())) {
                     if (m.getHorario().isOverCrowded()) {
                         m.setColor("#FF0000");
-                        eventosLotados.add(h.getUnidadeCurricular().concat(" ").concat(h.getTurno()));
+                        addVal(eventosLotados, t);
                     }
                 }
                 else {
                     if (DateManager.sameInterval(m.getHorario(),h)) {
                         m.setColor("orange");
-                        eventosSobrepostos.add(h.getUnidadeCurricular().concat(" ").concat(h.getTurno()));
+                        addVal(eventosSobrepostos, t);
                     }
                 }
             }
@@ -137,5 +141,13 @@ public class StudentCalendarServlet extends HttpServlet {
         calendarWrapper.setOverlappedEvents(eventosSobrepostos);
 
         return calendarWrapper;
-    } 
+    }
+
+    private void addVal(Map<String, Integer> mapper, String key) {
+        if (mapper.containsKey(key)) {
+            mapper.put(key, mapper.get(key) + 1);
+        } else {
+            mapper.put(key, 1);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Classe que envolve os eventos do calendário e contém informações sobre o número de eventos
@@ -8,8 +9,8 @@ import java.util.List;
  */
 public class CalendarWrapper {
 
-    private List<String> overlappedEvents;
-    private List<String> overCrowdedEvents;
+    private Map<String, Integer> overlappedEvents;
+    private Map<String, Integer> overCrowdedEvents;
     private List<CalendarModel> events;
 
     /**
@@ -17,7 +18,7 @@ public class CalendarWrapper {
      * 
      * @param overlappedEventsCounter o número de eventos que se sobrepõem.
      */
-    public void setOverlappedEvents(List<String> overlappedEvents) {
+    public void setOverlappedEvents(Map<String, Integer> overlappedEvents) {
         this.overlappedEvents = overlappedEvents;
     }
 
@@ -26,7 +27,7 @@ public class CalendarWrapper {
      * 
      * @return o número de eventos que se sobrepõem.
      */
-    public List<String> getOverlappedEvents() {
+    public Map<String, Integer> getOverlappedEvents() {
         return this.overlappedEvents;
     }
 
@@ -35,7 +36,7 @@ public class CalendarWrapper {
      * 
      * @param overCrowdedEventsCounter o número de eventos que têm demasiados participantes.
      */
-    public void setOverCrowdedEvents(List<String> overCrowdedEvents) {
+    public void setOverCrowdedEvents(Map<String, Integer> overCrowdedEvents) {
         this.overCrowdedEvents = overCrowdedEvents;
     }
 
@@ -44,7 +45,7 @@ public class CalendarWrapper {
      * 
      * @return o número de eventos que têm demasiados participantes.
      */
-    public List<String> getOverCrowdedEvents() {
+    public Map<String, Integer> getOverCrowdedEvents() {
         return this.overCrowdedEvents;
     }
 
