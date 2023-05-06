@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class CalendarWrapper {
 
-    private int overlappedEventsCounter;
-    private int overCrowdedEventsCounter;
+    private List<String> overlappedEvents;
+    private List<String> overCrowdedEvents;
     private List<CalendarModel> events;
 
     /**
@@ -17,8 +17,8 @@ public class CalendarWrapper {
      * 
      * @param overlappedEventsCounter o número de eventos que se sobrepõem.
      */
-    public void setOverlappedEventsCounter(int overlappedEventsCounter) {
-        this.overlappedEventsCounter = overlappedEventsCounter;
+    public void setOverlappedEvents(List<String> overlappedEvents) {
+        this.overlappedEvents = overlappedEvents;
     }
 
     /**
@@ -26,8 +26,8 @@ public class CalendarWrapper {
      * 
      * @return o número de eventos que se sobrepõem.
      */
-    public int getOverlappedEventsCounter() {
-        return this.overlappedEventsCounter;
+    public List<String> getOverlappedEvents() {
+        return this.overlappedEvents;
     }
 
     /**
@@ -35,8 +35,8 @@ public class CalendarWrapper {
      * 
      * @param overCrowdedEventsCounter o número de eventos que têm demasiados participantes.
      */
-    public void setOverCrowdedEventsCounter(int overCrowdedEventsCounter) {
-        this.overCrowdedEventsCounter = overCrowdedEventsCounter;
+    public void setOverCrowdedEvents(List<String> overCrowdedEvents) {
+        this.overCrowdedEvents = overCrowdedEvents;
     }
 
     /**
@@ -44,8 +44,8 @@ public class CalendarWrapper {
      * 
      * @return o número de eventos que têm demasiados participantes.
      */
-    public int getOverCrowdedEventsCounter() {
-        return this.overCrowdedEventsCounter;
+    public List<String> getOverCrowdedEvents() {
+        return this.overCrowdedEvents;
     }
 
     /**

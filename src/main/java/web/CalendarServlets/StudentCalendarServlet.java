@@ -1,6 +1,7 @@
 package web.CalendarServlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -111,29 +112,29 @@ public class StudentCalendarServlet extends HttpServlet {
      */
     private CalendarWrapper tratarEventos(List<Horario> eventos, List<CalendarModel> calendarios) {
         CalendarWrapper calendarWrapper = new CalendarWrapper();
-        int contadorEventosLotados = 0;
-        int contadorEventosSobrepostos = 0;
+        List<String> eventosLotados = new ArrayList<>();
+        List<String> eventosSobrepostos = new ArrayList<>();
 
         for (Horario h : eventos) {
             for(CalendarModel m : calendarios) {
                 if (h.equals(m.getHorario())) {
                     if (m.getHorario().isOverCrowded()) {
-                        m.setColor("#B40A7A");
-                        contadorEventosLotados++;
+                        m.setColor("#FF0000");
+                        eventosLotados.add(h.getUnidadeCurricular().concat(" ").concat(h.getTurno()));
                     }
                 }
                 else {
                     if (DateManager.sameInterval(m.getHorario(),h)) {
-                        m.setColor("#FFD37F");
-                        contadorEventosSobrepostos++;
+                        m.setColor("orange");
+                        eventosSobrepostos.add(h.getUnidadeCurricular().concat(" ").concat(h.getTurno()));
                     }
                 }
             }
         }
 
         calendarWrapper.setEvents(calendarios);
-        calendarWrapper.setOverCrowdedEventsCounter(contadorEventosLotados);
-        calendarWrapper.setOverlappedEventsCounter(contadorEventosSobrepostos);
+        calendarWrapper.setOverCrowdedEvents(eventosLotados);
+        calendarWrapper.setOverlappedEvents(eventosSobrepostos);
 
         return calendarWrapper;
     } 
