@@ -1,3 +1,10 @@
+<%
+    // Check if the session variable exists and is not empty
+    if (session.getAttribute("horarios") == null || session.getAttribute("horarios").equals("")) {
+        // If the session variable is empty or doesn't exist, redirect to another page
+        response.sendRedirect("index.jsp");
+    }
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="models.Horario" %>
@@ -54,10 +61,19 @@
         .calendar table {
             background-color: honeydew;
         }
+
         .calendar th {
             background-color: #0D28C2;
-            color: white;
         }
+
+        .calendar span {
+            color: black;
+        }
+
+        .calendar td {
+            color: black;
+        }
+
 
     </style>
 </head>
@@ -72,7 +88,7 @@
         Selecionar UCs para adicionar no horário:
         <div class="row">
             <div class="col">
-                <label for="cursos"></label><select class="form-select" name="cursos" id="cursos"></select>
+                <label for="cursos"></label><select class="form-select" name="cursos" id="cursos" required></select>
             </div>
             <div class="col">
 
@@ -83,7 +99,7 @@
         </div>
         <div class="row" id="divUCs" style="display:none">
             <div class="col">
-                <label for="ucs"></label><select class="form-select" name="ucs" id="ucs"></select>
+                <label for="ucs"></label><select class="form-select" name="ucs" id="ucs" required></select>
             </div>
             <div class="col">
 
@@ -94,7 +110,7 @@
         </div>
         <div class="row" id="divTurnos" style="display:none">
             <div class="col">
-                <label for="turnos"></label><select class="form-select" name="turnos" id="turnos"></select>
+                <label for="turnos"></label><select class="form-select" name="turnos" id="turnos" required></select>
             </div>
             <div class="col">
 
@@ -243,13 +259,15 @@
             }
         });
 
-        $("#add").click(function () {
+        $(document).on('click', '#add', function () {
             var curso = $('#cursos').val();
             var uc = $('#ucs').val();
             var turno = $('#turnos').val();
-            $.post("StudentCalendarServlet", {curso: curso, uc: uc, turno: turno}, function () {
-                getCalendarData();
-            });
+            if (curso !== null && uc !== null && turno !== null) {
+                $.post("StudentCalendarServlet", {curso: curso, uc: uc, turno: turno}, function () {
+                    getCalendarData();
+                });
+            }
         });
     });
 </script>

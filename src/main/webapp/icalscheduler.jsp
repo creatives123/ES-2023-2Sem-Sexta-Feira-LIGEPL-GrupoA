@@ -1,3 +1,11 @@
+<%
+    // Check if the session variable exists and is not empty
+    if (session.getAttribute("webcalHorario") == null || session.getAttribute("webcalHorario").equals("")) {
+        // If the session variable is empty or doesn't exist, redirect to another page
+        response.sendRedirect("index.jsp");
+    }
+%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="models.Horario" %>
@@ -57,7 +65,13 @@
 
         .calendar th {
             background-color: #0D28C2;
-            color: white;
+        }
+        .calendar span {
+            color: black;
+        }
+
+        .calendar td {
+            color: black;
         }
 
     </style>
