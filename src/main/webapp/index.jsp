@@ -134,6 +134,17 @@
                     <button type="submit" class="btn btn-primary mb-3">Upload</button>
                 </div>
             </form>
+            <!-- "Form" para receber um url de webcal -->
+            <form method="get" action="WebCallImporterServlet">
+                <div class="mb-3">
+                    <label for="url" class="form-label">Indique um endereço url onde se encontra o ficheiro webcal
+                    </label>
+                    <input class="form-control" type="text" id="uri" name="uri" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary mb-3">Upload</button>
+                </div>
+            </form>
         </div>
         <div class="mb-3">
             <%-- Exibir mensagem --%>
