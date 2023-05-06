@@ -14,7 +14,10 @@ import java.util.Collections;
 
 import static org.mockito.Mockito.*;
 
- class UploadServletTest {
+/**
+ * Classe de testes para o UploadServlet.
+ */
+public class UploadServletTest {
     private HttpServletRequest request;
     private HttpServletResponse response;
     private HttpSession session;
@@ -28,30 +31,33 @@ import static org.mockito.Mockito.*;
         servletFileUpload = mock(ServletFileUpload.class);
     }
 
+    /**
+     * Testa o upload de um ficheiro CSV.
+     */
     @Test
     public void testDoPostCsvFileUpload() throws Exception {
-        // Set up necessary mocks
+        // Define os mocks necessários
         when(request.getContentType()).thenReturn("multipart/form-data");
         when(request.getSession()).thenReturn(session);
 
-        // Prepare a CSV file as a byte array
+        // Prepara um ficheiro CSV como um array de bytes
         String csvContent = "col1,col2,col3\nvalue1,value2,value3";
         InputStream csvInputStream = new ByteArrayInputStream(csvContent.getBytes(StandardCharsets.UTF_8));
 
-        // Set up the file upload mock
+        // Define o mock para o upload de ficheiros
         when(servletFileUpload.parseRequest(request)).thenReturn(Collections.singletonList(new MockFileItem(csvInputStream, "test.csv")));
 
-        // Call the doPost method
+        // Chama o método doPost
         UploadServlet servlet = new UploadServlet();
         servlet.doPost(request, response);
 
-       // Verify that the session attribute "horarios" is removed
+       // Verifica se o atributo da sessão "horarios" foi removido
         verify(session).removeAttribute(UploadServlet.HORARIOS_SESSION);
 
-        // Verify that the session attribute "messageUpload" is set
-        verify(session).setAttribute(eq("messageUpload"), anyString()); // Replace "messageUpload" with the actual attribute name you use
+        // Verifica se o atributo da sessão "messageUpload" foi definido
+        verify(session).setAttribute(eq("messageUpload"), anyString()); // Substituir "messageUpload" pelo nome real do atributo
 
-        // Verify that the user is redirected to the index.jsp page
+        // Verifica se o utilizador é redirecionado para a página index.jsp
         verify(response).sendRedirect(request.getContextPath() + "/index.jsp");
     }
 }
