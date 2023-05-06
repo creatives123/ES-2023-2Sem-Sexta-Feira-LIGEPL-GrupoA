@@ -1,4 +1,4 @@
-package web.CalendarServlets;
+package web.DatasourceServlets;
 
 
 import static org.junit.Assert.assertEquals;
