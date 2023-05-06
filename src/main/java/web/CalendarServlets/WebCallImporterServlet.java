@@ -140,8 +140,9 @@ public class WebCallImporterServlet extends HttpServlet {
       fields[10] = "0";
       System.out.println();
 
+      int i = 0;
       for(String e : fields) {
-        e = e.replaceAll("\r", "").replaceAll("\n", "");
+        fields[i++] = e.replaceAll("\r", "").replaceAll("\n", "");
       }
 
       Horario horario = new Horario(fields);
