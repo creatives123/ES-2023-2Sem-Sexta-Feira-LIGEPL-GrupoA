@@ -16,8 +16,15 @@ import javax.servlet.http.HttpSession;
 import org.junit.jupiter.api.Test;
 
 import models.Horario;
-
+/**
+ * Esta classe testa a classe CommonManager.
+ */
 class CommonManagerTest {
+
+    /**
+     * Testa o método getHorariosFromSession() quando a sessão contém objetos Horario.
+     * Deve devolver uma lista de objetos Horario correspondentes aos objetos da sessão.
+     */
 
     @Test
     void testGetHorariosFromSession_whenSessionContainsHorarios_shouldReturnList() {
@@ -29,6 +36,10 @@ class CommonManagerTest {
         assertEquals(expectedHorarios, result);
     }
 
+    /**
+     * Testa o método getHorariosFromSession() quando a sessão nao contém objetos Horario.
+     * Deve devolver uma lista vazia. 
+     */
     @Test
     void testGetHorariosFromSession_whenSessionDoesNotContainHorarios_shouldReturnEmptyList() {
         HttpSession session = mock(HttpSession.class);
@@ -39,6 +50,10 @@ class CommonManagerTest {
         assertEquals(new ArrayList<>(), result);
     }
 
+    /**
+     * Testa o método getCoursesFromSession() quando a sessão contém cursos (String).
+     * Deve devolver uma lista de cursos correspondentes aos objetos da sessão.
+     */
     @Test
     void testGetCoursesFromSession_whenSessionContainsCourses_shouldReturnList() {
         HttpSession session = mock(HttpSession.class);
@@ -50,6 +65,10 @@ class CommonManagerTest {
         assertEquals(expectedCourses, result);
     }
 
+    /**
+     * Testa o método getCoursesFromSession() quando a sessão não contém cursos (String).
+     * Deve retornar uma lista vazia.
+     */
     @Test
     void testGetCoursesFromSession_whenSessionDoesNotContainCourses_shouldReturnEmptyList() {
         HttpSession session = mock(HttpSession.class);
@@ -60,6 +79,10 @@ class CommonManagerTest {
         assertEquals(new ArrayList<>(), result);
     }
 
+    /**
+     * Testa o método getStudentHorarioFromSession() quando a sessão contém Horarios de Estudante.
+     * Deve retornar uma lista de Horarios correspondentes aos da sessão.
+     */
     @Test
     void testGetStudentHorarioFromSession_whenSessionContainsStudentHorario_shouldReturnList() {
         HttpSession session = mock(HttpSession.class);
@@ -71,6 +94,10 @@ class CommonManagerTest {
         assertEquals(expectedHorarios, result);
     }
 
+    /**
+     * Testa o método getStudentHorarioFromSession() quando a sessão não contém Horaios de Estudante.
+     * Deve retornar uma lista vazia.
+     */
     @Test
     void testGetStudentHorarioFromSession_whenSessionDoesNotContainStudentHorario_shouldReturnEmptyList() {
         HttpSession session = mock(HttpSession.class);
@@ -81,6 +108,10 @@ class CommonManagerTest {
         assertEquals(new ArrayList<>(), result);
     }
 
+    /**
+     * Testa o método addToStudentHorarioFromSession() quando a sessão contém Horarios de Estudante.
+     * Deve adicionar um dado horário à lista de Horarios na sessão.
+     */
     @Test
     void testAddToStudentHorarioFromSession_whenSessionContainsStudentHorario_shouldAddToHorarioList() {
         HttpSession session = mock(HttpSession.class);
