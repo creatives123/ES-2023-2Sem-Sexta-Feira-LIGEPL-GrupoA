@@ -14,7 +14,7 @@ import java.util.Collections;
 
 import static org.mockito.Mockito.*;
 
-public class UploadServletTest {
+ class UploadServletTest {
     private HttpServletRequest request;
     private HttpServletResponse response;
     private HttpSession session;

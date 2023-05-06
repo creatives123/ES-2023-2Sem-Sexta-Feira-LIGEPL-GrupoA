@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-public class HorarioToCalendarTranslatorTest {
+ class HorarioToCalendarTranslatorTest {
 
     private static Horario horario;
     private static CalendarModel expectedCalendar;

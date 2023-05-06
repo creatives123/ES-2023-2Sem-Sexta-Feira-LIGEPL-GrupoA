@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GetTurnosServletTest {
+ class GetTurnosServletTest {
 
     @Test
     public void testGetTurnos_NeedToGetOnlyOne() throws IOException {
