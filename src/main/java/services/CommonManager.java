@@ -56,6 +56,13 @@ public class CommonManager {
         horarios.add(horario);
         session.setAttribute("student_horario", horarios);
     }
+
+    /**
+    Devolve a lista de {@link Horario} objetos guardados na 'the HttpSession' no atributo "webcalHorario".
+    Se o atributo estiver razio é devolvida uma lista vazia.
+    @param session a "HttpSession" de onde se vai extrair o atributo "webcalHorario".
+    @return a lista objetos Horario, ou uma lista vazia se o atributo estiver vazio
+    */
     @SuppressWarnings("unchecked")
     public static List<Horario> getIcalHorariosFromSession(HttpSession session) {
         Object horariosObject = session.getAttribute("webcalHorario");

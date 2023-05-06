@@ -45,9 +45,9 @@ public class WebCallImporterServlet extends HttpServlet {
     request.getSession().removeAttribute(WEBCAL_HORARIO);
     String message ="";
     String uri = request.getParameter("uri");
-    // Import calendar events from the user-provided URL
+    // Gera mensagem que demonstra o resultado da importação de um calendário no formato webcal
      message = importFromUrl(uri, request);
-     // Set the resulting message as a session attribute "messageUpload" and redirect the user to the index.jsp page
+     // A mensagem resultante é colocada na variável de sessão "messageUpload" e redireciona o utilizador para o index.jsp
      request.getSession().setAttribute("messageUpload", message);
      response.sendRedirect(request.getContextPath() + "/index.jsp");   
   }
