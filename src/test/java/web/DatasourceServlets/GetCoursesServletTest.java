@@ -23,7 +23,7 @@ import org.mockito.MockitoAnnotations;
 
 import models.Horario;
 
- class GetCoursesServletTest {
+public class GetCoursesServletTest {
 
     @Mock
     HttpServletRequest request;
