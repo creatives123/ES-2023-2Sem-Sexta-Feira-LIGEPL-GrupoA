@@ -22,7 +22,7 @@ public class CommonManager {
      * Obtém uma lista de {@link Horario}s da {@link HttpSession}.
      *
      * @param session a {@link HttpSession} da qual se pretende obter a lista de {@link Horario}s
-     * @return uma lista de {@link Horario}s que contém informação de todo o semestre obtida através da {@link HttpSession}
+     * @return uma lista de {@link Horario}s que contém informação de um semestre completo, obtida através da {@link HttpSession}
      * @throws IllegalStateException se a {@link HttpSession} não contiver uma lista de {@link Horario}s
      */
     @SuppressWarnings("unchecked")
