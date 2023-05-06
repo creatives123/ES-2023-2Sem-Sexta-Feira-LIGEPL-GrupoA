@@ -28,6 +28,12 @@ public class DateManager {
         return dateTime.format(outputFormat);
     }
 
+    /**
+     * Converte uma string no formato "yyyyMMdd'T'HHmmss'Z'" para uma string no formato "yyyy-MM-dd".
+     *
+     * @param input a string a ser convertida.
+     * @return a string no formato "yyyy-MM-dd".
+     */
     public static String getCorrectFormatDateFromWebCal(String input) {
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'");
         LocalDateTime dateTime = LocalDateTime.parse(input.trim(), inputFormat);
@@ -36,6 +42,12 @@ public class DateManager {
         return dateTime.format(outputFormat);
     }
 
+    /**
+     * Converte uma string no formato "yyyyMMdd'T'HHmmss'Z'" para uma string no formato "HH:mm:ss".
+     *
+     * @param input a string a ser convertida.
+     * @return a string no formato "HH:mm:ss".
+     */
     public static String getCorrectFormatTimeFromWebCal(String input) {
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'");
         LocalDateTime dateTime = LocalDateTime.parse(input.trim(), inputFormat);
@@ -44,6 +56,13 @@ public class DateManager {
         return dateTime.format(outputFormat);
     }
 
+    /**
+     * Obtém a data e hora de início formatada de um horário.
+     *
+     * @param h o horário a ser formatado.
+     * @return a data e hora de início formatada.
+     * @throws IllegalArgumentException se o argumento h for nulo.
+     */
     public static String getDataHoraInicio(Horario h) throws IllegalArgumentException {
         if (h == null) {
             throw new IllegalArgumentException("h is null");
@@ -51,13 +70,29 @@ public class DateManager {
         return DateManager.getScheduleCorrectTimeFormat(h.getDataAula().concat(" ").concat(h.getHoraInicio()));
     }
 
+    /**
+     * Obtém a data e hora de fim formatada de um horário.
+     *
+     * @param h o horário a ser formatado.
+     * @return a data e hora de fim formatada.
+     * @throws IllegalArgumentException se o argumento h for nulo.
+     */
     public static String getDataHoraFim(Horario h) throws IllegalArgumentException {
         if (h == null) {
             throw new IllegalArgumentException("h is null");
         }
         return DateManager.getScheduleCorrectTimeFormat(h.getDataAula().concat(" ").concat(h.getHoraFim()));
     }
-    
+
+     /**
+     * Verifica se dois horários têm o mesmo intervalo de tempo.
+     *
+     * @param h1 o primeiro horário.
+     * @param h2 o segundo horário.
+     * @return true se os horários têm o mesmo intervalo de tempo, caso contrário, false.
+     * @throws IllegalArgumentException se h1 ou h2 forem nulos.
+    */
+
     public static boolean sameInterval(Horario h1, Horario h2) {
 
         if (h1 == null || h2 == null)  throw new IllegalArgumentException("h1 or h2 is null");
