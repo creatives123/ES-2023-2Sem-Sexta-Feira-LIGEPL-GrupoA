@@ -1,4 +1,3 @@
-
 import models.CalendarModel;
 import models.Horario;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,11 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
- class HorarioToCalendarTranslatorTest {
+/**
+ * Testa a classe HorarioToCalendarTranslator.
+ */
+class HorarioToCalendarTranslatorTest {
 
     private static Horario horario;
     private static CalendarModel expectedCalendar;
 
+    /**
+     * Prepara as variáveis necessárias para os testes.
+     */
     @BeforeAll
     public static void setUp() {
         horario = new Horario();
@@ -33,6 +38,9 @@ import java.util.List;
         expectedCalendar.setTitle("Física");
     }
 
+    /**
+     * Testa a tradução de um objeto Horario para um objeto CalendarModel.
+     */
     @Test
     void testTranslateHorarioToCalendar() {
         CalendarModel actualCalendar = HorarioToCalendarTranslator.translateHorarioToCalendar(horario);
@@ -44,6 +52,9 @@ import java.util.List;
         assertEquals(expectedCalendar.getTitle(), actualCalendar.getTitle());
     }
 
+    /**
+     * Testa a tradução de uma lista de objetos Horario para uma lista de objetos CalendarModel.
+     */
     @Test
     void testTranslateHorariosToCalendars() {
         assertEquals(1, HorarioToCalendarTranslator.translateHorariosToCalendars(List.of(horario)).size());

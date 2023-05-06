@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class WebCallImporterServlet extends HttpServlet {
       return "Erro ao obter InputStream";
     }
 
-    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
     StringBuilder content = new StringBuilder();
     String line;
 
