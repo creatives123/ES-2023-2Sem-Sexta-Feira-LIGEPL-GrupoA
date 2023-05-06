@@ -159,10 +159,10 @@
     <hr>
     <div class="row">
         <div class="col" id="Overcrowded">
-            <h3>UCs com sobrelotação</h3>
+            <h5>UCs com sobrelotação:</h5>
         </div>
         <div class="col" id="Overlapped">
-            <h3>UCs com sobreposição</h3>
+            <h5>UCs com sobreposição:</h5>
         </div>
     </div>
 </div>
