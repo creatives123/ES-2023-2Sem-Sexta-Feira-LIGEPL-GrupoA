@@ -51,12 +51,12 @@
   </servlet-mapping>
 
  <servlet>
-    <servlet-name>DeleteEventServlet</servlet-name>
-    <servlet-class>web.CalendarServlets.DeleteEventServlet</servlet-class>
+    <servlet-name>DeleteEventsServlet</servlet-name>
+    <servlet-class>web.DatasourceServlets.DeleteEventsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DeleteEventServlet</servlet-name>
-    <url-pattern>/DeleteEventServlet</url-pattern>
+    <servlet-name>DeleteEventsServlet</servlet-name>
+    <url-pattern>/DeleteEventsServlet</url-pattern>
   </servlet-mapping>
 
      <servlet>

@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="models.Horario" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="models.CalendarWrapper" %>
 
 <!doctype html>
 <html lang="en">
@@ -78,7 +79,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (response) {
-                    eventsDatasource = response;
+                    eventsDatasource = response.events;
                     calendar.refetchEvents();
                 },
                 error: function (xhr, status, error) {
@@ -87,11 +88,11 @@
             });
         }
 
-        function deleteEvents(uc) {
+        function deleteEvents(uc, turno) {
             $.ajax({
-                url: 'DeleteEventServlet?uc='+uc,
+                url: 'DeleteEventsServlet?uc=' + uc +"&=turno" + turno,
                 type: 'DELETE'
-            }).then(function () {
+            }).then (function () {
                 getCalendarData();
             });
         }
@@ -118,13 +119,15 @@
                 successCallback(eventsDatasource);
             },
             eventClick: function(info) {
+                console.log(info.event.extendedProps.horario);
+                var turno = info.event.extendedProps.horario.turno;
+                var uc = info.event.extendedProps.horario.unidadeCurricular;
 
-                console.log(info);
-                console.log(info.event);
-                console.log(info.event.extendedProps);
+                console.log(turno);
+                console.log(uc);
 
                 if (confirm("Quer mesmo apagar esta UC do seu calendário?")) {
-                    deleteEvents(info.event.title);
+                    deleteEvents(uc, turno);
                 }
             }
         });
