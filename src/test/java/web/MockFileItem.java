@@ -93,19 +93,16 @@ public class MockFileItem implements FileItem {
 
     @Override
     public FileItemHeaders getHeaders() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getHeaders'");
     }
 
     @Override
     public void setHeaders(FileItemHeaders arg0) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setHeaders'");
     }
 
     @Override
     public boolean isInMemory() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isInMemory'");
     }
 }
