@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -57,8 +58,9 @@ public class WebCallImporterServlet extends HttpServlet {
    * @param uri a URL que aponta para o calendário Webcal.
    * @param request o objeto HttpServletRequest que contém a sessão do usuário.
    * @return uma mensagem de feedback indicando se a importação foi bem sucedida ou não.
+   * @throws UnsupportedEncodingException
    */
-  public static String importFromUrl(String uri, HttpServletRequest request) {
+  public static String importFromUrl(String uri, HttpServletRequest request) throws UnsupportedEncodingException {
     List<Horario> events = new ArrayList<>();
 
     // Converter a URL webcal para uma URL HTTP
@@ -90,7 +92,7 @@ public class WebCallImporterServlet extends HttpServlet {
 
     conn.setRequestProperty("Content-Type", "text/calendar");
     conn.setRequestProperty("Accept-Charset", "UTF-8");
-    
+
     InputStream inputStream;
     try {
       inputStream = conn.getInputStream();
@@ -98,7 +100,7 @@ public class WebCallImporterServlet extends HttpServlet {
       return "Erro ao obter InputStream";
     }
 
-    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
     StringBuilder content = new StringBuilder();
     String line;
 
