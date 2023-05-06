@@ -60,6 +60,12 @@ public class DownloadServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Retorna uma lista de objetos Horario armazenados na sessão do usuário, com base no nome da variável de sessão fornecida.
+     * @param request o objeto HttpServletRequest que contém a sessão do usuário.
+     * @param varSession o nome da variável de sessão que contém os horários.
+     * @return uma lista de objetos Horario armazenados na sessão do usuário com base no nome da variável de sessão fornecida.
+     */
     private List<Horario> getHorariosFromSession(HttpServletRequest request, String varSession) {
         if(varSession.equals("horarios")){
             return CommonManager.getHorariosFromSession(request.getSession());
