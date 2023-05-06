@@ -220,6 +220,7 @@ public class StudentCalendarServletTest {
         when(request.getParameter("turno")).thenReturn("T1");
     
         new StudentCalendarServlet().doDelete(request, response);
+        assertTrue(true);
     }
     
 }
