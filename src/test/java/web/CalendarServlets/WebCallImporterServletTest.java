@@ -12,7 +12,6 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 public class WebCallImporterServletTest {
