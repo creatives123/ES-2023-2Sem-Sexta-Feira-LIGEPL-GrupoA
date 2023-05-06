@@ -260,11 +260,17 @@ public class Horario implements Serializable {
     }
 
     public String getDataHoraInicio() {
-        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio));
+        if (this.getDataAula() != null) {
+            return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio).concat(":00"));
+        }
+        return null;
     }
 
     public String getDataHoraFim() {
-        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim)); 
+        if (this.getDataAula() != null) {
+            return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim).concat(":00")); 
+        }
+        return null;
     }
 
     public boolean sameInterval(Horario h) {
