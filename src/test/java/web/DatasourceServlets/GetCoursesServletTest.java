@@ -22,17 +22,29 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import models.Horario;
-
+/**
+ * Esta classe é responsável por testar o servlet {@link GetCoursesServlet}.
+ */
 public class GetCoursesServletTest {
 
     @Mock
     HttpServletRequest request;
 
+    /**
+     * Prepara o ambiente de testes, inicializando os objetos Mockito.
+     */
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
     }
 
+
+    /**
+     * Testa o método {@link GetCoursesServlet#doGet(HttpServletRequest, HttpServletResponse)} quando a lista de horários
+     * contém cursos. Deve retornar um JSON com a lista de cursos.
+     *
+     * @throws IOException se ocorrer um erro de I/O durante a execução do teste
+     */
     @Test
     public void testGetCourses() throws IOException {
 

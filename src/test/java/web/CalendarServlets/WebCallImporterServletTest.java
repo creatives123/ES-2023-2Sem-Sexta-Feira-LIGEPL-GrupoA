@@ -13,12 +13,21 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 import java.io.UnsupportedEncodingException;
-
+/**
+ * Esta classe testa a funcionalidade do {@link WebCallImporterServlet}.
+ * @author [nome do autor]
+ * @version 1.0
+ */
 public class WebCallImporterServletTest {
     private HttpServletRequest request;
     private HttpServletResponse response;
     private HttpSession session;
 
+    /**
+     * Testa o método {@link WebCallImporterServlet#importFromUrl(String, HttpServletRequest)}.
+     * 
+     * @throws UnsupportedEncodingException se ocorrer um erro de codificação durante a execução do método testado.
+     */
     @Before
     public void setUp() {
         request = mock(HttpServletRequest.class);
@@ -26,6 +35,11 @@ public class WebCallImporterServletTest {
         session = mock(HttpSession.class);
     }
 
+    /**
+     * Testa o método {@link WebCallImporterServlet#doGet(HttpServletRequest, HttpServletResponse)}.
+     * 
+     * @throws Exception se ocorrer um erro durante a execução do método testado.
+     */
     @Test
     public void testDoGet() throws Exception {
         // Set up necessary mocks
@@ -47,6 +61,11 @@ public class WebCallImporterServletTest {
         verify(response).sendRedirect(request.getContextPath() + "/index.jsp");
     }
 
+    /**
+     * Testa o método {@link WebCallImporterServlet#importFromUrl(String, HttpServletRequest)}.
+     * 
+     * @throws UnsupportedEncodingException se ocorrer um erro de codificação durante a execução do método testado.
+     */
     @Test
     public void testCalendarBuilderError() throws UnsupportedEncodingException {
         // Mock a HttpURLConnection that returns valid WebCal content, but the CalendarBuilder throws an exception

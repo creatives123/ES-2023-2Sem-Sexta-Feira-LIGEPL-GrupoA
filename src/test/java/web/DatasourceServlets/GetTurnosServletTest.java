@@ -19,8 +19,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Classe de testes para a servlet GetTurnosServlet.
+ */
  class GetTurnosServletTest {
 
+    /**
+     * Testa o método doGet() para retornar uma lista vazia de turnos.
+     * 
+     * @throws IOException
+     */
     @Test
     public void testGetTurnos_NeedToGetOnlyOne() throws IOException {
         HttpServletRequest request = mock(HttpServletRequest.class);
