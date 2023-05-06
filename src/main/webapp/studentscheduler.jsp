@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="models.Horario" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="models.CalendarWrapper" %>
+
 <%
     // Check if the session variable exists and is not empty
     if (session.getAttribute("horarios") == null || session.getAttribute("horarios").equals("")) {
@@ -5,11 +11,7 @@
         response.sendRedirect("index.jsp");
     }
 %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.List" %>
-<%@ page import="models.Horario" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="models.CalendarWrapper" %>
+
 
 <!doctype html>
 <html lang="en">

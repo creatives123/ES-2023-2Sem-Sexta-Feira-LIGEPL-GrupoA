@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="models.Horario" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="models.CalendarWrapper" %>
+
 <%
     // Check if the session variable exists and is not empty
     if (session.getAttribute("webcalHorario") == null || session.getAttribute("webcalHorario").equals("")) {
@@ -6,11 +12,7 @@
     }
 %>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.List" %>
-<%@ page import="models.Horario" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="models.CalendarWrapper" %>
+
 
 <!doctype html>
 <html lang="en">
@@ -75,6 +77,55 @@
         }
 
     </style>
+
+    <script>
+        $(document).ready(function () {
+
+            var eventsDatasource = [];
+
+            function getCalendarData() {
+                $.ajax({
+                    url: 'GetCalendarServlet?horario=webcalHorario',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        eventsDatasource = response;
+                        calendar.refetchEvents();
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr.statusText);
+                    }
+                });
+            }
+
+            var calendarEl = $('#calendar').get(0);
+            window.calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'pt',
+                themeSystem: 'bootstrap5',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                buttonText: {
+                    today: 'Hoje',
+                    day: 'Diário',
+                    week: 'Semanal',
+                    month: 'Mensal'
+                },
+                navLinks: true,
+                editable: false,
+                dayMaxEvents: true,
+                events: function (info, successCallback, failureCallback) {
+                    successCallback(eventsDatasource);
+                }
+            });
+
+            getCalendarData();
+            calendar.render();
+        });
+
+    </script>
 </head>
 
 <body>
