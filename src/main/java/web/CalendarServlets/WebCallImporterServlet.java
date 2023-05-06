@@ -9,12 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +21,12 @@ import models.Horario;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.component.VEvent;
 import services.DateManager;
 
+/**
+ * Servlet que importa um calendário no formato Webcal e o converte em uma lista de horários.
+ */
 public class WebCallImporterServlet extends HttpServlet {
   public static final String WEBCAL_HORARIO = "WebcalHorario";
 
@@ -45,15 +43,22 @@ public class WebCallImporterServlet extends HttpServlet {
 
   }
 
+  /**
+   * Importa um calendário no formato Webcal a partir de uma URL.
+   *
+   * @param uri a URL que aponta para o calendário Webcal.
+   * @param request o objeto HttpServletRequest que contém a sessão do usuário.
+   * @return uma mensagem de feedback indicando se a importação foi bem sucedida ou não.
+   */
   public static String importFromUrl(String uri, HttpServletRequest request) {
     List<Horario> events = new ArrayList<>();
 
-    // Convert the webcal URL to an HTTP URL
+    // Converter a URL webcal para uma URL HTTP
     if (uri.startsWith("webcal://")) {
       uri = "https://" + uri.substring(9);
     }
 
-    // create url
+    // Criar a URL
     URL url;
     try {
       url = new URL(uri);
@@ -61,7 +66,7 @@ public class WebCallImporterServlet extends HttpServlet {
       return "URL inválido";
     }
 
-    // Read the WebCal calendar from the URL
+    // Ler o calendário Webcal a partir da URL
     HttpURLConnection conn;
     try {
       conn = (HttpURLConnection) url.openConnection();
@@ -90,7 +95,7 @@ public class WebCallImporterServlet extends HttpServlet {
 
     try {
       while ((line = reader.readLine()) != null) {
-        content.append(line).append(System.lineSeparator()); // Append the line separator after each line
+        content.append(line).append(System.lineSeparator()); // Adicionar o separador de linha após cada linha
       }
       reader.close();
     } catch (IOException e) {
