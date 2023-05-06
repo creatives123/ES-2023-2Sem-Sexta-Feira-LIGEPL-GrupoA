@@ -17,10 +17,10 @@ import org.junit.jupiter.api.Test;
 
 import models.Horario;
 
-public class CommonManagerTest {
+class CommonManagerTest {
 
     @Test
-    public void testGetHorariosFromSession_whenSessionContainsHorarios_shouldReturnList() {
+    void testGetHorariosFromSession_whenSessionContainsHorarios_shouldReturnList() {
         HttpSession session = mock(HttpSession.class);
         List<Horario> expectedHorarios = Arrays.asList(new Horario(), new Horario());
         when(session.getAttribute("horarios")).thenReturn(expectedHorarios);
@@ -30,7 +30,7 @@ public class CommonManagerTest {
     }
 
     @Test
-    public void testGetHorariosFromSession_whenSessionDoesNotContainHorarios_shouldReturnEmptyList() {
+    void testGetHorariosFromSession_whenSessionDoesNotContainHorarios_shouldReturnEmptyList() {
         HttpSession session = mock(HttpSession.class);
         when(session.getAttribute("horarios")).thenReturn(null);
 
@@ -40,7 +40,7 @@ public class CommonManagerTest {
     }
 
     @Test
-    public void testGetCoursesFromSession_whenSessionContainsCourses_shouldReturnList() {
+    void testGetCoursesFromSession_whenSessionContainsCourses_shouldReturnList() {
         HttpSession session = mock(HttpSession.class);
         List<String> expectedCourses = Arrays.asList("Math", "Science");
         when(session.getAttribute("courses")).thenReturn(expectedCourses);
@@ -51,7 +51,7 @@ public class CommonManagerTest {
     }
 
     @Test
-    public void testGetCoursesFromSession_whenSessionDoesNotContainCourses_shouldReturnEmptyList() {
+    void testGetCoursesFromSession_whenSessionDoesNotContainCourses_shouldReturnEmptyList() {
         HttpSession session = mock(HttpSession.class);
         when(session.getAttribute("courses")).thenReturn(null);
 
@@ -61,7 +61,7 @@ public class CommonManagerTest {
     }
 
     @Test
-    public void testGetStudentHorarioFromSession_whenSessionContainsStudentHorario_shouldReturnList() {
+    void testGetStudentHorarioFromSession_whenSessionContainsStudentHorario_shouldReturnList() {
         HttpSession session = mock(HttpSession.class);
         List<Horario> expectedHorarios = Arrays.asList(new Horario(), new Horario());
         when(session.getAttribute("student_horario")).thenReturn(expectedHorarios);
@@ -72,7 +72,7 @@ public class CommonManagerTest {
     }
 
     @Test
-    public void testGetStudentHorarioFromSession_whenSessionDoesNotContainStudentHorario_shouldReturnEmptyList() {
+    void testGetStudentHorarioFromSession_whenSessionDoesNotContainStudentHorario_shouldReturnEmptyList() {
         HttpSession session = mock(HttpSession.class);
         when(session.getAttribute("student_horario")).thenReturn(null);
 
@@ -82,7 +82,7 @@ public class CommonManagerTest {
     }
 
     @Test
-    public void testAddToStudentHorarioFromSession_whenSessionContainsStudentHorario_shouldAddToHorarioList() {
+    void testAddToStudentHorarioFromSession_whenSessionContainsStudentHorario_shouldAddToHorarioList() {
         HttpSession session = mock(HttpSession.class);
         Horario horario = new Horario();
         List<Horario> expectedHorarios = new ArrayList<>(Arrays.asList(horario));
