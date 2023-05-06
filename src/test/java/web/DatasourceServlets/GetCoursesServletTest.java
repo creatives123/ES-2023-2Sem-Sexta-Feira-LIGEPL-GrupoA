@@ -21,10 +21,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-
 import models.Horario;
-import services.CommonManager;
-import web.DatasourceServlets.GetCoursesServlet;
 
 public class GetCoursesServletTest {
 

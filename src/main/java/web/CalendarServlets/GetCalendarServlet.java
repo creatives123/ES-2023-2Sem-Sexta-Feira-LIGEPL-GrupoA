@@ -42,6 +42,13 @@ public class GetCalendarServlet extends HttpServlet {
         response.getWriter().write(json);
     }
 
+    /**
+    * Obtém uma lista de objetos Horario através da variável de sessão indicada nos parâmetros.
+    * Essa lista é posteriormente convertida numa lista de objetos CalendarModel usando o objeto HorarioToCalendarTranslator.
+    * @param request o objeto HttpServletRequest contendo informações sobre o pedido
+    * @param varSession o nome da variável de sessão que contém uma lista de objetos Horario.
+    * @return uma lista de objetos CalendarModel que representa os eventos guardados na variável de sessão indicada nos parâmetros de entrada.
+    */
     private List<CalendarModel> getCalendars(HttpServletRequest request, String varSession){
         List<Horario> events;
         if(varSession.equals("horarios")){

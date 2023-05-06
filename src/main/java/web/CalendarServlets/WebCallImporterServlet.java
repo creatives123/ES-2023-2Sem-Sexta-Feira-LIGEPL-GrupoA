@@ -141,7 +141,6 @@ public class WebCallImporterServlet extends HttpServlet {
       fields[8] = DateManager.getCorrectFormatDateFromWebCal(vEvent.getStartDate().toString().substring(vEvent.getStartDate().toString().indexOf(":") +1));
       fields[9] = vEvent.getLocation().toString().substring(vEvent.getLocation().toString().indexOf(':') + 1).replace("\\", ""); 
       fields[10] = "0";
-      System.out.println();
 
       int i = 0;
       for(String e : fields) {
