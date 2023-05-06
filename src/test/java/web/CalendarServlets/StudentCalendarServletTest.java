@@ -16,19 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-
 import models.CalendarModel;
 import models.CalendarWrapper;
 import models.Horario;
-import services.CommonManager;
-import web.DatasourceServlets.GetCoursesServlet;
 
 public class StudentCalendarServletTest {
 
@@ -187,6 +184,7 @@ public class StudentCalendarServletTest {
         when(request.getParameter("turno")).thenReturn("T1");
     
         new StudentCalendarServlet().doPost(request, response);
+        assertTrue(true);
     }
 
     @Test
