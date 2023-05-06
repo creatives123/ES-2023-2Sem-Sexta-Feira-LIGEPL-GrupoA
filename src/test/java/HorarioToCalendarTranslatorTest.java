@@ -21,8 +21,8 @@ public class HorarioToCalendarTranslatorTest {
         horario = new Horario();
         horario.setUnidadeCurricular("Física");
         horario.setDataAula("01/01/2022");
-        horario.setHoraInicio("14:30");
-        horario.setHoraFim("16:00");
+        horario.setHoraInicio("14:30:00");
+        horario.setHoraFim("16:00:00");
         horario.setSala("A1.01");
         
         expectedCalendar = new CalendarModel();
