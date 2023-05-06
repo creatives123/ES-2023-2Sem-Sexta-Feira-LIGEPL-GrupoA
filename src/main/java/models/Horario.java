@@ -259,18 +259,18 @@ public class Horario implements Serializable {
         return this.inscritos > this.lotacao;
     }
 
-    public String getDataHoraInicio() {
-        if (this.getDataAula() != null) {
-            return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio).concat(":00"));
+    public String getDataHoraInicio() throws IllegalArgumentException {
+        if (this.dataAula == null || this.horaInicio == null) {
+            throw new IllegalArgumentException("dataAula or horaInicio is null");
         }
-        return null;
+        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio));
     }
-
-    public String getDataHoraFim() {
-        if (this.getDataAula() != null) {
-            return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim).concat(":00")); 
+    
+    public String getDataHoraFim() throws IllegalArgumentException {
+        if (this.dataAula == null || this.horaFim == null) {
+            throw new IllegalArgumentException("dataAula or horaFim is null");
         }
-        return null;
+        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim));
     }
 
     public boolean sameInterval(Horario h) {

@@ -17,50 +17,50 @@ public class DateManager {
      */
     private DateManager() {}
 
-    /**
-     * Converte uma string no formato "dd/MM/yyyy" para um objeto {@link Date}.
-     *
-     * @param input a string a ser convertida.
-     * @return o objeto {@link Date} correspondente.
-     */
-    public static Date castStringToDate(String input) {
-        DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = null;
+    // /**
+    //  * Converte uma string no formato "dd/MM/yyyy" para um objeto {@link Date}.
+    //  *
+    //  * @param input a string a ser convertida.
+    //  * @return o objeto {@link Date} correspondente.
+    //  */
+    // public static Date castStringToDate(String input) {
+    //     DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
+    //     Date date = null;
     
-        try {
-            date = inputFormat.parse(input);
-            DateFormat outputFormat = new SimpleDateFormat("yyyy-mm-dd");
-            String outputString = outputFormat.format(date);
-            date = outputFormat.parse(outputString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         date = inputFormat.parse(input);
+    //         DateFormat outputFormat = new SimpleDateFormat("yyyy-mm-dd");
+    //         String outputString = outputFormat.format(date);
+    //         date = outputFormat.parse(outputString);
+    //     } catch (ParseException e) {
+    //         e.printStackTrace();
+    //     }
     
-        return date;
-    }
+    //     return date;
+    // }
     
 
-    /**
-     * Converte uma string no formato "E MMM dd yyyy HH:mm:ss" para um objeto {@link Date}.
-     *
-     * @param input a string a ser convertida.
-     * @return o objeto {@link Date} correspondente.
-     */
-    public static Date castStringExtendToDate(String input) {
-        DateFormat inputFormat = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss" );
-        Date date = null;
+    // /**
+    //  * Converte uma string no formato "E MMM dd yyyy HH:mm:ss" para um objeto {@link Date}.
+    //  *
+    //  * @param input a string a ser convertida.
+    //  * @return o objeto {@link Date} correspondente.
+    //  */
+    // public static Date castStringExtendToDate(String input) {
+    //     DateFormat inputFormat = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss" );
+    //     Date date = null;
     
-        try {
-            date = inputFormat.parse(input);
-            DateFormat outputFormat = new SimpleDateFormat("yyyy-mm-dd");
-            String output = outputFormat.format(date);
-            date = outputFormat.parse(output);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         date = inputFormat.parse(input);
+    //         DateFormat outputFormat = new SimpleDateFormat("yyyy/mm/dd");
+    //         String output = outputFormat.format(date);
+    //         date = outputFormat.parse(output);
+    //     } catch (ParseException e) {
+    //         e.printStackTrace();
+    //     }
     
-        return date;
-    }
+    //     return date;
+    // }
 
     /**
      * Converte uma string no formato "dd/MM/yyyy HH:mm:ss" para uma string no formato "yyyy-MM-dd HH:mm:ss".
@@ -72,7 +72,7 @@ public class DateManager {
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(input, inputFormat);
     
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         return dateTime.format(outputFormat);
     }
 }
