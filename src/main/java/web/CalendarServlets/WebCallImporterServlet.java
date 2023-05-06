@@ -28,7 +28,7 @@ import services.DateManager;
  * Servlet que importa um calendário no formato Webcal e o converte em uma lista de horários.
  */
 public class WebCallImporterServlet extends HttpServlet {
-  public static final String WEBCAL_HORARIO = "WebcalHorario";
+  public static final String WEBCAL_HORARIO = "webcalHorario";
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
