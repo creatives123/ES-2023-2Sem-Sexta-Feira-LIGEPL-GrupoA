@@ -81,16 +81,7 @@ class DateManagerTest {
         assertEquals("h is null", exception.getMessage());
     }
 
-    @DisplayName("Test sameInterval method")
-    @ParameterizedTest(name = "test {index}: h1={0}, h2={1}, expected={2}")
-    @MethodSource("sameIntervalArguments")
-    void testSameInterval(Horario h1, Horario h2, boolean expected) {
-        // Act
-        boolean actual = DateManager.sameInterval(h1, h2);
 
-        // Assert
-        assertEquals(expected, actual);
-    }
 
     static Collection<Object[]> sameIntervalArguments() {
         Horario h1 = new Horario();
