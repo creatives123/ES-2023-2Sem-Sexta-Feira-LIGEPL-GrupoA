@@ -34,7 +34,7 @@ import java.util.List;
     }
 
     @Test
-    public void testTranslateHorarioToCalendar() {
+    void testTranslateHorarioToCalendar() {
         CalendarModel actualCalendar = HorarioToCalendarTranslator.translateHorarioToCalendar(horario);
         assertNotNull(actualCalendar);
         assertEquals(expectedCalendar.getHorario(), actualCalendar.getHorario());
@@ -45,7 +45,7 @@ import java.util.List;
     }
 
     @Test
-    public void testTranslateHorariosToCalendars() {
+    void testTranslateHorariosToCalendars() {
         assertEquals(1, HorarioToCalendarTranslator.translateHorariosToCalendars(List.of(horario)).size());
     }
 }

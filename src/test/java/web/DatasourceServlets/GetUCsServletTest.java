@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
  class GetUCsServletTest {
 
     @Test
-    public void testUCs_NeedToGetOnlyOne() throws IOException {
+    void testUCs_NeedToGetOnlyOne() throws IOException {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         HttpSession session = mock(HttpSession.class);
