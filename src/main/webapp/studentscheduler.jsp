@@ -276,7 +276,6 @@
             var curso = $('#cursos').val();
             var uc = $('#ucs').val();
             var turno = $('#turnos').val();
-            alert(curso + " " + uc + " " + turno);
             if (curso !== null && uc !== null && turno !== null) {
                 $.post("StudentCalendarServlet", {curso: curso, uc: uc, turno: turno}, function () {
                     getCalendarData();
