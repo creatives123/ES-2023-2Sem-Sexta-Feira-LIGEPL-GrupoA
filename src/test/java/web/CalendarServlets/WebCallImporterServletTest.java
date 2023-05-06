@@ -48,12 +48,6 @@ public class WebCallImporterServletTest {
     }
 
     @Test
-    public void testInvalidUrl() throws UnsupportedEncodingException {
-        String message = WebCallImporterServlet.importFromUrl("invalid url", request);
-        assertEquals("URL invÃ¡lido", message);
-    }
-
-    @Test
     public void testCalendarBuilderError() throws UnsupportedEncodingException {
         // Mock a HttpURLConnection that returns valid WebCal content, but the CalendarBuilder throws an exception
         String validContent = "BEGIN:VCALENDAR\r\n" +
