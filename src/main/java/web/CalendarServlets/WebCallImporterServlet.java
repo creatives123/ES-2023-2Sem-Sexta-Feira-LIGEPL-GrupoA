@@ -45,7 +45,7 @@ public class WebCallImporterServlet extends HttpServlet {
     String message ="";
     String uri = request.getParameter("uri");
     // Import calendar events from the user-provided URL
-     message = importFromUrl(uri, request);
+     //message = importFromUrl(uri, request);
      // Set the resulting message as a session attribute "messageUpload" and redirect the user to the index.jsp page
      request.getSession().setAttribute("messageUpload", message);
      response.sendRedirect(request.getContextPath() + "/index.jsp");   
@@ -58,7 +58,9 @@ public class WebCallImporterServlet extends HttpServlet {
    * @param request o objeto HttpServletRequest que contém a sessão do usuário.
    * @return uma mensagem de feedback indicando se a importação foi bem sucedida ou não.
    */
-  public static String importFromUrl(String uri, HttpServletRequest request) {
+  public static String importFromUrl(String uri
+  //, HttpServletRequest request
+  ) {
     List<Horario> events = new ArrayList<>();
 
     // Converter a URL webcal para uma URL HTTP
@@ -140,12 +142,20 @@ public class WebCallImporterServlet extends HttpServlet {
       fields[10] = "0";
       System.out.println();
 
+      for(String e : fields) {
+        e = e.replaceAll("\r", "").replaceAll("\n", "");
+      }
+
       Horario horario = new Horario(fields);
       events.add(horario);
 
-     request.getSession().setAttribute(WEBCAL_HORARIO, events);
+     //request.getSession().setAttribute(WEBCAL_HORARIO, events);
     }
 
     return "O Horário foi importado com sucesso";
+  }
+
+  public static void main(String[] args){
+    importFromUrl("webcal://fenix.iscte-iul.pt/publico/publicPersonICalendar.do?method=iCalendar&username=egcoo@iscte.pt&password=VPV5WcgZrMDC13ZjUHA5bvDgVdyTrrNRAf1o7pY3XwQX6xeIQq2MNgmpexBfJndMXiPl6m2J3zste39kySbkE46tFMBi4Pu3zUk1h2XWcxzbPGuOef9ybLzzaAvE7SAE");
   }
 }
