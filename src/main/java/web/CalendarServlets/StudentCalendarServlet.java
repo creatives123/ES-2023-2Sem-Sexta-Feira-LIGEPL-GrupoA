@@ -42,7 +42,7 @@ public class StudentCalendarServlet extends HttpServlet {
     }
 
     /**
-     * Trata os pedidos GET para adicionar um evento ao calendário de um estudante.
+     * Trata os pedidos POST para adicionar um evento ao calendário de um estudante.
      * 
      * @param request o objeto HttpServletRequest contendo informações sobre o pedido
      * @param response o objeto HttpServletResponse utilizado para enviar a resposta
