@@ -12,7 +12,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import static org.mockito.Mockito.*;
-
+/**
+ * Este é o arquivo de teste para a classe DownloadServlet. Ele testa os métodos doGet() que geram o download de arquivos JSON ou CSV,
+ * que geram o download de arquivos JSON ou CSV,
+ * @autor: [Nome do Autor]
+ * @version: 1.0
+ * @since: [data de criação]
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class DownloadServletTest {
 
@@ -25,6 +31,10 @@ public class DownloadServletTest {
     @Mock
     private HttpSession session;
 
+    /**
+     * Testa o método doGet() que gera o download de um arquivo JSON.
+     * @throws IOException se houver um erro ao lidar com a entrada ou saída de dados
+     */
     @Test
     public void testDoGetJson() throws IOException {
         DownloadServlet servlet = new DownloadServlet();
@@ -42,6 +52,10 @@ public class DownloadServletTest {
         verify(response, times(1)).setHeader("Content-Disposition", "attachment; filename=Horario.json");
     }
 
+    /**
+     * Testa o método doGet() que gera o download de um arquivo CSV.
+     * @throws IOException se houver um erro ao lidar com a entrada ou saída de dados
+     */
     @Test
     public void testDoGetCsv() throws IOException {
         DownloadServlet servlet = new DownloadServlet();

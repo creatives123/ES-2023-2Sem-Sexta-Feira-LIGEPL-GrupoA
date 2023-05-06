@@ -18,7 +18,7 @@ import services.DateManager;
 class DateManagerTest {
 
     /**
-     * Tests the {@link DateManager#getScheduleCorrectTimeFormat(String)} method.
+     * Testa o método {@link DateManager#getScheduleCorrectTimeFormat(String)}.
      */
     @Test
     void testGetScheduleCorrectTimeFormat() {
@@ -34,7 +34,7 @@ class DateManagerTest {
     }
 
     /**
-     * Tests the {@link DateManager#getDataHoraInicio(Horario)} method.
+     * Testa o método {@link DateManager#getDataHoraInicio(Horario)}.
      */
     @Test
     void testGetDataHoraInicio() {
@@ -52,7 +52,7 @@ class DateManagerTest {
     }
 
     /**
-     * Tests the {@link DateManager#getDataHoraInicio(Horario)} method when the input is null.
+     * Testa o método {@link DateManager#getDataHoraInicio(Horario)} quanto o input está null.
      */
     @Test
     void testGetDataHoraInicioNull() {
@@ -66,7 +66,7 @@ class DateManagerTest {
     }
 
     /**
-     * Tests the {@link DateManager#getDataHoraFim(Horario)} method.
+     * Testa o método {@link DateManager#getDataHoraFim(Horario)}.
      */
     @Test
     void testGetDataHoraFim() {
@@ -84,7 +84,7 @@ class DateManagerTest {
     }
 
     /**
-     * Tests the {@link DateManager#getDataHoraFim(Horario)} method.
+     * Testa o método {@link DateManager#getDataHoraFim(Horario)}.
      */
     @Test
     void testGetDataHoraFimNull() {
@@ -98,7 +98,7 @@ class DateManagerTest {
     }
 
     /**
-     * Tests the {@link DateManager#sameInterval(Horario, Horario)} method.
+     * Testa o método {@link DateManager#sameInterval(Horario, Horario)}.
      */
     @DisplayName("Test sameInterval method")
     @ParameterizedTest(name = "test {index}: h1={0}, h2={1}, expected={2}")
