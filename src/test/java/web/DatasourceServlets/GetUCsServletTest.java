@@ -18,10 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GetUCsServletTest {
+class GetUCsServletTest {
 
     @Test
-    public void testUCs_NeedToGetOnlyOne() throws IOException {
+    void testUCs_NeedToGetOnlyOne() throws IOException {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         HttpSession session = mock(HttpSession.class);
