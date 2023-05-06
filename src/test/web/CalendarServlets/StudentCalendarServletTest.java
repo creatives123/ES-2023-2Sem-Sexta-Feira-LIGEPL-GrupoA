@@ -85,4 +85,29 @@ public class StudentCalendarServletTest {
         verify(session, times(1)).setAttribute(eq("studentHorario"), eq(studentSchedule));
         verify(request, never()).setAttribute(anyString(), any());
     }
+
+    @Test
+    public void testDoPost() throws ServletException, IOException {
+        Horario event1 = new Horario();
+        
+        event1.setCurso("Engenharia Informática");
+        event1.setUnidadeCurricular("Informática de Gestão");
+        event1.setTurno("L0718TP13");
+        
+
+        when(request.getParameter("curso")).thenReturn("Curso 1");
+        when(request.getParameter("uc")).thenReturn("UC 1");
+        when(request.getParameter("turno")).thenReturn("Turno 3");
+
+        servlet.doPost(request, response);
+
+        Assert.assertEquals(4, horarios.size());
+        Assert.assertEquals("Curso 1", horarios.get(3).getCurso());
+        Assert.assertEquals("UC 1", horarios.get(3).getUnidadeCurricular());
+        Assert.assertEquals("Turno 3", horarios.get(3).getTurno());
+    }
+
+
+    
+
 }
