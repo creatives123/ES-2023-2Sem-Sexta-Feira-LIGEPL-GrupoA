@@ -260,22 +260,31 @@ public class Horario implements Serializable {
     }
 
     public String getDataHoraInicio() {
-        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio));
+        if (this.getDataAula() != null) {
+            return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaInicio).concat(":00"));
+        }
+        return null;
     }
 
     public String getDataHoraFim() {
-        return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim)); 
+        if (this.getDataAula() != null) {
+            return DateManager.getScheduleCorrectTimeFormat(this.dataAula.concat(" ").concat(this.horaFim).concat(":00")); 
+        }
+        return null;
     }
 
     public boolean sameInterval(Horario h) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime inicio1 = LocalDateTime.parse(this.getDataHoraInicio(), formatter);
-        LocalDateTime fim1 = LocalDateTime.parse(this.getDataHoraFim(), formatter);
-        LocalDateTime inicio2 = LocalDateTime.parse(h.getDataHoraInicio(), formatter);
-        LocalDateTime fim2 = LocalDateTime.parse(h.getDataHoraFim(), formatter);
-    
-        return (inicio1.isBefore(fim2) && fim1.isAfter(inicio2))
-               || (inicio2.isBefore(fim1) && fim2.isAfter(inicio1))
-               || (inicio1.equals(inicio2) && fim1.equals(fim2));
+        if (h != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime inicio1 = LocalDateTime.parse(this.getDataHoraInicio(), formatter);
+            LocalDateTime fim1 = LocalDateTime.parse(this.getDataHoraFim(), formatter);
+            LocalDateTime inicio2 = LocalDateTime.parse(h.getDataHoraInicio(), formatter);
+            LocalDateTime fim2 = LocalDateTime.parse(h.getDataHoraFim(), formatter);
+        
+            return (inicio1.isBefore(fim2) && fim1.isAfter(inicio2))
+                   || (inicio2.isBefore(fim1) && fim2.isAfter(inicio1))
+                   || (inicio1.equals(inicio2) && fim1.equals(fim2));
+        }
+        return false;
     }
 }

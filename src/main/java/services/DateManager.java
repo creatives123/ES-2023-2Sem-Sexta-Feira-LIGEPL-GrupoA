@@ -47,7 +47,7 @@ public class DateManager {
      * @return o objeto {@link Date} correspondente.
      */
     public static Date castStringExtendToDate(String input) {
-        DateFormat inputFormat = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss");
+        DateFormat inputFormat = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss" );
         Date date = null;
     
         try {
