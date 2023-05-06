@@ -104,10 +104,10 @@ public class WebCallImporterServlet extends HttpServlet {
     StringBuilder content = new StringBuilder();
     String line;
 
-
+    // Adicionar o separador de linha após cada linha
     try {
       while ((line = reader.readLine()) != null) {
-        content.append(line).append(System.lineSeparator()); // Adicionar o separador de linha após cada linha
+        content.append(line).append(System.lineSeparator()); 
       }
       reader.close();
     } catch (IOException e) {
@@ -156,8 +156,4 @@ public class WebCallImporterServlet extends HttpServlet {
 
     return "O Horário foi importado com sucesso";
   }
-
-  // public static void main(String[] args){
-  //   importFromUrl("webcal://fenix.iscte-iul.pt/publico/publicPersonICalendar.do?method=iCalendar&username=egcoo@iscte.pt&password=VPV5WcgZrMDC13ZjUHA5bvDgVdyTrrNRAf1o7pY3XwQX6xeIQq2MNgmpexBfJndMXiPl6m2J3zste39kySbkE46tFMBi4Pu3zUk1h2XWcxzbPGuOef9ybLzzaAvE7SAE");
-  // }
 }
