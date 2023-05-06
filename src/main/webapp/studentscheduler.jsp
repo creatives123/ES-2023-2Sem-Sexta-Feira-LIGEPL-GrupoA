@@ -133,6 +133,19 @@
         </div>
         <hr/>
         <div id="calendar" class="calendar"></div>
+        <hr/>
+        <div class="row row-cols-auto">
+            <div class="col">
+                <a href="DownloadServlet?type=json&horario=student_horario">
+                    <button class="btn btn-primary">Download JSON</button>
+                </a>
+            </div>
+            <div class="col">
+                <a href="DownloadServlet?type=csv&horario=student_horario">
+                    <button class="btn btn-primary">Download CSV</button>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -263,9 +276,11 @@
             var curso = $('#cursos').val();
             var uc = $('#ucs').val();
             var turno = $('#turnos').val();
+            alert(curso + " " + uc + " " + turno);
             if (curso !== null && uc !== null && turno !== null) {
                 $.post("StudentCalendarServlet", {curso: curso, uc: uc, turno: turno}, function () {
                     getCalendarData();
+                    alert("UC adicionada ao calendário com sucesso!");
                 });
             }
         });

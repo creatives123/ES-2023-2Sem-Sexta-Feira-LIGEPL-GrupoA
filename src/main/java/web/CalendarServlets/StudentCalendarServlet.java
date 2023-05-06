@@ -118,13 +118,13 @@ public class StudentCalendarServlet extends HttpServlet {
             for(CalendarModel m : calendarios) {
                 if (h.equals(m.getHorario())) {
                     if (m.getHorario().isOverCrowded()) {
-                        m.setColor("#FF0000");
+                        m.setColor("#B40A7A");
                         contadorEventosLotados++;
                     }
                 }
                 else {
                     if (DateManager.sameInterval(m.getHorario(),h)) {
-                        m.setColor("orange");
+                        m.setColor("#FFD37F");
                         contadorEventosSobrepostos++;
                     }
                 }
