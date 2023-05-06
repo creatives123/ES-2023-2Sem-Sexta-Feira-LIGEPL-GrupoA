@@ -46,8 +46,11 @@ public class UploadServletTest {
         UploadServlet servlet = new UploadServlet();
         servlet.doPost(request, response);
 
-        // Verify that the session attribute "horarios" is set
-        //verify(session).setAttribute(eq(UploadServlet.HORARIOS_SESSION), any(List.class));
+       // Verify that the session attribute "horarios" is removed
+        verify(session).removeAttribute(UploadServlet.HORARIOS_SESSION);
+
+        // Verify that the session attribute "messageUpload" is set
+        verify(session).setAttribute(eq("messageUpload"), anyString()); // Replace "messageUpload" with the actual attribute name you use
 
         // Verify that the user is redirected to the index.jsp page
         verify(response).sendRedirect(request.getContextPath() + "/index.jsp");
