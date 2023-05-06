@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
 import static services.HorarioJsonWriter.writeToJson;
 import static services.HorarioCsvWriter.writeToCsv;
 
@@ -30,16 +32,17 @@ public class DownloadServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             String type = request.getParameter("type");
+            String varSession = request.getParameter("horario");
             byte[] bytes = null;
             String contentType = null;
             String filename = FILENAME;
 
             if ("json".equals(type)) {
-                bytes = writeToJson(CommonManager.getHorariosFromSession(request.getSession()));
+                bytes = writeToJson(getHorariosFromSession(request, varSession));
                 contentType = "application/json";
                 filename += ".json";
             } else if ("csv".equals(type)) {
-                bytes = writeToCsv(CommonManager.getHorariosFromSession(request.getSession()));
+                bytes = writeToCsv(getHorariosFromSession(request, varSession));
                 contentType = "text/csv";
                 filename += ".csv";
             } else {
@@ -54,6 +57,14 @@ public class DownloadServlet extends HttpServlet {
         } catch (IOException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("Ocorreu um erro ao processar a solicitação: " + e.getMessage());
+        }
+    }
+
+    private List<Horario> getHorariosFromSession(HttpServletRequest request, String varSession) {
+        if(varSession.equals("horarios")){
+            return CommonManager.getHorariosFromSession(request.getSession());
+        }else{
+            return CommonManager.getIcalHorariosFromSession(request.getSession());
         }
     }
 }

@@ -54,6 +54,7 @@
         .calendar table {
             background-color: honeydew;
         }
+
         .calendar th {
             background-color: #0D28C2;
             color: white;
@@ -68,7 +69,7 @@
 
             function getCalendarData() {
                 $.ajax({
-                    url: 'GetCalendarServlet',
+                    url: 'GetCalendarServlet?horario=horarios',
                     type: 'GET',
                     dataType: 'json',
                     success: function (response) {
@@ -93,13 +94,13 @@
                 buttonText: {
                     today: 'Hoje',
                     day: 'Diário',
-                    week:'Semanal',
-                    month:'Mensal'
+                    week: 'Semanal',
+                    month: 'Mensal'
                 },
                 navLinks: true,
                 editable: false,
                 dayMaxEvents: true,
-                events: function(info, successCallback, failureCallback) {
+                events: function (info, successCallback, failureCallback) {
                     successCallback(eventsDatasource);
                 }
             });
@@ -108,7 +109,7 @@
             calendar.render();
         });
 
-      </script>
+    </script>
 
     <style>
         body {
@@ -130,7 +131,7 @@
         }
 
         .fc-col-header-cell-cushion {
-            color:rgb(255, 255, 255);
+            color: rgb(255, 255, 255);
         }
 
     </style>
@@ -188,16 +189,25 @@
             <% } %>
         </div>
     </div>
+    <% if (session.getAttribute("webcalHorario") != null) { %>
+    <div class="row row-cols-auto">
+        <div class="col">
+            <a href="icalscheduler.jsp">
+                <button class="btn btn-primary">Visualizar WebCal Inportado</button>
+            </a>
+        </div>
+    </div>
+    <% } %>
     <% if (session.getAttribute("horarios") != null) { %>
     <hr/>
     <div class="row row-cols-auto">
         <div class="col">
-            <a href="DownloadServlet?type=json">
+            <a href="DownloadServlet?type=json&horario=horarios">
                 <button class="btn btn-primary">Download JSON</button>
             </a>
         </div>
         <div class="col">
-            <a href="DownloadServlet?type=csv">
+            <a href="DownloadServlet?type=csv&horario=horarios">
                 <button class="btn btn-primary">Download CSV</button>
             </a>
         </div>

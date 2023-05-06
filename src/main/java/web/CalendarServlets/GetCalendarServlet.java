@@ -1,6 +1,7 @@
 package web.CalendarServlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -32,15 +33,23 @@ public class GetCalendarServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = new ObjectMapper().writeValueAsString(getCalendars(request));
-    
+        String varSession = request.getParameter("horario");
+
+        String json = new ObjectMapper().writeValueAsString(getCalendars(request, varSession));
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
     }
 
-    private List<CalendarModel> getCalendars(HttpServletRequest request) {
-        List<Horario> events = CommonManager.getHorariosFromSession(request.getSession());
+    private List<CalendarModel> getCalendars(HttpServletRequest request, String varSession){
+        List<Horario> events;
+        if(varSession.equals("horarios")){
+            events = CommonManager.getHorariosFromSession(request.getSession());
+        }else{
+            events = CommonManager.getIcalHorariosFromSession(request.getSession());
+
+        }
         return HorarioToCalendarTranslator.translateHorariosToCalendars(events);
     }
 }

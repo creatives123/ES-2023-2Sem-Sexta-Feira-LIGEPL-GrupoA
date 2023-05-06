@@ -56,4 +56,10 @@ public class CommonManager {
         horarios.add(horario);
         session.setAttribute("student_horario", horarios);
     }
+    @SuppressWarnings("unchecked")
+    public static List<Horario> getIcalHorariosFromSession(HttpSession session) {
+        Object horariosObject = session.getAttribute("webcalHorario");
+        if (horariosObject != null) return (List<Horario>) horariosObject;
+        else return new ArrayList<>();
+    }
 }
