@@ -49,10 +49,14 @@ public class StudentCalendarServletTest {
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
     
+        
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
+
         new StudentCalendarServlet().doGet(request, response);
         writer.flush();
     
-        String expectedJson = "";
+        String expectedJson = "{\"overlappedEvents\":{},\"overCrowdedEvents\":{},\"events\":[]}";
         assertEquals(expectedJson, stringWriter.toString().trim());
     }
 
