@@ -90,7 +90,7 @@
 
         function deleteEvents(uc, turno) {
             $.ajax({
-                url: 'DeleteEventsServlet?uc=' + uc +"&=turno" + turno,
+                url: 'DeleteEventsServlet?uc=' + uc +"&turno=" + turno,
                 type: 'DELETE'
             }).then (function () {
                 getCalendarData();
