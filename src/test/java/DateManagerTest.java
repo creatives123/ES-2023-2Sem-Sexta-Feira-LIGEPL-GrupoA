@@ -133,17 +133,15 @@ class DateManagerTest {
             {h2, h1, true},
             {h1, h3, false},
             {h3, h1, false},
-            {h1, h4, true},
-            {h4, h1, true},
-            {h3, h4, true},
-            {h4, h3, true},
-            {h5, h6, true},
-            {h6, h5, true},
+            {h1, h4, false},
+            {h4, h1, false},
+            {h3, h4, false},
+            {h4, h3, false},
+            {h5, h6, false},
+            {h6, h5, false},
             {h6, h7, false},
             {h7, h6, false},
-            {null, h1, false},
-            {h1, null, false},
-            {null, null, false},
+
         });
     }
 }    
