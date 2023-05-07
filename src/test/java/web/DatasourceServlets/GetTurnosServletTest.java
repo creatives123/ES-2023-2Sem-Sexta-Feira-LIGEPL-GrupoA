@@ -72,6 +72,11 @@ import static org.mockito.Mockito.when;
         assertEquals(expectedJson, stringWriter.toString().trim());
     }
 
+        /**
+     * Testa o método doGet() para retornar um array vazio
+     * 
+     * @throws IOException
+     */
     @Test
     public void testGetTurnos_NeedToGetEmpty() throws IOException {
         HttpServletRequest request = mock(HttpServletRequest.class);
