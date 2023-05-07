@@ -23,6 +23,9 @@ public class UploadServletTest {
     private HttpSession session;
     private ServletFileUpload servletFileUpload;
 
+    /**
+     * Metódo que faz a configuração inicial antes de iniciar os testes.
+     */
     @Before
     public void setUp() {
         request = mock(HttpServletRequest.class);
