@@ -19,14 +19,15 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
-* Esta classe contém os testes para a classe {@link GetUCsServlet}
-*
-* @throws IOException if an I/O exception occurs while testing.
-**/
- class GetUCsServletTest  {
+ * Esta classe contém os testes para a classe {@link GetUCsServlet}.
+ */
+class GetUCsServletTest {
 
-
-    
+    /**
+     * Testa a obtenção de UCs quando há apenas um resultado esperado.
+     *
+     * @throws IOException se ocorrer uma exceção de I/O durante o teste.
+     */
     @Test
     void testUCs_NeedToGetOnlyOne() throws IOException {
         HttpServletRequest request = mock(HttpServletRequest.class);
@@ -59,10 +60,10 @@ import static org.mockito.Mockito.when;
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
-    
+
         new GetUCsServlet().doGet(request, response);
         writer.flush();
-    
+
         String expectedJson = "[\"PISID\"]";
         assertEquals(expectedJson, stringWriter.toString().trim());
     }
