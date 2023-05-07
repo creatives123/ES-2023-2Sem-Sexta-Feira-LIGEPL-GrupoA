@@ -15,8 +15,6 @@ import static org.mockito.Mockito.*;
 import java.io.UnsupportedEncodingException;
 /**
  * Esta classe testa a funcionalidade do {@link WebCallImporterServlet}.
- * @author [nome do autor]
- * @version 1.0
  */
 public class WebCallImporterServletTest {
     private HttpServletRequest request;
@@ -25,8 +23,6 @@ public class WebCallImporterServletTest {
 
     /**
      * Testa o método {@link WebCallImporterServlet#importFromUrl(String, HttpServletRequest)}.
-     * 
-     * @throws UnsupportedEncodingException se ocorrer um erro de codificação durante a execução do método testado.
      */
     @Before
     public void setUp() {
