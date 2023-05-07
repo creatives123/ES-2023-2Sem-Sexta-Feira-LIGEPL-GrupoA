@@ -38,7 +38,7 @@ public class DateManager {
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'");
         LocalDateTime dateTime = LocalDateTime.parse(input.trim(), inputFormat);
         
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return dateTime.format(outputFormat);
     }
 
