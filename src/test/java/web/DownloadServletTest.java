@@ -13,11 +13,7 @@ import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 /**
- * Este é o arquivo de teste para a classe DownloadServlet. Ele testa os métodos doGet() que geram o download de arquivos JSON ou CSV,
- * que geram o download de arquivos JSON ou CSV,
- * @autor: [Nome do Autor]
- * @version: 1.0
- * @since: [data de criação]
+ * Este é o arquivo de teste para a classe DownloadServlet. Ele testa os métodos doGet() que geram o download de arquivos JSON ou CSV
  */
 @RunWith(MockitoJUnitRunner.class)
 public class DownloadServletTest {

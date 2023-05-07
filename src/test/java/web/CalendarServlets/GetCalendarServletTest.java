@@ -14,7 +14,9 @@ import java.io.StringWriter;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
-
+/**
+ * Classe de teste para {@link GetCalendarServlet}.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class GetCalendarServletTest {
 
@@ -27,6 +29,10 @@ public class GetCalendarServletTest {
     @Mock
     private HttpSession session;
 
+    /**
+     * Testa o método {@link GetCalendarServlet#doGet(HttpServletRequest, HttpServletResponse)}.
+     * @throws IOException se ocorrer um erro durante a execução do método testado.
+     */
     @Test
     public void testDoGet() throws IOException {
         GetCalendarServlet servlet = new GetCalendarServlet();
