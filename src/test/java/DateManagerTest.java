@@ -13,7 +13,7 @@ import models.Horario;
 import services.DateManager;
 
 /**
- * The DateManagerTest class contains JUnit tests for the {@link DateManager} class.
+ * A classe DateManagerTest tem os testes para a {@link DateManager} class.
  */
 class DateManagerTest {
 
