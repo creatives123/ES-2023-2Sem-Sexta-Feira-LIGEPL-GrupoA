@@ -15,8 +15,8 @@ public class CalendarWrapper {
 
     /**
      * Define o número de eventos que se sobrepõem.
-     * 
-     * @param overlappedEventsCounter o número de eventos que se sobrepõem.
+     *
+     * @param overlappedEvents o mapa que mapeia nomes de eventos para o número de eventos que se sobrepõem.
      */
     public void setOverlappedEvents(Map<String, Integer> overlappedEvents) {
         this.overlappedEvents = overlappedEvents;
@@ -24,8 +24,8 @@ public class CalendarWrapper {
 
     /**
      * Obtém o número de eventos que se sobrepõem.
-     * 
-     * @return o número de eventos que se sobrepõem.
+     *
+     * @return o mapa que mapeia nomes de eventos para o número de eventos que se sobrepõem.
      */
     public Map<String, Integer> getOverlappedEvents() {
         return this.overlappedEvents;
@@ -33,8 +33,8 @@ public class CalendarWrapper {
 
     /**
      * Define o número de eventos que têm demasiados participantes.
-     * 
-     * @param overCrowdedEventsCounter o número de eventos que têm demasiados participantes.
+     *
+     * @param overCrowdedEvents o mapa que mapeia nomes de eventos para o número de eventos que têm demasiados participantes.
      */
     public void setOverCrowdedEvents(Map<String, Integer> overCrowdedEvents) {
         this.overCrowdedEvents = overCrowdedEvents;
@@ -42,8 +42,8 @@ public class CalendarWrapper {
 
     /**
      * Obtém o número de eventos que têm demasiados participantes.
-     * 
-     * @return o número de eventos que têm demasiados participantes.
+     *
+     * @return o mapa que mapeia nomes de eventos para o número de eventos que têm demasiados participantes.
      */
     public Map<String, Integer> getOverCrowdedEvents() {
         return this.overCrowdedEvents;
@@ -51,7 +51,7 @@ public class CalendarWrapper {
 
     /**
      * Define a lista de eventos do calendário.
-     * 
+     *
      * @param events a lista de eventos do calendário.
      */
     public void setEvents(List<CalendarModel> events) {
@@ -60,7 +60,7 @@ public class CalendarWrapper {
 
     /**
      * Obtém a lista de eventos do calendário.
-     * 
+     *
      * @return a lista de eventos do calendário.
      */
     public List<CalendarModel> getEvents() {
