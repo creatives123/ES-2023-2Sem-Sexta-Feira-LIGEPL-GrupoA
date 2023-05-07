@@ -1,0 +1,67 @@
+@options
+@packages
+@argfile
+--class-path
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/target/classes;c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/target/test-classes;C:/Users/guerr/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar;C:/Users/guerr/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar;C:/Users/guerr/.m2/repository/javax/servlet/jstl/1.2/jstl-1.2.jar;C:/Users/guerr/.m2/repository/com/opencsv/opencsv/5.5.2/opencsv-5.5.2.jar;C:/Users/guerr/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar;C:/Users/guerr/.m2/repository/org/apache/commons/commons-text/1.9/commons-text-1.9.jar;C:/Users/guerr/.m2/repository/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar;C:/Users/guerr/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar;C:/Users/guerr/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar;C:/Users/guerr/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.15.0-rc1/jackson-core-2.15.0-rc1.jar;C:/Users/guerr/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.15.0-rc1/jackson-databind-2.15.0-rc1.jar;C:/Users/guerr/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.15.0-rc1/jackson-annotations-2.15.0-rc1.jar;C:/Users/guerr/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar;C:/Users/guerr/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar;C:/Users/guerr/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar;C:/Users/guerr/.m2/repository/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar;C:/Users/guerr/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar;C:/Users/guerr/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar;C:/Users/guerr/.m2/repository/org/junit/platform/junit-platform-launcher/1.8.1/junit-platform-launcher-1.8.1.jar;C:/Users/guerr/.m2/repository/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar;C:/Users/guerr/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar;C:/Users/guerr/.m2/repository/org/junit/vintage/junit-vintage-engine/5.8.1/junit-vintage-engine-5.8.1.jar;C:/Users/guerr/.m2/repository/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar;C:/Users/guerr/.m2/repository/commons-fileupload/commons-fileupload/1.5/commons-fileupload-1.5.jar;C:/Users/guerr/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar;C:/Users/guerr/.m2/repository/org/webjars/npm/fullcalendar/3.10.2/fullcalendar-3.10.2.jar;C:/Users/guerr/.m2/repository/org/mockito/mockito-core/4.0.0/mockito-core-4.0.0.jar;C:/Users/guerr/.m2/repository/net/bytebuddy/byte-buddy/1.11.19/byte-buddy-1.11.19.jar;C:/Users/guerr/.m2/repository/net/bytebuddy/byte-buddy-agent/1.11.19/byte-buddy-agent-1.11.19.jar;C:/Users/guerr/.m2/repository/org/objenesis/objenesis/3.2/objenesis-3.2.jar;C:/Users/guerr/.m2/repository/org/mnode/ical4j/ical4j/1.0.2/ical4j-1.0.2.jar;C:/Users/guerr/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar;C:/Users/guerr/.m2/repository/commons-codec/commons-codec/1.5/commons-codec-1.5.jar;C:/Users/guerr/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar;C:/Users/guerr/.m2/repository/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/src/test/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/target/site/testapidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA Maven Webapp 1.0-SNAPSHOT Test API'
+-link
+'../apidocs'
+-linkoffline
+'https://docs.oracle.com/javase/9/docs/api' 'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA Maven Webapp 1.0-SNAPSHOT Test API'
+services
+web.CalendarServlets
+web.DatasourceServlets
+web
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/src/test/java/DateManagerTest.java'
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/src/test/java/HorarioCsvReaderTest.java'
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/src/test/java/HorarioCsvWriterTest.java'
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/src/test/java/HorarioJsonReaderTest.java'
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/src/test/java/HorarioJsonWriterTest.java'
+'c:/Users/guerr/Documents/ISCTE/ES/ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA/src/test/java/HorarioToCalendarTranslatorTest.java'
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\src\test\java\DateManagerTest.java = 1683418441057
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\src\test\java\HorarioCsvReaderTest.java = 1683416487096
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\src\test\java\HorarioCsvWriterTest.java = 1681935270307
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\src\test\java\HorarioJsonReaderTest.java = 1681935270308
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\src\test\java\HorarioJsonWriterTest.java = 1683397864677
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\src\test\java\HorarioToCalendarTranslatorTest.java = 1683414674932
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\src\test\java = 1683418441057
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\allclasses-index.html = 1683469004618
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\allpackages-index.html = 1683469004622
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\element-list = 1683469004441
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\help-doc.html = 1683469004676
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\HorarioJsonWriterTest.html = 1683469004282
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\index-all.html = 1683469004667
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\index.html = 1683469004595
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\jquery-ui.overrides.css = 1683469004699
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\member-search-index.js = 1683469004630
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\module-search-index.js = 1683469004624
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\overview-summary.html = 1683469004671
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\overview-tree.html = 1683469004590
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\package-search-index.js = 1683469004626
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\package-summary.html = 1683469004451
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\package-tree.html = 1683469004456
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\package-use.html = 1683469004551
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\script.js = 1683469004680
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\search.js = 1683469004683
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\stylesheet.css = 1683469004679
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\tag-search-index.js = 1683469004632
+c:\Users\guerr\Documents\ISCTE\ES\ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA\target\site\testapidocs\type-search-index.js = 1683469004629

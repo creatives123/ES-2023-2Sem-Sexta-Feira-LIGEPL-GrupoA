@@ -23,4 +23,58 @@
     <url-pattern>/UploadServlet</url-pattern>
   </servlet-mapping>
 
+    <servlet>
+    <servlet-name>GetCalendarServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.GetCalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetCalendarServlet</servlet-name>
+    <url-pattern>/GetCalendarServlet</url-pattern>
+  </servlet-mapping>
+
+     <servlet>
+    <servlet-name>StudentCalendarServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.StudentCalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentCalendarServlet</servlet-name>
+    <url-pattern>/StudentCalendarServlet</url-pattern>
+  </servlet-mapping>
+
+     <servlet>
+    <servlet-name>GetCoursesServlet</servlet-name>
+    <servlet-class>web.DatasourceServlets.GetCoursesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetCoursesServlet</servlet-name>
+    <url-pattern>/GetCoursesServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>GetUCsServlet</servlet-name>
+    <servlet-class>web.DatasourceServlets.GetUCsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetUCsServlet</servlet-name>
+    <url-pattern>/GetUCsServlet</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+    <servlet-name>GetTurnosServlet</servlet-name>
+    <servlet-class>web.DatasourceServlets.GetTurnosServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTurnosServlet</servlet-name>
+    <url-pattern>/GetTurnosServlet</url-pattern>
+  </servlet-mapping>
+
+       <servlet>
+    <servlet-name>WebCallImporterServlet</servlet-name>
+    <servlet-class>web.CalendarServlets.WebCallImporterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebCallImporterServlet</servlet-name>
+    <url-pattern>/WebCallImporterServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>

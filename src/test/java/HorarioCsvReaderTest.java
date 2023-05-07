@@ -71,7 +71,7 @@ class HorarioCsvReaderTest {
 
         List<Horario> horarios = HorarioCsvReader.processCsvStream(inputStream);
 
-        Assertions.assertEquals(horarios.size(), 1);
+        Assertions.assertEquals(1, horarios.size());
     }
 
     /**
