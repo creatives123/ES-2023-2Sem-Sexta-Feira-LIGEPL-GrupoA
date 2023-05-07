@@ -1,5 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA</groupId>
     <artifactId>ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA</artifactId>
@@ -7,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>ES-2023-2Sem-Sexta-Feira-LIGEPL-GrupoA Maven Webapp</name>
     <url>https://maven.apache.org</url>
-    
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -69,11 +70,11 @@
             <artifactId>fullcalendar</artifactId>
             <version>3.10.2</version>
         </dependency>
-          <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>4.0.0</version>
-        <scope>test</scope>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>4.0.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mnode.ical4j</groupId>
@@ -107,61 +108,60 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
             </plugin>
-     <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.9</version>
-            <executions>
-            <execution>
-                <id>jacoco-check</id>
-                <goals>
-                    <goal>check</goal>
-                </goals>
-                <configuration>
-                    <excludes>
-                        <exclude>**/*.jsp</exclude>
-                    </excludes>
-                    <rules>
-                        <rule>
-                            <element>PACKAGE</element>
-                            <limits>
-                                <limit>
-                                    <counter>COMPLEXITY</counter>
-                                    <value>COVEREDRATIO</value>
-                                    <minimum>0.25</minimum>
-                                </limit>
-                            </limits>
-                        </rule>
-                    </rules>
-                </configuration>
-            </execution>
-                <execution>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
-            </execution>
-            <execution>
-                <id>report</id>
-                <phase>prepare-package</phase>
-                <goals>
-                    <goal>report</goal>
-                </goals>
-            </execution>
-            </executions>
-        </plugin>
-
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.9</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*.jsp</exclude>
+                            </excludes>
+                            <rules>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>COMPLEXITY</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.25</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <reporting>
         <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.5.0</version>
-            <configuration>
-                <encoding>UTF-8</encoding>
-            </configuration>
-        </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
         </plugins>
     </reporting>
 </project>
